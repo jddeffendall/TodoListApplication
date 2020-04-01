@@ -43,10 +43,10 @@ public class HTTPUtils {
         String createdDateString = createdDate.format(formatter);
         String dueDateString = dueDate.format(formatter);
 
-        data.put("title", description);
-        data.put("owner", "Team2");
-        data.put("due", dueDateString);
-        data.put("created", createdDateString);
+        data.put("Title: ", description);
+        data.put("Owner: ", "Team2");
+        data.put("Due: ", dueDateString);
+        data.put("Created: ", createdDateString);
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest postRequest = requestFactory.buildPostRequest(
