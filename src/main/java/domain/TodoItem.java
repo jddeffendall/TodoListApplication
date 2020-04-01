@@ -41,8 +41,8 @@ public class TodoItem {
         return dueDate;
     }
 
-    public void snooze(LocalDateTime dueDate, int days) {
-        dueDate = dueDate.plusDays(days);
+    public void snooze(LocalDateTime dueDate) {
+        dueDate = dueDate.plusMinutes(5);
     }
 
 }

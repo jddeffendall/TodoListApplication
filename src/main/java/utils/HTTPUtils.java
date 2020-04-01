@@ -37,17 +37,16 @@ public class HTTPUtils {
 
     public boolean addTodoItem(String description, LocalDateTime dueDate) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
 
         LocalDateTime createdDate = LocalDateTime.now();
         String createdDateString = createdDate.format(formatter);
         String dueDateString = dueDate.format(formatter);
 
-        data.put("title", description);
-        data.put("owner", "Team2");
-        data.put("due", dueDateString);
-        data.put("created", createdDateString);
+        data.put("Title: ", description);
+        data.put("Owner: ", "Team2");
+        data.put("Due: ", dueDateString);
+        data.put("Created: ", createdDateString);
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest postRequest = requestFactory.buildPostRequest(
