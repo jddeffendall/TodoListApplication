@@ -10,9 +10,9 @@ public class TodoItem {
     private LocalDateTime createdDate;
     private LocalDateTime dueDate;
 
-    public TodoItem(String description, LocalDateTime dueDate, LocalDateTime creationDate) {
+    public TodoItem(String description, LocalDateTime dueDate) {
         this.description = description;
-        this.createdDate = creationDate;
+        this.createdDate = LocalDateTime.now();
         this.dueDate = dueDate;
     }
 

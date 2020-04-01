@@ -1,11 +1,14 @@
 package utils;
 
-import com.google.api.client.http.GenericUrl;
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestFactory;
+import com.google.api.client.http.*;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import jdk.vm.ci.meta.Local;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class HTTPUtils {
 
@@ -30,6 +33,28 @@ public class HTTPUtils {
                 new GenericUrl(teamURL));
         String rawResponse = getRequest.execute().parseAsString();
         return rawResponse;
+    }
+
+    public boolean addTodoItem(String description, LocalDateTime dueDate) throws IOException {
+        Map<String, Object> data = new LinkedHashMap<>();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
+
+        LocalDateTime createdDate = LocalDateTime.now();
+        String createdDateString = createdDate.format(formatter);
+        String dueDateString = dueDate.format(formatter);
+
+        data.put("title", description);
+        data.put("owner", "Team2");
+        data.put("due", dueDateString);
+        data.put("created", createdDateString);
+
+        HttpContent content = new UrlEncodedContent(data);
+        HttpRequest postRequest = requestFactory.buildPostRequest(
+                new GenericUrl(todosURL),content);
+        String rawResponse = postRequest.execute().parseAsString();
+
+        return true;
     }
 
     public boolean deleteTodoItem(int id) throws IOException {
