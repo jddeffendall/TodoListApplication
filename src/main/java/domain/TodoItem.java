@@ -17,22 +17,27 @@ public class TodoItem {
     }
 
     public int getId() {
+
         return id;
     }
 
     public String getOwner() {
+
         return owner;
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public LocalDateTime getCreatedDate() {
+
         return createdDate;
     }
 
     public LocalDateTime getDueDate() {
+
         return dueDate;
     }
 
