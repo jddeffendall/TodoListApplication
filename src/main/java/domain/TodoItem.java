@@ -9,6 +9,7 @@ public class TodoItem {
     private String description;
     private LocalDateTime createdDate;
     private LocalDateTime dueDate;
+    private boolean isCompleted = false;
 
     public TodoItem(String description, LocalDateTime dueDate) {
         this.description = description;
