@@ -37,7 +37,6 @@ public class HTTPUtils {
 
     public boolean addTodoItem(String description, LocalDateTime dueDate) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
 
         LocalDateTime createdDate = LocalDateTime.now();
