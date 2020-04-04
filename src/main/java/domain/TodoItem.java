@@ -42,11 +42,15 @@ public class TodoItem {
         return dueDate;
     }
 
+    public boolean getCompletionStatus() {
+        return isCompleted;
+    }
+
     public void snooze(LocalDateTime due) {
         dueDate = due.plusMinutes(5);
     }
 
-    public void completeItem(TodoItem item) {
+    public void completeItem() {
         isCompleted = true;
     }
 
