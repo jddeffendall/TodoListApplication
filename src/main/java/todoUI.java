@@ -16,6 +16,12 @@ public class todoUI extends JFrame implements ActionListener {
         panel.setLayout(gridBagLayout);
         setContentPane(panel);
 
+        JButton retrieveAllTodos = new JButton("Get all Todos");
+
+        JButton sync = new JButton("Sync");
+
+        JButton snooze = new JButton("Snooze");
+
 
         setPreferredSize(new Dimension(500,500));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -29,9 +35,6 @@ public class todoUI extends JFrame implements ActionListener {
         Button to snooze to do item
         When item is clicked on, you can complete it and send it to completed area
          */
-
-
-
     }
 
     public static void main(String[] args) {
