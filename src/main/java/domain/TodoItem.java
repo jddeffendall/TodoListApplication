@@ -42,8 +42,12 @@ public class TodoItem {
         return dueDate;
     }
 
-    public void snooze(LocalDateTime dueDate) {
-        dueDate = dueDate.plusMinutes(5);
+    public void snooze(LocalDateTime due) {
+        dueDate = due.plusMinutes(5);
+    }
+
+    public void completeItem(TodoItem item) {
+        isCompleted = true;
     }
 
 }
