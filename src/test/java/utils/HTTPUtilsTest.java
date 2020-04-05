@@ -1,20 +1,24 @@
 package utils;
 
+import domain.TodoItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class HTTPUtilsTest {
 
     HTTPUtils httpUtils;
+    JsonToObjectParser parser;
 
     @BeforeEach
     void setup() {
         httpUtils = new HTTPUtils();
+        parser = new JsonToObjectParser();
     }
 
     @Test
@@ -33,9 +37,10 @@ class HTTPUtilsTest {
 
     @Test
     void addTodoItem() throws IOException {
-        LocalDateTime testTime = LocalDateTime.now();
-        httpUtils.addTodoItem("Write tests", testTime);
-        JsonToObjectParser = 
+        LocalDateTime testTime = LocalDateTime.now().plusMinutes(5);
+        String result = httpUtils.addTodoItem("Write tests", testTime);
+        TodoItem[] testArray = parser.JsonStringToObjects(result);
+        assertEquals(testArray[0].getDescription(), "Write tests");
     }
 
     @Test

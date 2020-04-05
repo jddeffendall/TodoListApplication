@@ -1,8 +1,14 @@
+import domain.TodoItem;
+import exceptions.ConnectionException;
+import utils.HTTPUtils;
+import utils.JsonToObjectParser;
+
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class todoUI extends JFrame implements ActionListener {
 
@@ -15,8 +21,6 @@ public class todoUI extends JFrame implements ActionListener {
         GridBagLayout gridBagLayout = new GridBagLayout();
         panel.setLayout(gridBagLayout);
         setContentPane(panel);
-
-        JButton retrieveAllTodos = new JButton("Get all Todos");
 
         JButton sync = new JButton("Sync");
 

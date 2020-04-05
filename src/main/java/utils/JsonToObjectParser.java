@@ -32,10 +32,9 @@ public class JsonToObjectParser {
 
     }
 
-    public List<TodoItem> JsonStringToObjects(String userJson) {
+    public TodoItem[] JsonStringToObjects(String userJson) {
         Gson gson = new Gson();
-        Type todoListType = new TypeToken<ArrayList<TodoItem>>(){}.getType();
-        List<TodoItem> todoList = gson.fromJson(userJson, todoListType);
+        TodoItem[] todoList = gson.fromJson(userJson, TodoItem[].class);
         return todoList;
     }
 }

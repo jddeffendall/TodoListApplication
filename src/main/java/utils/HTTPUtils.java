@@ -34,7 +34,7 @@ public class HTTPUtils {
         return rawResponse;
     }
 
-    public void addTodoItem(String description, LocalDateTime dueDate) throws IOException {
+    public String addTodoItem(String description, LocalDateTime dueDate) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
 
@@ -51,6 +51,7 @@ public class HTTPUtils {
         HttpRequest postRequest = requestFactory.buildPostRequest(
                 new GenericUrl(todosURL),content);
         String rawResponse = postRequest.execute().parseAsString();
+        return rawResponse;
     }
 
     public boolean deleteTodoItem(int id) throws IOException {
