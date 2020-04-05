@@ -4,11 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class HTTPUtilsTest {
 
+    parser parser;
     HTTPUtils httpUtils;
 
     @BeforeEach
@@ -31,7 +33,10 @@ class HTTPUtilsTest {
     }
 
     @Test
-    void addTodoItem() {
+    void addTodoItem() throws IOException {
+        LocalDateTime testTime = LocalDateTime.now();
+        httpUtils.addTodoItem("Write tests", testTime);
+        parser parser = new parser();
     }
 
     @Test

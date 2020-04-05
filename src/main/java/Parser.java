@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class parser {
+public class Parser {
 
 
     public JsonObject parseData(InputStream input) {
