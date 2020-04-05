@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HTTPUtilsTest {
 
-    parser parser;
     HTTPUtils httpUtils;
 
     @BeforeEach
@@ -36,7 +35,7 @@ class HTTPUtilsTest {
     void addTodoItem() throws IOException {
         LocalDateTime testTime = LocalDateTime.now();
         httpUtils.addTodoItem("Write tests", testTime);
-        parser parser = new parser();
+        JsonToObjectParser = 
     }
 
     @Test

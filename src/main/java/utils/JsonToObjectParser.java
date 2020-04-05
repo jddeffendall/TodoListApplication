@@ -1,8 +1,8 @@
+package utils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import domain.TodoItem;
 
@@ -13,12 +13,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parser {
+public class JsonToObjectParser {
 
 
     public JsonObject parseData(InputStream input) {
         Reader reader = new InputStreamReader(input);
-        JsonElement e = JsonParser.parseReader(reader);
+        JsonElement e = com.google.gson.JsonParser.parseReader(reader);
         JsonObject object = e.getAsJsonObject();
 
 
@@ -38,6 +38,4 @@ public class Parser {
         List<TodoItem> todoList = gson.fromJson(userJson, todoListType);
         return todoList;
     }
-
-
 }
