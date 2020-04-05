@@ -1,3 +1,5 @@
+import utils.HTTPUtils;
+
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
@@ -5,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class todoUI extends JFrame implements ActionListener {
+
 
     public todoUI(){
         super("Todo Application");
@@ -17,10 +20,29 @@ public class todoUI extends JFrame implements ActionListener {
         setContentPane(panel);
 
         JButton retrieveAllTodos = new JButton("Get all Todos");
+        var retrieveAllTodosConstraints = new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(retrieveAllTodos, retrieveAllTodosConstraints);
+        retrieveAllTodos.addActionListener(e->{
+
+        });
 
         JButton sync = new JButton("Sync");
+        var syncConstraints = new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(sync, syncConstraints);
+        sync.addActionListener(e->{
+                });
 
         JButton snooze = new JButton("Snooze");
+        var snoozeConstraints = new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(snooze,snoozeConstraints);
+        snooze.addActionListener(e->{
+
+
+        });
+
+
+
+
 
 
         setPreferredSize(new Dimension(500,500));

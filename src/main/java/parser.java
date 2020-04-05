@@ -39,6 +39,4 @@ public class parser {
         List<TodoItem> todoList = gson.fromJson(userJson, todoListType);
         return todoList;
     }
-
-
 }
