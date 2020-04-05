@@ -22,7 +22,7 @@ public class HTTPUtils {
 
     public String getTodoItemJsonString(int id) throws IOException {
         HttpRequest getRequest = requestFactory.buildGetRequest(
-                new GenericUrl(todosURL + id));
+                new GenericUrl(teamURL + id));
         String rawResponse = getRequest.execute().parseAsString();
         return rawResponse;
     }
@@ -34,7 +34,7 @@ public class HTTPUtils {
         return rawResponse;
     }
 
-    public String addTodoItem(String description, LocalDateTime dueDate) throws IOException {
+    public void addTodoItem(String description, LocalDateTime dueDate) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
 
@@ -42,17 +42,15 @@ public class HTTPUtils {
         String createdDateString = createdDate.format(formatter);
         String dueDateString = dueDate.format(formatter);
 
-        data.put("Title: ", description);
-        data.put("Owner: ", "Team2");
-        data.put("Due: ", dueDateString);
-        data.put("Created: ", createdDateString);
+        data.put("title: ", description);
+        data.put("owner: ", "Team2");
+        data.put("due: ", dueDateString);
+        data.put("created: ", createdDateString);
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest postRequest = requestFactory.buildPostRequest(
                 new GenericUrl(todosURL),content);
         String rawResponse = postRequest.execute().parseAsString();
-
-        return rawResponse;
     }
 
     public boolean deleteTodoItem(int id) throws IOException {
