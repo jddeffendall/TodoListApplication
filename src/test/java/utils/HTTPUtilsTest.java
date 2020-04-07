@@ -37,13 +37,24 @@ class HTTPUtilsTest {
 
     @Test
     void addTodoItem() throws IOException {
-        LocalDateTime testTime = LocalDateTime.now().plusMinutes(5);
-        String result = httpUtils.addTodoItem("Write tests", testTime);
-        TodoItem[] testArray = parser.JsonStringToObjects(result);
-        assertEquals(testArray[0].getDescription(), "Write tests");
+        String dueDate = "Friday";
+        String createdDate = "Now";
+        var resultID = httpUtils.addTodoItem("Add todo test", dueDate, createdDate);
+        var expected = "{\n" +
+                "  \"title\": \"Add todo test\",\n" +
+                "  \"due\": \"Friday\",\n" +
+                "  \"created\": \"Now\",\n" +
+                "  \"owner\": \"TeamTwo\",\n" +
+                "  \"id\": " + resultID + "\n" +
+                "}";
+        var actual = httpUtils.getTodoItemJsonString(resultID);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void deleteTodoItem() {
+    void deleteTodoItem() throws IOException {
+        var resultID = httpUtils.addTodoItem("Delete tests", "Friday", "Tuesday");
+        var deletedResult = httpUtils.deleteTodoItem(resultID);
+        assertTrue(deletedResult);
     }
 }

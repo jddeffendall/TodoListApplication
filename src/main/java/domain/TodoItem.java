@@ -7,38 +7,34 @@ public class TodoItem {
     private int id;
     private String owner;
     private String description;
-    private LocalDateTime createdDate;
-    private LocalDateTime dueDate;
+    private String createdDate;
+    private String dueDate;
     private boolean isCompleted = false;
+    private boolean isOverdue = false;
 
-    public TodoItem(String description, LocalDateTime dueDate) {
+    public TodoItem(String description, String created, String due) {
         this.description = description;
-        this.createdDate = LocalDateTime.now();
-        this.dueDate = dueDate;
+        this.createdDate = created;
+        this.dueDate = due;
     }
 
     public int getId() {
-
         return id;
     }
 
     public String getOwner() {
-
         return owner;
     }
 
     public String getDescription() {
-
         return description;
     }
 
-    public LocalDateTime getCreatedDate() {
-
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public LocalDateTime getDueDate() {
-
+    public String getDueDate() {
         return dueDate;
     }
 
@@ -46,12 +42,16 @@ public class TodoItem {
         return isCompleted;
     }
 
-    public void snooze(LocalDateTime due) {
-        dueDate = due.plusMinutes(5);
-    }
-
     public void completeItem() {
         isCompleted = true;
+    }
+
+    public void setOverdue() {
+        isOverdue = true;
+    }
+
+    public boolean getOverdueStatus() {
+        return isOverdue;
     }
 
 }

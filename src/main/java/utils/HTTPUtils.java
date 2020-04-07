@@ -14,7 +14,7 @@ public class HTTPUtils {
     HttpRequestFactory requestFactory;
     String baseURL = "https://todoserver222.herokuapp.com/";
     String todosURL = baseURL + "todos/";
-    String teamURL = baseURL + "Team2/todos/";
+    String teamURL = "https://todoserver222.herokuapp.com/TeamTwo/todos";
 
     public HTTPUtils() {
         requestFactory = new NetHttpTransport().createRequestFactory();
@@ -22,7 +22,7 @@ public class HTTPUtils {
 
     public String getTodoItemJsonString(int id) throws IOException {
         HttpRequest getRequest = requestFactory.buildGetRequest(
-                new GenericUrl(teamURL + id));
+                new GenericUrl(todosURL + id));
         String rawResponse = getRequest.execute().parseAsString();
         return rawResponse;
     }
@@ -34,24 +34,27 @@ public class HTTPUtils {
         return rawResponse;
     }
 
-    public String addTodoItem(String description, LocalDateTime dueDate) throws IOException {
+    public int addTodoItem(String description, String dueDate, String createdDate) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
 
-        LocalDateTime createdDate = LocalDateTime.now();
-        String createdDateString = createdDate.format(formatter);
-        String dueDateString = dueDate.format(formatter);
-
-        data.put("title: ", description);
-        data.put("owner: ", "Team2");
-        data.put("due: ", dueDateString);
-        data.put("created: ", createdDateString);
+        data.put("title", description);
+        data.put("due", dueDate);
+        data.put("created", createdDate);
+        data.put("owner", "TeamTwo");
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest postRequest = requestFactory.buildPostRequest(
                 new GenericUrl(todosURL),content);
         String rawResponse = postRequest.execute().parseAsString();
-        return rawResponse;
+        char[] chars = rawResponse.toCharArray();
+        String StringID = "";
+        for (char c : chars) {
+            if (Character.isDigit(c)) {
+                StringID += c;
+            }
+        }
+        int intID = Integer.parseInt(StringID);
+        return intID;
     }
 
     public boolean deleteTodoItem(int id) throws IOException {
