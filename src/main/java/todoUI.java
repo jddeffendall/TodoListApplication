@@ -1,10 +1,14 @@
+import domain.TodoItem;
 import utils.HTTPUtils;
+import utils.JsonToObjectParser;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.List;
 
 public class todoUI extends JFrame implements ActionListener {
 
@@ -23,13 +27,21 @@ public class todoUI extends JFrame implements ActionListener {
         var retrieveAllTodosConstraints = new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(retrieveAllTodos, retrieveAllTodosConstraints);
         retrieveAllTodos.addActionListener(e->{
-
+            HTTPUtils httpUtils = new HTTPUtils();
+            JsonToObjectParser parser = new JsonToObjectParser();
+            try {
+                String allUserTodosJsonString = httpUtils.getAllUserTodosJsonString();
+                List<TodoItem> allUserTodosObjects = parser.JsonStringToObjects(allUserTodosJsonString);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
 
         JButton sync = new JButton("Sync");
         var syncConstraints = new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(sync, syncConstraints);
         sync.addActionListener(e->{
+
                 });
 
         JButton snooze = new JButton("Snooze");
