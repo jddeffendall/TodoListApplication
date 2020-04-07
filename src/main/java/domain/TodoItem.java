@@ -1,21 +1,19 @@
 package domain;
 
-import java.time.LocalDateTime;
-
 public class TodoItem {
 
     private int id;
     private String owner;
     private String description;
-    private String createdDate;
-    private String dueDate;
+    private String created;
+    private String due;
     private boolean isCompleted = false;
     private boolean isOverdue = false;
 
     public TodoItem(String description, String created, String due) {
         this.description = description;
-        this.createdDate = created;
-        this.dueDate = due;
+        this.created = created;
+        this.due = due;
     }
 
     public int getId() {
@@ -31,11 +29,11 @@ public class TodoItem {
     }
 
     public String getCreatedDate() {
-        return createdDate;
+        return created;
     }
 
     public String getDueDate() {
-        return dueDate;
+        return due;
     }
 
     public boolean getCompletionStatus() {

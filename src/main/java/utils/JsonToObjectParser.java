@@ -26,7 +26,6 @@ public class JsonToObjectParser {
         if (!object.has("complete!")) {
             JsonObject query = object.getAsJsonObject("query");
             return query;
-
         } else {
             return null;
         }
@@ -35,7 +34,8 @@ public class JsonToObjectParser {
 
     public TodoItem[] JsonStringToObjects(String userJson) {
         Gson gson = new Gson();
-        TodoItem[] todoList = gson.fromJson(userJson, TodoItem[].class);
+        Type todoListType = new TypeToken<ArrayList<TodoItem>>(){}.getType();
+        TodoItem[] todoList = gson.fromJson(userJson, todoListType);
         return todoList;
     }
 
