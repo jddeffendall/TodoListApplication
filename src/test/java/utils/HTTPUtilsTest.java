@@ -35,7 +35,7 @@ class HTTPUtilsTest {
     void addTodoItem() throws IOException {
         LocalDateTime testTime = LocalDateTime.now();
         httpUtils.addTodoItem("Write tests", testTime);
-        JsonToObjectParser = 
+        //JsonToObjectParser =
     }
 
     @Test
