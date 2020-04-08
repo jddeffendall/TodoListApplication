@@ -51,8 +51,8 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(sync, syncConstraints);
         sync.addActionListener(e->{
 
-                });
-
+        });
+/*
         JButton snooze = new JButton("Snooze");
         var snoozeConstraints = new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(snooze,snoozeConstraints);
@@ -60,8 +60,26 @@ public class todoUI extends JFrame implements ActionListener {
 
 
         });
+*/
 
+        JTextField titleInput = new JTextField("Enter title of Todo item");
+        JTextField creationDateInput = new JTextField("Enter current date");
+        JTextField dueDateInput = new JTextField("Enter due date for item");
 
+        JButton AddEvent = new JButton("Add To Schedule");
+        var AddEventConstraints = new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(AddEvent, AddEventConstraints);
+        AddEvent.addActionListener(e ->{
+            String title = titleInput.getText();
+            String creation = creationDateInput.getText();
+            String due = dueDateInput.getText();
+            HTTPUtils httpUtils = new HTTPUtils();
+            try {
+                int resultID = httpUtils.addTodoItem(title, due, creation);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
 
 

@@ -4,14 +4,15 @@ public class TodoItem {
 
     private int id;
     private String owner;
-    private String description;
+    private String title;
     private String created;
     private String due;
     private boolean isCompleted = false;
     private boolean isOverdue = false;
 
-    public TodoItem(String description, String created, String due) {
-        this.description = description;
+    public TodoItem(String owner, String description, String created, String due) {
+        this.owner = owner;
+        this.title = description;
         this.created = created;
         this.due = due;
     }
@@ -25,7 +26,7 @@ public class TodoItem {
     }
 
     public String getDescription() {
-        return description;
+        return title;
     }
 
     public String getCreatedDate() {
