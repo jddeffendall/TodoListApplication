@@ -1,57 +1,55 @@
 package domain;
 
-import java.time.LocalDateTime;
-
 public class TodoItem {
 
     private int id;
     private String owner;
     private String description;
-    private LocalDateTime createdDate;
-    private LocalDateTime dueDate;
+    private String created;
+    private String due;
     private boolean isCompleted = false;
+    private boolean isOverdue = false;
 
-    public TodoItem(String description, LocalDateTime dueDate) {
+    public TodoItem(String description, String created, String due) {
         this.description = description;
-        this.createdDate = LocalDateTime.now();
-        this.dueDate = dueDate;
+        this.created = created;
+        this.due = due;
     }
 
     public int getId() {
-
         return id;
     }
 
     public String getOwner() {
-
         return owner;
     }
 
     public String getDescription() {
-
         return description;
     }
 
-    public LocalDateTime getCreatedDate() {
-
-        return createdDate;
+    public String getCreatedDate() {
+        return created;
     }
 
-    public LocalDateTime getDueDate() {
-
-        return dueDate;
+    public String getDueDate() {
+        return due;
     }
 
     public boolean getCompletionStatus() {
         return isCompleted;
     }
 
-    public void snooze(LocalDateTime due) {
-        dueDate = due.plusMinutes(5);
-    }
-
     public void completeItem() {
         isCompleted = true;
+    }
+
+    public void setOverdue() {
+        isOverdue = true;
+    }
+
+    public boolean getOverdueStatus() {
+        return isOverdue;
     }
 
 }

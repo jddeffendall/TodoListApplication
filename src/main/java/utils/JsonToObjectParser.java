@@ -5,7 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import com.sun.tools.javac.comp.Todo;
 import domain.TodoItem;
 
 import java.io.InputStream;
@@ -27,7 +26,6 @@ public class JsonToObjectParser {
         if (!object.has("complete!")) {
             JsonObject query = object.getAsJsonObject("query");
             return query;
-
         } else {
             return null;
         }
