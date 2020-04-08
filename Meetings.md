@@ -1,4 +1,4 @@
-# Team 2 Meetings
+## Team 2 Meetings
 * 30 March 2020, 12:30-12:50pm, Google Hangout
   * Jacob Deffendall, Haden Foster, Payton Lowry
 * 31 March 2020, 11:00am-12:00pm, Google Hangout
