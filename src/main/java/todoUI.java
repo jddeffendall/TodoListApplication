@@ -38,7 +38,8 @@ public class todoUI extends JFrame implements ActionListener {
         });*/
 
         String[][] data = {{"Date/Time", "Description"},
-                    {"12/25/2020 2:34 AM", "Kill Santa"}};
+                    {"12/25/2020 2:34 AM", "Kill Santa"},
+                    {"12/25/2020 2:45 AM", "Become Santa"}};
 
         String[] columnNames = { "Date", "Description"};
 
