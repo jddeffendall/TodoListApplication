@@ -23,7 +23,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.setLayout(gridBagLayout);
         setContentPane(panel);
 
-        JButton retrieveAllTodos = new JButton("Get all Todos");
+        /*JButton retrieveAllTodos = new JButton("Get all Todos");
         var retrieveAllTodosConstraints = new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(retrieveAllTodos, retrieveAllTodosConstraints);
         retrieveAllTodos.addActionListener(e->{
@@ -35,7 +35,16 @@ public class todoUI extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        });
+        });*/
+
+        String[][] data = {{"Date/Time", "Description"},
+                    {"12/25/2020 2:34 AM", "Kill Santa"}};
+
+        String[] columnNames = { "Date", "Description"};
+
+        JTable items = new JTable(data, columnNames);
+        var itemsConstraints = new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
+        panel.add(items,itemsConstraints);
 
         JButton sync = new JButton("Sync");
         var syncConstraints = new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
