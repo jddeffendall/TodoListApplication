@@ -57,7 +57,7 @@ public class todoUI extends JFrame implements ActionListener {
 
 
 
-        setPreferredSize(new Dimension(500,500));
+        setPreferredSize(new Dimension(800,800));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
