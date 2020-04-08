@@ -37,11 +37,10 @@ public class todoUI extends JFrame implements ActionListener {
             }
         });*/
 
-        String[][] data = {{"Date/Time", "Description"},
-                    {"12/25/2020 2:34 AM", "Kill Santa"},
-                    {"12/25/2020 2:45 AM", "Become Santa"}};
+        String[][] data = {{"Created", "Description", "Due"},
+                    {"12/20/2020 2:34 AM", "Kill Santa", "12/25/2020 5:30 AM"}};
 
-        String[] columnNames = { "Date", "Description"};
+        String[] columnNames = { "Created", "Description", "Due"};
 
         JTable items = new JTable(data, columnNames);
         var itemsConstraints = new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
