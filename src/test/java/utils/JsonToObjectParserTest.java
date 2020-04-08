@@ -8,5 +8,8 @@ class JsonToObjectParserTest {
 
     @Test
     void jsonStringToObjects() {
+        String sampleJson = "";
+        JsonToObjectParser parser = new JsonToObjectParser();
+        parser.JsonStringToObjects(sampleJson);
     }
 }

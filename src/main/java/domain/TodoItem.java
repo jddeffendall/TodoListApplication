@@ -10,9 +10,8 @@ public class TodoItem {
     private boolean isCompleted = false;
     private boolean isOverdue = false;
 
-    public TodoItem(String owner, int id, String description, String created, String due) {
+    public TodoItem(String owner, String description, String created, String due) {
         this.owner = owner;
-        this.id = id;
         this.title = description;
         this.created = created;
         this.due = due;
