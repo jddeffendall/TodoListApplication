@@ -9,5 +9,13 @@
   * I can also view a pie chart of all of my tasks, so I can see the progress I've made along with what still needs completed.
 #### Iteration Plans
 * Iteration 1
-  *
+  * Basic GUI
+  * Add and retrieve Todo items
+* Iteration 2
+  * Improve GUI
+  * Snooze items
+* Iteration 3
+  * Get alerted about upcoming items
+  * Offline database
+#### Screenshots
   
