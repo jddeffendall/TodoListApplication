@@ -10,11 +10,18 @@ public class TodoItem {
     private boolean isCompleted = false;
     private boolean isOverdue = false;
 
-    public TodoItem(String owner, String description, String created, String due) {
+    public TodoItem(String description, String created, String due) {
+        this.title = description;
+        this.created = created;
+        this.due = due;
+    }
+
+    public TodoItem(String owner, String description, String created, String due, int id) {
         this.owner = owner;
         this.title = description;
         this.created = created;
         this.due = due;
+        this.id = id;
     }
 
     public int getId() {
@@ -41,7 +48,7 @@ public class TodoItem {
         return isCompleted;
     }
 
-    public void completeItem() {
+    public void setCompleted() {
         isCompleted = true;
     }
 
