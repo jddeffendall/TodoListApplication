@@ -1,20 +1,13 @@
 package utils;
 
 import domain.TodoItem;
-import org.javatuples.Pair;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 public class UIUtils {
 
     public UIUtils() {
     }
 
     public String[][] formatDataForTable(TodoItem[] data) {
-        String[][] formattedData = {};
+        String[][] formattedData = new String[20][3];
 
         for (int i = 0; i < data.length; i++) {
             TodoItem tempTodo = data[i];

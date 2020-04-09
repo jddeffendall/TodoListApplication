@@ -73,16 +73,11 @@ public class todoUI extends JFrame implements ActionListener {
         });
 */
 
-
-
-
-
 /*
         JButton snooze = new JButton("Snooze");
         var snoozeConstraints = new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(snooze,snoozeConstraints);
         snooze.addActionListener(e->{
-
 
         });
 */

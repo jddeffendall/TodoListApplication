@@ -1,5 +1,5 @@
 # Todo List Application
-### Team 2: Haden Foster, Ross Effinger, Jacob Deffendall, Jordan Becker, Payton Lowry
+#### Team 2: Haden Foster, Ross Effinger, Jacob Deffendall, Jordan Becker, Payton Lowry
 #### User Stories
 * As a user, I want to create a Todo list to keep track of all my tasks.
   *	I can create new Todo items, and be given reminders about them when I get on the application so I can keep track of and complete my schedule.
@@ -14,6 +14,7 @@
 * Iteration 2
   * Improve GUI
   * Snooze items
+  * Pie chart
 * Iteration 3
   * Get alerted about upcoming items
   * Offline database
