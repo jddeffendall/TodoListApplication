@@ -6,13 +6,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import domain.TodoItem;
-
+import org.javatuples.Pair;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class JsonToObjectParser {
 
@@ -37,6 +38,20 @@ public class JsonToObjectParser {
         Type todoListType = new TypeToken<ArrayList<TodoItem>>(){}.getType();
         List<TodoItem> todoList = gson.fromJson(userJson, todoListType);
         return todoList;
+    }
+
+    public List<Pair<String, String>> extractData(String jsonString) {
+        JsonParser jsonParser = new JsonParser();
+        JsonElement rootElement = jsonParser.parse(jsonString);
+        JsonObject rootObject = rootElement.getAsJsonObject();
+
+        List<Pair<String, String>> resultList = new ArrayList<>();
+
+        for (Map.Entry<String, JsonElement> e : rootObject.entrySet()) {
+            resultList.add(new Pair<String, String>(e.getKey(), e.getValue().toString()));
+        }
+
+        return resultList;
     }
 
 
