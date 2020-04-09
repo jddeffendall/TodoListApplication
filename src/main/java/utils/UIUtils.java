@@ -13,16 +13,18 @@ public class UIUtils {
     public UIUtils() {
     }
 
-    public String[][] formatDataForTable(List<TodoItem> data) {
+    public String[][] formatDataForTable(TodoItem[] data) {
         String[][] formattedData = null;
 
-        for (int i = 0; i < data.size(); i++) {
-            TodoItem tempTodo = data.get(i);
+        for (int i = 0; i < data.length; i++) {
+            TodoItem tempTodo = data[i];
             formattedData[i][0] = tempTodo.getCreatedDate();
-            formattedData[i][1] = tempTodo.getDescription();
+            formattedData[i][1] = tempTodo.getTitle();
             formattedData[i][2] = tempTodo.getDueDate();
         }
 
         return formattedData;
     }
+
+    //created, desc, due
 }

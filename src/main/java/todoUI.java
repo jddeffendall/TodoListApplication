@@ -41,13 +41,13 @@ public class todoUI extends JFrame implements ActionListener {
         HTTPUtils httpUtils = new HTTPUtils();
         UIUtils uiUtils = new UIUtils();
         JsonToObjectParser parser = new JsonToObjectParser();
-        /*
-        String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
-        List<TodoItem> allUserTodos = parser.JsonStringToObjects(allUserTodosJson);
-        String[][] data = uiUtils.formatDataForTable(allUserTodos);
-        */
 
-        String[][] data = {{"12/20/2020 2:34 AM", "Kill Santa", "12/25/2020 5:30 AM"}};
+        String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
+        TodoItem[] allUserTodos = parser.JsonStringToObjects(allUserTodosJson);
+        System.out.println(allUserTodos[0].getTitle());
+        String[][] data = uiUtils.formatDataForTable(allUserTodos);
+
+        //String[][] data = {{"12/20/2020 2:34 AM", "Kill Santa", "12/25/2020 5:30 AM"}};
 
         String[] columnNames = { "Created", "Description", "Due"};
 

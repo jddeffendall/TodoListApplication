@@ -2,11 +2,13 @@ package domain;
 
 public class TodoItem {
 
-    private int id;
+    private String id;
     private String owner;
     private String title;
     private String created;
     private String due;
+
+
     private boolean isCompleted = false;
     private boolean isOverdue = false;
 
@@ -16,15 +18,15 @@ public class TodoItem {
         this.due = due;
     }
 
-    public TodoItem(String owner, String description, String created, String due, int id) {
+    public TodoItem(String title, String owner, String created, String due, String id) {
+        this.title = title;
         this.owner = owner;
-        this.title = description;
         this.created = created;
         this.due = due;
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -32,7 +34,7 @@ public class TodoItem {
         return owner;
     }
 
-    public String getDescription() {
+    public String getTitle() {
         return title;
     }
 

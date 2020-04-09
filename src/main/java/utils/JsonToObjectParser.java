@@ -33,11 +33,10 @@ public class JsonToObjectParser {
 
     }
 
-    public List<TodoItem> JsonStringToObjects(String userJson) {
+    public TodoItem[] JsonStringToObjects(String userJson) {
         Gson gson = new Gson();
-        Type todoListType = new TypeToken<ArrayList<TodoItem>>(){}.getType();
-        List<TodoItem> todoList = gson.fromJson(userJson, todoListType);
-        return todoList;
+        TodoItem[] todoArray = gson.fromJson(userJson, TodoItem[].class);
+        return todoArray;
     }
 
     public List<Pair<String, String>> extractData(String jsonString) {
@@ -50,9 +49,6 @@ public class JsonToObjectParser {
         for (Map.Entry<String, JsonElement> e : rootObject.entrySet()) {
             resultList.add(new Pair<String, String>(e.getKey(), e.getValue().toString()));
         }
-
         return resultList;
     }
-
-
 }
