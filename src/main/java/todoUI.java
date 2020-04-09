@@ -90,10 +90,7 @@ public class todoUI extends JFrame implements ActionListener {
         setVisible(true);
 
         /*
-
-        Button to retrieve all incomplete to do items
         Text boxes to input item description and due date
-        Button to snooze to do item
         When item is clicked on, you can complete it and send it to completed area
          */
     }
