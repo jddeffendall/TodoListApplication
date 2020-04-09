@@ -60,6 +60,23 @@ public class todoUI extends JFrame implements ActionListener {
         sync.addActionListener(e->{
 
         });
+
+
+/*
+
+
+        JButton Cancel = new JButton("Cancel Event");
+        var CancelConstraints = new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(Cancel, CancelConstraints);
+        Cancel.addActionListener(e->{
+
+        });
+*/
+
+
+
+
+
 /*
         JButton snooze = new JButton("Snooze");
         var snoozeConstraints = new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
