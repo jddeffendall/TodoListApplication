@@ -38,28 +38,44 @@ public class todoUI extends JFrame {
         JTable items = new JTable(data, columnNames);
         var itemsConstraints = new GridBagConstraints(0,0,4,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
         panel.add(items, itemsConstraints);
-
+/*
         JButton sync = new JButton("Sync");
         var syncConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(sync, syncConstraints);
         sync.addActionListener(e->{
         });
+*/
+
+        JButton refresh = new JButton("Refresh");
+        var refreshConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(refresh, refreshConstraints);
+        refresh.addActionListener(e->{
+            try {
+                new todoUI();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
 
 
-        JTextField titleInput = new JTextField("Enter title of Todo item");
+
+
+
+
+        JTextField titleInput = new JTextField("Enter Title of Todo Item:");
         var titleInputConstraints = new GridBagConstraints(0,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(titleInput, titleInputConstraints);
 
-        JTextField creationDateInput = new JTextField("Enter current date");
+        JTextField creationDateInput = new JTextField("Enter Current Date:");
         var creationDateInputConstraints = new GridBagConstraints(1,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(creationDateInput, creationDateInputConstraints);
 
-        JTextField dueDateInput = new JTextField("Enter due date for item");
+        JTextField dueDateInput = new JTextField("Enter Due Date For Item:");
         var dueDateInputConstraints = new GridBagConstraints(2,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
         panel.add(dueDateInput, dueDateInputConstraints);
 
-        JTextField deleteItemByIdinput = new JTextField("Enter id of item to delete");
+        JTextField deleteItemByIdinput = new JTextField("Enter Id of Todo Item to Delete:");
         var deleteItemByIdConstraints = new GridBagConstraints(3,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(deleteItemByIdinput, deleteItemByIdConstraints);
 
