@@ -45,11 +45,6 @@ public class todoUI extends JFrame {
         sync.addActionListener(e->{
         });
 
-        JButton Cancel = new JButton("Cancel Event");
-        var CancelConstraints = new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(Cancel, CancelConstraints);
-        Cancel.addActionListener(e->{
-        });
 
 
         JTextField titleInput = new JTextField("Enter title of Todo item");
@@ -64,6 +59,9 @@ public class todoUI extends JFrame {
         var dueDateInputConstraints = new GridBagConstraints(2,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
         panel.add(dueDateInput, dueDateInputConstraints);
 
+        JTextField deleteItemByIdinput = new JTextField("Enter id of item to delete");
+        var deleteItemByIdConstraints = new GridBagConstraints(3,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        panel.add(deleteItemByIdinput, deleteItemByIdConstraints);
 
         JButton AddEvent = new JButton("Add To Schedule");
         var AddEventConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
@@ -78,6 +76,19 @@ public class todoUI extends JFrame {
             }
         });
         panel.add(AddEvent, AddEventConstraints);
+
+        JButton Cancel = new JButton("Cancel Event");
+        var CancelConstraints = new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(Cancel, CancelConstraints);
+        Cancel.addActionListener(e->{
+            String stringId = deleteItemByIdinput.getText();
+            int id = Integer.parseInt(stringId);
+            try {
+                httpUtils.deleteTodoItem(id);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
 
 
         setPreferredSize(new Dimension(800,800));
