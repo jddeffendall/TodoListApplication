@@ -53,7 +53,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(items, itemsConstraints);
 
         JButton sync = new JButton("Sync");
-        var syncConstraints = new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var syncConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(sync, syncConstraints);
         sync.addActionListener(e->{
 
@@ -77,15 +77,19 @@ public class todoUI extends JFrame implements ActionListener {
 */
 
         JTextField titleInput = new JTextField("Enter title of Todo item");
-        var titleInputConstraints = new GridBagConstraints(0,1,0,0,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var titleInputConstraints = new GridBagConstraints(0,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(titleInput, titleInputConstraints);
 
         JTextField creationDateInput = new JTextField("Enter current date");
-        var creationDateInputConstraints = new GridBagConstraints();
+        var creationDateInputConstraints = new GridBagConstraints(1,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        panel.add(creationDateInput, creationDateInputConstraints);
+
         JTextField dueDateInput = new JTextField("Enter due date for item");
+        var dueDateInputConstraints = new GridBagConstraints(2,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
+        panel.add(dueDateInput, dueDateInputConstraints);
 
         JButton AddEvent = new JButton("Add To Schedule");
-        var AddEventConstraints = new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var AddEventConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(AddEvent, AddEventConstraints);
         AddEvent.addActionListener(e ->{
             String title = titleInput.getText();
