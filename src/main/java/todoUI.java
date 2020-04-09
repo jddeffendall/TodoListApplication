@@ -44,14 +44,12 @@ public class todoUI extends JFrame implements ActionListener {
 
         String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
         TodoItem[] allUserTodos = parser.JsonStringToObjects(allUserTodosJson);
+
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
-
-        //String[][] data = {{"12/20/2020 2:34 AM", "Kill Santa", "12/25/2020 5:30 AM"}};
-
         String[] columnNames = { "Created", "Description", "Due"};
 
         JTable items = new JTable(data, columnNames);
-        var itemsConstraints = new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
+        var itemsConstraints = new GridBagConstraints(0,0,3,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
         panel.add(items, itemsConstraints);
 
         JButton sync = new JButton("Sync");
@@ -61,17 +59,13 @@ public class todoUI extends JFrame implements ActionListener {
 
         });
 
-
-/*
-
-
+        /*
         JButton Cancel = new JButton("Cancel Event");
         var CancelConstraints = new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel, CancelConstraints);
         Cancel.addActionListener(e->{
-
         });
-*/
+        */
 
 /*
         JButton snooze = new JButton("Snooze");
@@ -83,7 +77,11 @@ public class todoUI extends JFrame implements ActionListener {
 */
 
         JTextField titleInput = new JTextField("Enter title of Todo item");
+        var titleInputConstraints = new GridBagConstraints(0,1,0,0,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        panel.add(titleInput, titleInputConstraints);
+
         JTextField creationDateInput = new JTextField("Enter current date");
+        var creationDateInputConstraints = new GridBagConstraints();
         JTextField dueDateInput = new JTextField("Enter due date for item");
 
         JButton AddEvent = new JButton("Add To Schedule");
@@ -101,17 +99,10 @@ public class todoUI extends JFrame implements ActionListener {
         });
 
 
-
-
         setPreferredSize(new Dimension(800,800));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-
-        /*
-        Text boxes to input item description and due date
-        When item is clicked on, you can complete it and send it to completed area
-         */
     }
 
     public static void main(String[] args) throws IOException {
