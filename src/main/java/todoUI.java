@@ -59,13 +59,11 @@ public class todoUI extends JFrame implements ActionListener {
 
         });
 
-        /*
         JButton Cancel = new JButton("Cancel Event");
-        var CancelConstraints = new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var CancelConstraints = new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel, CancelConstraints);
         Cancel.addActionListener(e->{
         });
-        */
 
 /*
         JButton snooze = new JButton("Snooze");
@@ -87,6 +85,7 @@ public class todoUI extends JFrame implements ActionListener {
         JTextField dueDateInput = new JTextField("Enter due date for item");
         var dueDateInputConstraints = new GridBagConstraints(2,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
         panel.add(dueDateInput, dueDateInputConstraints);
+
 
         JButton AddEvent = new JButton("Add To Schedule");
         var AddEventConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
