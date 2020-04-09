@@ -1,6 +1,7 @@
 import domain.TodoItem;
 import utils.HTTPUtils;
 import utils.JsonToObjectParser;
+import utils.UIUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -13,7 +14,7 @@ import java.util.List;
 public class todoUI extends JFrame implements ActionListener {
 
 
-    public todoUI(){
+    public todoUI() throws IOException {
         super("Todo Application");
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
@@ -37,14 +38,22 @@ public class todoUI extends JFrame implements ActionListener {
             }
         });*/
 
-        String data[][] = {{"Created", "Description", "Due"},
-                    {"12/20/2020 2:34 AM", "Kill Santa", "12/25/2020 5:30 AM"}};
+        HTTPUtils httpUtils = new HTTPUtils();
+        UIUtils uiUtils = new UIUtils();
+        JsonToObjectParser parser = new JsonToObjectParser();
+        /*
+        String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
+        List<TodoItem> allUserTodos = parser.JsonStringToObjects(allUserTodosJson);
+        String[][] data = uiUtils.formatDataForTable(allUserTodos);
+        */
 
-        String columnNames[] = { "Created", "Description", "Due"};
+        String[][] data = {{"12/20/2020 2:34 AM", "Kill Santa", "12/25/2020 5:30 AM"}};
+
+        String[] columnNames = { "Created", "Description", "Due"};
 
         JTable items = new JTable(data, columnNames);
         var itemsConstraints = new GridBagConstraints(0,0,0,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
-        panel.add(items,itemsConstraints);
+        panel.add(items, itemsConstraints);
 
         JButton sync = new JButton("Sync");
         var syncConstraints = new GridBagConstraints(1, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
@@ -73,7 +82,6 @@ public class todoUI extends JFrame implements ActionListener {
             String title = titleInput.getText();
             String creation = creationDateInput.getText();
             String due = dueDateInput.getText();
-            HTTPUtils httpUtils = new HTTPUtils();
             try {
                 int resultID = httpUtils.addTodoItem(title, due, creation);
             } catch (IOException ex) {
@@ -95,7 +103,7 @@ public class todoUI extends JFrame implements ActionListener {
          */
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new todoUI();
     }
 
