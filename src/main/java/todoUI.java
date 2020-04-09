@@ -15,7 +15,7 @@ public class todoUI extends JFrame {
 
 
     public todoUI() throws IOException {
-        super("Todo Application");
+        super("Day Planner");
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
 
@@ -49,6 +49,13 @@ public class todoUI extends JFrame {
         var CancelConstraints = new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel, CancelConstraints);
         Cancel.addActionListener(e->{
+
+
+
+
+
+
+
         });
 
 
@@ -80,7 +87,7 @@ public class todoUI extends JFrame {
         panel.add(AddEvent, AddEventConstraints);
 
 
-        setPreferredSize(new Dimension(800,800));
+        setPreferredSize(new Dimension(800,1200));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
