@@ -13,10 +13,10 @@
   * Add and retrieve Todo items
 * Iteration 2
   * Improve GUI
-  * Snooze items
   * Pie chart
 * Iteration 3
   * Get alerted about upcoming items
   * Offline database
+  * Snooze
 #### Screenshots
   
