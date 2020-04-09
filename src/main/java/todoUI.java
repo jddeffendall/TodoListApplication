@@ -33,7 +33,7 @@ public class todoUI extends JFrame {
         TodoItem[] allUserTodos = parser.JsonStringToObjects(allUserTodosJson);
 
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
-        String[] columnNames = { "Created", "Description", "Due"};
+        String[] columnNames = { "Created", "Description", "Due", "ID"};
 
         JTable items = new JTable(data, columnNames);
         var itemsConstraints = new GridBagConstraints(0,0,3,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
