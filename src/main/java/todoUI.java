@@ -44,7 +44,6 @@ public class todoUI extends JFrame implements ActionListener {
 
         String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
         TodoItem[] allUserTodos = parser.JsonStringToObjects(allUserTodosJson);
-        System.out.println(allUserTodos[0].getTitle());
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
 
         //String[][] data = {{"12/20/2020 2:34 AM", "Kill Santa", "12/25/2020 5:30 AM"}};

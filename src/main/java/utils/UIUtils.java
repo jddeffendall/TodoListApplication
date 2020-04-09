@@ -14,7 +14,7 @@ public class UIUtils {
     }
 
     public String[][] formatDataForTable(TodoItem[] data) {
-        String[][] formattedData = null;
+        String[][] formattedData = {};
 
         for (int i = 0; i < data.length; i++) {
             TodoItem tempTodo = data[i];
