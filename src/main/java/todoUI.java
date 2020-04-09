@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 
-public class todoUI extends JFrame implements ActionListener {
+public class todoUI extends JFrame {
 
 
     public todoUI() throws IOException {
@@ -24,19 +24,6 @@ public class todoUI extends JFrame implements ActionListener {
         panel.setLayout(gridBagLayout);
         setContentPane(panel);
 
-        /*JButton retrieveAllTodos = new JButton("Get all Todos");
-        var retrieveAllTodosConstraints = new GridBagConstraints(0, 0, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(retrieveAllTodos, retrieveAllTodosConstraints);
-        retrieveAllTodos.addActionListener(e->{
-            HTTPUtils httpUtils = new HTTPUtils();
-            JsonToObjectParser parser = new JsonToObjectParser();
-            try {
-                String allUserTodosJsonString = httpUtils.getAllUserTodosJsonString();
-                List<TodoItem> allUserTodosObjects = parser.JsonStringToObjects(allUserTodosJsonString);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });*/
 
         HTTPUtils httpUtils = new HTTPUtils();
         UIUtils uiUtils = new UIUtils();
@@ -56,7 +43,6 @@ public class todoUI extends JFrame implements ActionListener {
         var syncConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(sync, syncConstraints);
         sync.addActionListener(e->{
-
         });
 
         JButton Cancel = new JButton("Cancel Event");
@@ -65,14 +51,6 @@ public class todoUI extends JFrame implements ActionListener {
         Cancel.addActionListener(e->{
         });
 
-/*
-        JButton snooze = new JButton("Snooze");
-        var snoozeConstraints = new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(snooze,snoozeConstraints);
-        snooze.addActionListener(e->{
-
-        });
-*/
 
         JTextField titleInput = new JTextField("Enter title of Todo item");
         var titleInputConstraints = new GridBagConstraints(0,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
@@ -89,7 +67,6 @@ public class todoUI extends JFrame implements ActionListener {
 
         JButton AddEvent = new JButton("Add To Schedule");
         var AddEventConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(AddEvent, AddEventConstraints);
         AddEvent.addActionListener(e ->{
             String title = titleInput.getText();
             String creation = creationDateInput.getText();
@@ -100,6 +77,7 @@ public class todoUI extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
         });
+        panel.add(AddEvent, AddEventConstraints);
 
 
         setPreferredSize(new Dimension(800,800));
@@ -110,9 +88,5 @@ public class todoUI extends JFrame implements ActionListener {
 
     public static void main(String[] args) throws IOException {
         new todoUI();
-    }
-
-    public void actionPerformed(ActionEvent e) {
-
     }
 }
