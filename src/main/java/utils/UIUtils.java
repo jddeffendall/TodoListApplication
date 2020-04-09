@@ -11,7 +11,7 @@ public class UIUtils {
 
         for (int i = 0; i < data.length; i++) {
             TodoItem tempTodo = data[i];
-           
+
             formattedData[i][0] = tempTodo.getCreatedDate();
             formattedData[i][1] = tempTodo.getTitle();
             formattedData[i][2] = tempTodo.getDueDate();
