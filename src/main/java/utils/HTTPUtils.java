@@ -35,7 +35,7 @@ public class HTTPUtils {
         return rawResponse;
     }
 
-    public int addTodoItem(String description, String dueDate, String createdDate) throws IOException {
+    public int addTodoItem(String description, String dueDate) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
 
         data.put("title", description);
