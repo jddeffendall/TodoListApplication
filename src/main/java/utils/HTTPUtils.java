@@ -35,12 +35,12 @@ public class HTTPUtils {
         return rawResponse;
     }
 
-    public int addTodoItem(String description, String dueDate, String createdDate) throws IOException {
+    public int addTodoItem(String description, String dueDate, String created) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
 
         data.put("title", description);
         data.put("due", dueDate);
-        data.put("created", createdDate);
+        data.put("created", created);
         data.put("owner", "TeamTwo");
 
         HttpContent content = new UrlEncodedContent(data);
