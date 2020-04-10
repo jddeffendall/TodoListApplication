@@ -19,6 +19,4 @@ public class UIUtils {
         }
         return formattedData;
     }
-
-    //created, desc, due
 }
