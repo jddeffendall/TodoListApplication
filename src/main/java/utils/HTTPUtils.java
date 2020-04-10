@@ -4,10 +4,13 @@ import com.google.api.client.http.*;
 import com.google.api.client.http.javanet.NetHttpTransport;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class HTTPUtils {
+    LocalDate localDate = LocalDate.now();
 
     HttpRequestFactory requestFactory;
     String baseURL = "https://todoserver222.herokuapp.com/";
@@ -37,7 +40,7 @@ public class HTTPUtils {
 
         data.put("title", description);
         data.put("due", dueDate);
-        data.put("created", createdDate);
+        data.put("created", localDate);
         data.put("owner", "TeamTwo");
 
         HttpContent content = new UrlEncodedContent(data);

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 
-public class todoUI extends JFrame {
+public class todoUI extends JFrame{
 
 
     public todoUI() throws IOException {
@@ -105,7 +105,6 @@ public class todoUI extends JFrame {
                 ioException.printStackTrace();
             }
         });
-
 
         setPreferredSize(new Dimension(800,800));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
