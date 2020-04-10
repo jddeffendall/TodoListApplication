@@ -15,6 +15,8 @@ public class todoUI extends JFrame{
 
 
     public todoUI() throws IOException {
+
+
         super("Todo Application");
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
@@ -51,6 +53,9 @@ public class todoUI extends JFrame{
         panel.add(refresh, refreshConstraints);
         refresh.addActionListener(e->{
             try {
+
+                
+
                 new todoUI();
             } catch (IOException ex) {
                 ex.printStackTrace();
