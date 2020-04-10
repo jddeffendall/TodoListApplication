@@ -40,7 +40,7 @@ public class HTTPUtils {
 
         data.put("title", description);
         data.put("due", dueDate);
-        data.put("created", localDate);
+        data.put("created", createdDate);
         data.put("owner", "TeamTwo");
 
         HttpContent content = new UrlEncodedContent(data);
