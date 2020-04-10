@@ -10,7 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class HTTPUtils {
-    LocalDate localDate = LocalDate.now();
 
     HttpRequestFactory requestFactory;
     String baseURL = "https://todoserver222.herokuapp.com/";
