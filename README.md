@@ -14,9 +14,9 @@
 * Iteration 2
   * Improve GUI
   * Pie chart
+  * Snooze
 * Iteration 3
   * Get alerted about upcoming items
   * Offline database
-  * Snooze
 #### Screenshots
   
