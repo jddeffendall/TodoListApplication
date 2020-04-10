@@ -57,12 +57,6 @@ public class todoUI extends JFrame{
             }
         });
 
-
-
-
-
-
-
         JTextField titleInput = new JTextField("Enter Title of Todo Item:");
         var titleInputConstraints = new GridBagConstraints(0,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(titleInput, titleInputConstraints);
