@@ -32,7 +32,7 @@ public class todoUI extends JFrame{
         JsonToObjectParser parser = new JsonToObjectParser();
 
         String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
-        TodoItem[] allUserTodos = parser.JsonStringToObjects(allUserTodosJson);
+        TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
 
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
         String[] columnNames = { "Created", "Description", "Due", "ID"};
@@ -85,7 +85,7 @@ public class todoUI extends JFrame{
             String created = currentDateInput.getText();
             String due = dueDateInput.getText();
             try {
-                int resultID = httpUtils.addTodoItem(title, due, created);
+                String resultJson = httpUtils.addTodoItem(title, due, created);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

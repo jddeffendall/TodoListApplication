@@ -15,7 +15,7 @@ public class UIUtils {
             formattedData[i][0] = tempTodo.getCreatedDate();
             formattedData[i][1] = tempTodo.getTitle();
             formattedData[i][2] = tempTodo.getDueDate();
-            formattedData[i][3] = tempTodo.getId();
+            formattedData[i][3] = Integer.toString(tempTodo.getId());
         }
         return formattedData;
     }

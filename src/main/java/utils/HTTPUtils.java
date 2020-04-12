@@ -34,7 +34,7 @@ public class HTTPUtils {
         return rawResponse;
     }
 
-    public int addTodoItem(String description, String dueDate, String created) throws IOException {
+    public String addTodoItem(String description, String dueDate, String created) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
 
         data.put("title", description);
@@ -46,15 +46,7 @@ public class HTTPUtils {
         HttpRequest postRequest = requestFactory.buildPostRequest(
                 new GenericUrl(todosURL),content);
         String rawResponse = postRequest.execute().parseAsString();
-        char[] chars = rawResponse.toCharArray();
-        String StringID = "";
-        for (char c : chars) {
-            if (Character.isDigit(c)) {
-                StringID += c;
-            }
-        }
-        int intID = Integer.parseInt(StringID);
-        return intID;
+        return rawResponse;
     }
 
     public boolean deleteTodoItem(int id) throws IOException {

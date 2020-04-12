@@ -9,10 +9,16 @@ import java.util.Map;
 
 public class JsonToObjectParser {
 
-    public TodoItem[] JsonStringToObjects(String userJson) {
+    public TodoItem[] JsonStringToObjectArray(String userJson) {
         Gson gson = new Gson();
         TodoItem[] todoArray = gson.fromJson(userJson, TodoItem[].class);
         return todoArray;
+    }
+
+    public TodoItem JsonStringToOneObject(String userJson) {
+        Gson gson = new Gson();
+        TodoItem todoItem = gson.fromJson(userJson, TodoItem.class);
+        return todoItem;
     }
 
     public List<Pair<String, String>> extractData(String jsonString) {

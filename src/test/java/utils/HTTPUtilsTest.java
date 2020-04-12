@@ -24,29 +24,23 @@ class HTTPUtilsTest {
     @Test
     void getTodoItemJsonString() throws IOException {
         String result = httpUtils.getTodoItemJsonString(1);
-
+        TodoItem item = parser.JsonStringToOneObject(result);
+        assertEquals(1, item.getId());
     }
 
     @Test
     void addTodoItem() throws IOException {
-        String dueDate = "Friday";
-        String createdDate = "Now";
-        var resultID = httpUtils.addTodoItem("Add todo test", dueDate, createdDate);
-        var expected = "{\n" +
-                "  \"title\": \"Add todo test\",\n" +
-                "  \"due\": \"Friday\",\n" +
-                "  \"created\": \"Now\",\n" +
-                "  \"owner\": \"TeamTwo\",\n" +
-                "  \"id\": " + resultID + "\n" +
-                "}";
-        var actual = httpUtils.getTodoItemJsonString(resultID);
-        assertEquals(expected, actual);
+        var result = httpUtils.addTodoItem("Add todo test", "Friday", "Now");
+        TodoItem expected = parser.JsonStringToOneObject(result);
+        var actual = httpUtils.getTodoItemJsonString(expected.getId());
+
     }
 
     @Test
     void deleteTodoItem() throws IOException {
-        var resultID = httpUtils.addTodoItem("Delete tests", "Friday", "Tuesday");
-        var deletedResult = httpUtils.deleteTodoItem(resultID);
+        var result = httpUtils.addTodoItem("Delete tests", "Friday", "Tuesday");
+        TodoItem item = parser.JsonStringToOneObject(result);
+        var deletedResult = httpUtils.deleteTodoItem(item.getId());
         assertTrue(deletedResult);
     }
 
