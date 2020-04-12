@@ -65,4 +65,13 @@ public class TodoItem {
         return isOverdue;
     }
 
+    public void snooze(TodoItem item) {
+        String dueString = item.getDueDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm a");
+        LocalDateTime dueDate = LocalDateTime.parse(dueString, formatter);
+        dueDate.plusMinutes(10);
+        String newDueDateString = dueDate.format(formatter);
+        due = newDueDateString;
+    }
+
 }

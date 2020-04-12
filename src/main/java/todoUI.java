@@ -79,7 +79,6 @@ public class todoUI extends JFrame{
         var AddEventConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         AddEvent.addActionListener(e ->{
             String title = titleInput.getText();
-            //String created = currentDateInput.getText();
             String due = dueDateInput.getText();
             try {
                 String resultJson = httpUtils.addTodoItem(title, due);
