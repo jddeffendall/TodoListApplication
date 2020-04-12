@@ -2,9 +2,9 @@ package utils;
 
 import com.google.api.client.http.*;
 import com.google.api.client.http.javanet.NetHttpTransport;
+import domain.TodoItem;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
@@ -45,6 +45,7 @@ public class HTTPUtils {
         data.put("title", description);
         data.put("due", dueDate);
         data.put("created", created);
+        data.put("completed", false);
         data.put("owner", "TeamTwo");
 
         HttpContent content = new UrlEncodedContent(data);
@@ -60,6 +61,26 @@ public class HTTPUtils {
                     new GenericUrl(todosURL + id));
             String rawResponse = deleteRequest.execute().parseAsString();
         } catch (IOException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean completeTodoItem(TodoItem item) throws IOException {
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("title", item.getTitle());
+        data.put("due", item.getDueDate());
+        data.put("created", item.getCreatedDate());
+        data.put("completed", true);
+        data.put("owner", "TeamTwo");
+        data.put("id", item.getId());
+
+        HttpContent content = new UrlEncodedContent(data);
+        HttpRequest putRequest = requestFactory.buildPutRequest(
+                new GenericUrl(todosURL + item.getId()), content);
+        try {
+            String rawResponse = putRequest.execute().parseAsString();
+        } catch (HttpResponseException e) {
             return false;
         }
         return true;

@@ -51,5 +51,14 @@ class HTTPUtilsTest {
         assertFalse(deletedResult);
     }
 
+    @Test
+    void completeTodoItem() throws IOException {
+        var result = httpUtils.addTodoItem("Complete item", "Friday");
+        TodoItem item = parser.JsonStringToOneObject(result);
+        assertEquals("false", item.getCompleted());
+        var updatedResult = httpUtils.completeTodoItem(item);
+        assertTrue(updatedResult);
+    }
+
 
 }
