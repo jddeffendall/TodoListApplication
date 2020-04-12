@@ -6,6 +6,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -34,8 +35,12 @@ public class HTTPUtils {
         return rawResponse;
     }
 
-    public String addTodoItem(String description, String dueDate, String created) throws IOException {
+    public String addTodoItem(String description, String dueDate) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
+
+        LocalDateTime createdDate = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm a");
+        String created = createdDate.format(formatter);
 
         data.put("title", description);
         data.put("due", dueDate);
