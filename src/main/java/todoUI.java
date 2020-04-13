@@ -50,7 +50,7 @@ public class todoUI extends JFrame{
 */
 
         JButton refresh = new JButton("Refresh");
-        var refreshConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var refreshConstraints = new GridBagConstraints(4, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(refresh, refreshConstraints);
         refresh.addActionListener(e->{
             try {
@@ -81,7 +81,7 @@ public class todoUI extends JFrame{
         panel.add(deleteItemByIdinput, deleteItemByIdConstraints);
 
         JButton AddEvent = new JButton("Add To Schedule");
-        var AddEventConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var AddEventConstraints = new GridBagConstraints(4, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         AddEvent.addActionListener(e ->{
             String title = titleInput.getText();
             String due = dueDateInput.getText();
@@ -94,7 +94,7 @@ public class todoUI extends JFrame{
         panel.add(AddEvent, AddEventConstraints);
 
         JButton Cancel = new JButton("Cancel Event");
-        var CancelConstraints = new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var CancelConstraints = new GridBagConstraints(4, 4, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel, CancelConstraints);
         Cancel.addActionListener(e->{
             String stringId = deleteItemByIdinput.getText();
@@ -111,7 +111,7 @@ public class todoUI extends JFrame{
         panel.add(completeEventById, completeEventByIdConstraints);
 
         JButton completeEvent = new JButton("Complete Event");
-        var completeEventConstraints = new GridBagConstraints(3,2,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var completeEventConstraints = new GridBagConstraints(4,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(completeEvent, completeEventConstraints);
         completeEvent.addActionListener(e ->{
             String idToComplete = completeEventById.getText();
