@@ -11,3 +11,7 @@
   * Haden Foster, Jacob Deffendall, Payton Lowry, Ross Effinger
 * 9 April 2020 6:30-9:00pm, Google Hangout
   * Haden Foster, Jacob Deffendall, Ross Effinger, Payton Lowry, Jordan Becker
+* 12 April 2020 6:00-7:00pm Google Hangout
+  * Haden Foster, Ross Effinger, Payton Lowry, Jacob Deffendall
+* 13 April 2020, 11:00-11:50am Google Hangout
+  * Jacob Deffendall, Haden Foster, Payton Lowry
