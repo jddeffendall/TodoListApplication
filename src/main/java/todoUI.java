@@ -49,7 +49,7 @@ public class todoUI extends JFrame{
         });
 */
 
-        JButton refresh = new JButton("Refresh");
+        JButton refresh = new JButton("Refresh Page");
         var refreshConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(refresh, refreshConstraints);
         refresh.addActionListener(e->{
@@ -82,6 +82,7 @@ public class todoUI extends JFrame{
 
         JButton AddEvent = new JButton("Add To Schedule");
         var AddEventConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(AddEvent, AddEventConstraints);
         AddEvent.addActionListener(e ->{
             String title = titleInput.getText();
             String due = dueDateInput.getText();
@@ -91,7 +92,6 @@ public class todoUI extends JFrame{
                 ex.printStackTrace();
             }
         });
-        panel.add(AddEvent, AddEventConstraints);
 
         JButton Cancel = new JButton("Cancel Event");
         var CancelConstraints = new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
@@ -125,7 +125,8 @@ public class todoUI extends JFrame{
             }
         });
 
-        setPreferredSize(new Dimension(800,800));
+
+        setPreferredSize(new Dimension(900,800));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
