@@ -6,8 +6,6 @@ import utils.UIUtils;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 
@@ -108,7 +106,7 @@ public class todoUI extends JFrame{
         });
         panel.add(AddEvent, AddEventConstraints);
 
-        JButton Cancel = new JButton("Cancel Event");
+        JButton Cancel = new JButton("Delete Event");
         var CancelConstraints = new GridBagConstraints(6, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel, CancelConstraints);
         Cancel.addActionListener(e->{
