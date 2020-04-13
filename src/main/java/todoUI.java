@@ -18,8 +18,8 @@ public class todoUI extends JFrame{
 
 
         super("Todo Application");
-        UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
-        UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
+        UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 15)));
+        UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 20)));
 
         JPanel panel = new JPanel();
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -50,7 +50,7 @@ public class todoUI extends JFrame{
 */
 
         JButton refresh = new JButton("Refresh");
-        var refreshConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var refreshConstraints = new GridBagConstraints(4, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(refresh, refreshConstraints);
         refresh.addActionListener(e->{
             try {
@@ -60,28 +60,28 @@ public class todoUI extends JFrame{
             }
         });
 
-        JLabel titlee = new JLabel("Enter Title of Todo Item:");
-        var titleeConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(titlee, titleeConstraints);
+
+        JLabel titlelabel = new JLabel("Enter Title of Todo Item:");
+        var titlelabelConstraints = new GridBagConstraints(0, 3, 1, 1, 1, 1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(titlelabel, titlelabelConstraints);
 
 
-
-
-
-        JTextField titleInput = new JTextField("##############");
-        var titleInputConstraints = new GridBagConstraints(0,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        JTextField titleInput = new JTextField(":                 :");
+        var titleInputConstraints = new GridBagConstraints(1,3,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(titleInput, titleInputConstraints);
 
+
+
         JTextField dueDateInput = new JTextField("Enter Due Date For Item:");
-        var dueDateInputConstraints = new GridBagConstraints(1,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
+        var dueDateInputConstraints = new GridBagConstraints(2,0,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
         panel.add(dueDateInput, dueDateInputConstraints);
 
         JTextField deleteItemByIdinput = new JTextField("Enter Id of Todo Item to Delete:");
-        var deleteItemByIdConstraints = new GridBagConstraints(2,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var deleteItemByIdConstraints = new GridBagConstraints(3,0,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(deleteItemByIdinput, deleteItemByIdConstraints);
 
         JButton AddEvent = new JButton("Add To Schedule");
-        var AddEventConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var AddEventConstraints = new GridBagConstraints(4, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         AddEvent.addActionListener(e ->{
             String title = titleInput.getText();
             String due = dueDateInput.getText();
@@ -94,7 +94,7 @@ public class todoUI extends JFrame{
         panel.add(AddEvent, AddEventConstraints);
 
         JButton Cancel = new JButton("Cancel Event");
-        var CancelConstraints = new GridBagConstraints(2, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var CancelConstraints = new GridBagConstraints(4, 4, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel, CancelConstraints);
         Cancel.addActionListener(e->{
             String stringId = deleteItemByIdinput.getText();
@@ -107,11 +107,11 @@ public class todoUI extends JFrame{
         });
 
         JTextField completeEventById = new JTextField("Enter ID of item to set as complete");
-        var completeEventByIdConstraints = new GridBagConstraints(3,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var completeEventByIdConstraints = new GridBagConstraints(3,0,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(completeEventById, completeEventByIdConstraints);
 
         JButton completeEvent = new JButton("Complete Event");
-        var completeEventConstraints = new GridBagConstraints(3,2,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var completeEventConstraints = new GridBagConstraints(4,2,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(completeEvent, completeEventConstraints);
         completeEvent.addActionListener(e ->{
             String idToComplete = completeEventById.getText();
