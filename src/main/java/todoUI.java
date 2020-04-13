@@ -35,7 +35,7 @@ public class todoUI extends JFrame{
         TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
 
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
-        String[] columnNames = { "Created", "Description", "Due", "ID"};
+        String[] columnNames = { "Created", "Description", "Due", "Completed", "ID"};
 
         JTable items = new JTable(data, columnNames);
         var itemsConstraints = new GridBagConstraints(0,0,4,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
@@ -94,6 +94,25 @@ public class todoUI extends JFrame{
                 httpUtils.deleteTodoItem(id);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
+            }
+        });
+
+        JTextField completeEventById = new JTextField("Enter ID of item to set as complete");
+        var completeEventByIdConstraints = new GridBagConstraints(3,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        panel.add(completeEventById, completeEventByIdConstraints);
+
+        JButton completeEvent = new JButton("Complete Event");
+        var completeEventConstraints = new GridBagConstraints(3,2,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        panel.add(completeEvent, completeEventConstraints);
+        completeEvent.addActionListener(e ->{
+            String idToComplete = completeEventById.getText();
+            int id = Integer.parseInt(idToComplete);
+            try {
+                String itemJson = httpUtils.getTodoItemJsonString(id);
+                TodoItem item = parser.JsonStringToOneObject(itemJson);
+                boolean completionStatus = httpUtils.completeTodoItem(item);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
             }
         });
 
