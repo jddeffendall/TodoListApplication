@@ -65,38 +65,38 @@ public class todoUI extends JFrame{
 
 
         JLabel titlee = new JLabel("Enter Title of Item:");
-        var titleeConstraints = new GridBagConstraints(0, 3, 1, 1, 1, 1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var titleeConstraints = new GridBagConstraints(0, 4, 1, 1, 1, 1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(titlee, titleeConstraints);
 
         JTextField titleInput = new JTextField("");
-        var titleInputConstraints = new GridBagConstraints(1,3,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var titleInputConstraints = new GridBagConstraints(1,4,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(titleInput, titleInputConstraints);
 
 
 
         JLabel dueDateLabel = new JLabel("Enter Due Date For Item:");
-        var dueDateLabelConstraints = new GridBagConstraints(2,3,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
+        var dueDateLabelConstraints = new GridBagConstraints(2,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
         panel.add(dueDateLabel, dueDateLabelConstraints);
 
         JTextField dueDateInput = new JTextField("");
-        var dueDateInputConstraints = new GridBagConstraints(3,3,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
+        var dueDateInputConstraints = new GridBagConstraints(3,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
         panel.add(dueDateInput, dueDateInputConstraints);
 
 
 
         JLabel deleteItemLabel = new JLabel("Enter Id of Item to Delete:");
-        var deleteItemLabelConstraints = new GridBagConstraints(2,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var deleteItemLabelConstraints = new GridBagConstraints(2,3,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(deleteItemLabel, deleteItemLabelConstraints);
 
         JTextField deleteItemByIdinput = new JTextField("");
-        var deleteItemByIdConstraints = new GridBagConstraints(3,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var deleteItemByIdConstraints = new GridBagConstraints(3,3,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(deleteItemByIdinput, deleteItemByIdConstraints);
 
 
 
 
         JButton AddEvent = new JButton("Add To Schedule");
-        var AddEventConstraints = new GridBagConstraints(6, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var AddEventConstraints = new GridBagConstraints(6, 4, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         AddEvent.addActionListener(e ->{
             String title = titleInput.getText();
             String due = dueDateInput.getText();
@@ -109,7 +109,7 @@ public class todoUI extends JFrame{
         panel.add(AddEvent, AddEventConstraints);
 
         JButton Cancel = new JButton("Cancel Event");
-        var CancelConstraints = new GridBagConstraints(6, 4, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var CancelConstraints = new GridBagConstraints(6, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel, CancelConstraints);
         Cancel.addActionListener(e->{
             String stringId = deleteItemByIdinput.getText();
