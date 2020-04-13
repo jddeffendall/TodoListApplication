@@ -63,10 +63,6 @@ public class todoUI extends JFrame{
         var titleInputConstraints = new GridBagConstraints(0,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(titleInput, titleInputConstraints);
 
-        //JTextField currentDateInput = new JTextField("Enter current date");
-        //var currentDateInputConstraints = new GridBagConstraints(1,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
-        //panel.add(currentDateInput, currentDateInputConstraints);
-
         JTextField dueDateInput = new JTextField("Enter Due Date For Item:");
         var dueDateInputConstraints = new GridBagConstraints(1,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
         panel.add(dueDateInput, dueDateInputConstraints);
