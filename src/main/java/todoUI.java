@@ -85,11 +85,11 @@ public class todoUI extends JFrame{
 
 
         JLabel deleteItemLabel = new JLabel("Enter Id of Item to Delete:");
-        var deleteItemLabelConstraints = new GridBagConstraints(0,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var deleteItemLabelConstraints = new GridBagConstraints(2,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(deleteItemLabel, deleteItemLabelConstraints);
 
         JTextField deleteItemByIdinput = new JTextField("");
-        var deleteItemByIdConstraints = new GridBagConstraints(2,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        var deleteItemByIdConstraints = new GridBagConstraints(3,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(deleteItemByIdinput, deleteItemByIdConstraints);
 
 
