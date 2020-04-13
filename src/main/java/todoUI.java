@@ -19,7 +19,7 @@ public class todoUI extends JFrame{
 
         super("Todo Application");
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
-        UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
+        UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
 
         JPanel panel = new JPanel();
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -40,6 +40,7 @@ public class todoUI extends JFrame{
         JTable items = new JTable(data, columnNames);
         var itemsConstraints = new GridBagConstraints(0,0,4,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
         panel.add(items, itemsConstraints);
+
 /*
         JButton sync = new JButton("Sync");
         var syncConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
@@ -59,7 +60,15 @@ public class todoUI extends JFrame{
             }
         });
 
-        JTextField titleInput = new JTextField("Enter Title of Todo Item:");
+        JLabel titlee = new JLabel("Enter Title of Todo Item:");
+        var titleeConstraints = new GridBagConstraints(0, 2, 1, 1, 1, 1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(titlee, titleeConstraints);
+
+
+
+
+
+        JTextField titleInput = new JTextField("##############");
         var titleInputConstraints = new GridBagConstraints(0,1,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         panel.add(titleInput, titleInputConstraints);
 

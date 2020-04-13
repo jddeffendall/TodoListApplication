@@ -47,8 +47,10 @@ class HTTPUtilsTest {
 
     @Test
     void deleteTodoItem_InvalidID() throws IOException {
+
         var deletedResult = httpUtils.deleteTodoItem(100000);
         assertFalse(deletedResult);
+
     }
 
     @Test
