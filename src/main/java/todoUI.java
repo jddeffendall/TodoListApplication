@@ -50,7 +50,7 @@ public class todoUI extends JFrame{
 */
 
         JButton refresh = new JButton("Refresh");
-        var refreshConstraints = new GridBagConstraints(6, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var refreshConstraints = new GridBagConstraints(6, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(refresh, refreshConstraints);
         refresh.addActionListener(e->{
             try {
