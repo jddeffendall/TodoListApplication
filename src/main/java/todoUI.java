@@ -6,13 +6,15 @@ import utils.UIUtils;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 
-public class todoUI extends JFrame{
+public class todoUI extends JFrame implements ActionListener {
 
 
-    public todoUI() throws IOException {
+    public todoUI() throws IOException{
 
 
         super("Todo Application");
@@ -48,7 +50,8 @@ public class todoUI extends JFrame{
 */
 
         JButton refresh = new JButton("Refresh");
-        var refreshConstraints = new GridBagConstraints(6, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        var refreshConstraints = new GridBagConstraints(6, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(50, 20, 50, 20), 0, 0);
+
         panel.add(refresh, refreshConstraints);
         refresh.addActionListener(e->{
             try {
@@ -160,5 +163,10 @@ public class todoUI extends JFrame{
 
     public static void main(String[] args) throws IOException {
         new todoUI();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
