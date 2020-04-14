@@ -10,9 +10,8 @@ public class TodoItem {
     private String created;
     private String completed;
     private String owner;
+    private String overdue;
     private int id;
-
-    private boolean isOverdue = false;
 
     public TodoItem(String title, String owner, String created, String due, String completed, int id) {
         this.title = title;
@@ -50,12 +49,8 @@ public class TodoItem {
         return due;
     }
 
-    public void setOverdue() {
-        isOverdue = true;
-    }
-
-    public boolean getOverdueStatus() {
-        return isOverdue;
+    public String getOverdue() {
+        return overdue;
     }
 
     public void snooze(TodoItem item) {
