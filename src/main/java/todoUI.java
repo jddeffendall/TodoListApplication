@@ -40,9 +40,11 @@ public class todoUI extends JFrame implements ActionListener {
         String[] columnNames = {"Created", "Description", "Due", "Completed", "ID", "Overdue"};
 
         JTable items = new JTable(data, columnNames);
-        items.setBounds(0, 0, 600, 800);
+
+        JScrollPane jScrollPane = new JScrollPane(items);
+        jScrollPane.setBounds(0, 0, 600, 800);
         //var itemsConstraints = new GridBagConstraints(0, 0, 4, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(items);
+        panel.add(jScrollPane);
 
 
 /*
