@@ -163,19 +163,17 @@ public class todoUI extends JFrame implements ActionListener {
         pieChartLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         pieChartLabel.setHorizontalAlignment(SwingConstants.LEFT);
         pieChartLabel.setVerticalAlignment(SwingConstants.CENTER);
-        pieChartLabel.setBounds(600, 500, 200,100);
+        pieChartLabel.setBounds(600, 400, 200,100);
         panel.add(pieChartLabel);
 
         JButton pieChart = new JButton("PieChart");
         pieChart.setPreferredSize(new Dimension(250, 100));
         Dimension pieChartSize = pieChart.getPreferredSize();
-        pieChart.setBounds(800, 500, pieChartSize.width, pieChartSize.height);
+        pieChart.setBounds(800, 400, pieChartSize.width, pieChartSize.height);
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
             new chartUI("Todo List Overview");
         });
-
-
 
 
 
@@ -184,14 +182,14 @@ public class todoUI extends JFrame implements ActionListener {
         refreshLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         refreshLabel.setHorizontalAlignment(SwingConstants.LEFT);
         refreshLabel.setVerticalAlignment(SwingConstants.CENTER);
-        refreshLabel.setBounds(600, 400, 200, 100);
+        refreshLabel.setBounds(600, 500, 200, 100);
         panel.add(refreshLabel);
 
 
         JButton refresh = new JButton("Refresh");
         refresh.setPreferredSize(new Dimension(250, 100));
         Dimension refreshSize = refresh.getPreferredSize();
-        refresh.setBounds(800, 400, refreshSize.width, refreshSize.height);
+        refresh.setBounds(800, 500, refreshSize.width, refreshSize.height);
         panel.add(refresh);
         refresh.addActionListener(e -> {
             try {
