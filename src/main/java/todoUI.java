@@ -156,6 +156,24 @@ public class todoUI extends JFrame implements ActionListener {
                 ioException.printStackTrace();
             }
         });
+        JLabel pieChartLabel = new JLabel();
+        pieChartLabel.setText("<HTML>Click here to see the pie chart<HTML>");
+        pieChartLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        pieChartLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        pieChartLabel.setVerticalAlignment(SwingConstants.CENTER);
+        pieChartLabel.setBounds(600, 500, 200,100);
+        panel.add(pieChartLabel);
+
+        JButton pieChart = new JButton("PieChart");
+        pieChart.setPreferredSize(new Dimension(250, 100));
+        Dimension pieChartSize = pieChart.getPreferredSize();
+        pieChart.setBounds(800, 500, pieChartSize.width, pieChartSize.height);
+        panel.add(pieChart);
+
+
+
+
+
         JLabel refreshLabel = new JLabel();
         refreshLabel.setText("<HTML>Added something? Click here to refresh it!<HTML>");
         refreshLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
@@ -163,6 +181,7 @@ public class todoUI extends JFrame implements ActionListener {
         refreshLabel.setVerticalAlignment(SwingConstants.CENTER);
         refreshLabel.setBounds(600, 400, 200, 100);
         panel.add(refreshLabel);
+
 
         JButton refresh = new JButton("Refresh");
         refresh.setPreferredSize(new Dimension(250, 100));
