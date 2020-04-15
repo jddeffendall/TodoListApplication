@@ -71,8 +71,9 @@ public class HTTPUtils {
         data.put("title", item.getTitle());
         data.put("due", item.getDueDate());
         data.put("created", item.getCreatedDate());
-        data.put("completed", true);
+        data.put("completed", false);
         data.put("owner", "TeamTwo");
+        data.put("overdue", false);
         data.put("id", item.getId());
 
         HttpContent content = new UrlEncodedContent(data);
