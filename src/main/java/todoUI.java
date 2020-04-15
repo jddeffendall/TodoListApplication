@@ -156,6 +156,8 @@ public class todoUI extends JFrame implements ActionListener {
                 ioException.printStackTrace();
             }
         });
+
+
         JLabel pieChartLabel = new JLabel();
         pieChartLabel.setText("<HTML>Click here to see the pie chart<HTML>");
         pieChartLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
@@ -169,6 +171,9 @@ public class todoUI extends JFrame implements ActionListener {
         Dimension pieChartSize = pieChart.getPreferredSize();
         pieChart.setBounds(800, 500, pieChartSize.width, pieChartSize.height);
         panel.add(pieChart);
+        pieChart.addActionListener(e -> {
+            new chartUI("Todo List Overview");
+        });
 
 
 
