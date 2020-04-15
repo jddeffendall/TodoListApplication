@@ -9,9 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class todoUI extends JFrame implements ActionListener {
 
@@ -76,8 +73,6 @@ public class todoUI extends JFrame implements ActionListener {
         dueDateLabel.setVerticalAlignment(SwingConstants.CENTER);
         panel.add(dueDateLabel);
 
-        //DateFormat format = new SimpleDateFormat("MM dd yyyy hh:mm a");
-        //JFormattedTextField dueDateInput = new JFormattedTextField(format);
         JTextField dueDateInput = new JTextField("");
         dueDateInput.setBounds(600, 150, 200, 50);
         dueDateInput.setBackground(Color.lightGray);
@@ -161,23 +156,43 @@ public class todoUI extends JFrame implements ActionListener {
                 ioException.printStackTrace();
             }
         });
+
+
+        JLabel pieChartLabel = new JLabel();
+        pieChartLabel.setText("<HTML>Click here to see the pie chart<HTML>");
+        pieChartLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        pieChartLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        pieChartLabel.setVerticalAlignment(SwingConstants.CENTER);
+        pieChartLabel.setBounds(600, 400, 200,100);
+        panel.add(pieChartLabel);
+
+        JButton pieChart = new JButton("PieChart");
+        pieChart.setPreferredSize(new Dimension(250, 100));
+        Dimension pieChartSize = pieChart.getPreferredSize();
+        pieChart.setBounds(800, 400, pieChartSize.width, pieChartSize.height);
+        panel.add(pieChart);
+        pieChart.addActionListener(e -> {
+            new chartUI("Todo List Overview");
+        });
+
+
+
         JLabel refreshLabel = new JLabel();
         refreshLabel.setText("<HTML>Added something? Click here to refresh it!<HTML>");
         refreshLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         refreshLabel.setHorizontalAlignment(SwingConstants.LEFT);
         refreshLabel.setVerticalAlignment(SwingConstants.CENTER);
-        refreshLabel.setBounds(600, 400, 200, 100);
+        refreshLabel.setBounds(600, 500, 200, 100);
         panel.add(refreshLabel);
+
 
         JButton refresh = new JButton("Refresh");
         refresh.setPreferredSize(new Dimension(250, 100));
         Dimension refreshSize = refresh.getPreferredSize();
-        refresh.setBounds(800, 400, refreshSize.width, refreshSize.height);
+        refresh.setBounds(800, 500, refreshSize.width, refreshSize.height);
         panel.add(refresh);
         refresh.addActionListener(e -> {
             try {
-                setVisible(false); //you can't see me!
-                dispose();
                 new todoUI();
             } catch (IOException ex) {
                 ex.printStackTrace();

@@ -43,8 +43,8 @@ public class chartUI extends JFrame {
 
     private PieDataset getPieData() {
         String rawData = null;
-        TodoItem[] items = null;
-        Map<String, Integer> pieData = new HashMap<>();
+        TodoItem[] items;
+        Map<String, Integer> pieData;
 
         HTTPUtils httpUtils = new HTTPUtils();
         UIUtils uiUtils = new UIUtils();
@@ -52,7 +52,7 @@ public class chartUI extends JFrame {
         try {
             rawData = httpUtils.getAllUserTodosJsonString();
             items = parser.JsonStringToObjectArray(rawData);
-
+            pieData = uiUtils.calculateDataForPieChart(items);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Couldn't get data!");
             return new DefaultPieDataset();
