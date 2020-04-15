@@ -42,23 +42,23 @@ public class chartUI extends JFrame {
     }
 
     private PieDataset getPieData() {
-        String rawData = null;
-        TodoItem[] items;
-        Map<String, Integer> pieData;
+        String rawData;
 
         HTTPUtils httpUtils = new HTTPUtils();
         UIUtils uiUtils = new UIUtils();
         JsonToObjectParser parser = new JsonToObjectParser();
+
         try {
             rawData = httpUtils.getAllUserTodosJsonString();
-            items = parser.JsonStringToObjectArray(rawData);
-            pieData = uiUtils.calculateDataForPieChart(items);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Couldn't get data!");
             return new DefaultPieDataset();
         }
 
-        return uiUtils.convertDataToPieDataset(pieData);
+        TodoItem[] items = parser.JsonStringToObjectArray(rawData);
+        Map<String, Integer> countedItems = uiUtils.calculateDataForPieChart(items);
+
+        return uiUtils.convertDataToPieDataset(countedItems);
     }
 
 }

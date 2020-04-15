@@ -66,7 +66,7 @@ public class todoUI extends JFrame implements ActionListener {
         titleInput.setBackground(Color.lightGray);
         panel.add(titleInput);
 
-        JLabel dueDateLabel = new JLabel("Enter Due Date For Item:");
+        JLabel dueDateLabel = new JLabel("<HTML>Enter Due Date For Item (mm dd yyyy hh:mm AM):<HTML>");
         dueDateLabel.setBounds(600, 100, 200, 50);
         dueDateLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         dueDateLabel.setHorizontalAlignment(SwingConstants.LEFT);
