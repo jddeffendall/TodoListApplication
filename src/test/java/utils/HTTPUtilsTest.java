@@ -62,5 +62,15 @@ class HTTPUtilsTest {
         assertTrue(updatedResult);
     }
 
+    @Test
+    void setOverdueTodoItem() throws IOException {
+        var result = httpUtils.addTodoItem("Test", "04 17 2020 12:00 PM");
+        TodoItem item = parser.JsonStringToOneObject(result);
+        var updatedResult = httpUtils.setTodoItemOverdue(item);
+        var updatedJson = httpUtils.getTodoItemJsonString(item.getId());
+        TodoItem updatedItem = parser.JsonStringToOneObject(updatedJson);
+        assertEquals("true", updatedItem.getOverdue());
+    }
+
 
 }
