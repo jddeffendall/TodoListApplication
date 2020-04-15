@@ -14,7 +14,7 @@ import java.util.List;
 public class todoUI extends JFrame implements ActionListener {
 
 
-    public todoUI() throws IOException{
+    public todoUI() throws IOException {
 
 
         super("Todo Application");
@@ -22,9 +22,11 @@ public class todoUI extends JFrame implements ActionListener {
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
 
         JPanel panel = new JPanel();
-        GridBagLayout gridBagLayout = new GridBagLayout();
-        panel.setLayout(gridBagLayout);
+        //GridBagLayout gridBagLayout = new GridBagLayout();
+        //panel.setLayout(gridBagLayout);
         setContentPane(panel);
+        panel.setLayout(null);
+        panel.setPreferredSize(new Dimension(1050,1050));
 
 
         HTTPUtils httpUtils = new HTTPUtils();
@@ -35,11 +37,13 @@ public class todoUI extends JFrame implements ActionListener {
         TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
 
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
-        String[] columnNames = { "Created", "Description", "Due", "Completed", "ID"};
+        String[] columnNames = {"Created", "Description", "Due", "Completed", "ID"};
 
         JTable items = new JTable(data, columnNames);
-        var itemsConstraints = new GridBagConstraints(0,0,4,1,1,1,GridBagConstraints.CENTER,GridBagConstraints.BOTH, new Insets(1,1,1,1),0,0);
-        panel.add(items, itemsConstraints);
+        items.setBounds(0,0, 600, 800);
+        //var itemsConstraints = new GridBagConstraints(0, 0, 4, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(items);
+
 
 /*
         JButton sync = new JButton("Sync");
@@ -49,56 +53,30 @@ public class todoUI extends JFrame implements ActionListener {
         });
 */
 
-        JButton refresh = new JButton("Refresh");
-        var refreshConstraints = new GridBagConstraints(6, 0, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(50, 20, 50, 20), 0, 0);
-
-        panel.add(refresh, refreshConstraints);
-        refresh.addActionListener(e->{
-            try {
-                new todoUI();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
-
-
-
-
-
         JLabel titlee = new JLabel("Enter Title of Item:");
-        var titleeConstraints = new GridBagConstraints(0, 4, 1, 1, 1, 1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(titlee, titleeConstraints);
+        titlee.setFont(new Font("Serif", Font.PLAIN, 18));
+        //titlee.setVerticalAlignment(SwingConstants.TOP);
+        titlee.setBounds(600,0, 200, 50);
+        panel.add(titlee);
 
         JTextField titleInput = new JTextField("");
-        var titleInputConstraints = new GridBagConstraints(1,4,1,1,1,1,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
-        panel.add(titleInput, titleInputConstraints);
-
-
+        titleInput.setBounds(600,50,200,50);
+        panel.add(titleInput);
 
         JLabel dueDateLabel = new JLabel("Enter Due Date For Item:");
-        var dueDateLabelConstraints = new GridBagConstraints(2,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
-        panel.add(dueDateLabel, dueDateLabelConstraints);
+        dueDateLabel.setBounds(600,100,200,50);
+        dueDateLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        panel.add(dueDateLabel);
 
         JTextField dueDateInput = new JTextField("");
-        var dueDateInputConstraints = new GridBagConstraints(3,4,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0, 0);
-        panel.add(dueDateInput, dueDateInputConstraints);
-
-
-
-        JLabel deleteItemLabel = new JLabel("Enter Id of Item to Delete:");
-        var deleteItemLabelConstraints = new GridBagConstraints(2,3,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
-        panel.add(deleteItemLabel, deleteItemLabelConstraints);
-
-        JTextField deleteItemByIdinput = new JTextField("");
-        var deleteItemByIdConstraints = new GridBagConstraints(3,3,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
-        panel.add(deleteItemByIdinput, deleteItemByIdConstraints);
-
-
-
+        dueDateInput.setBounds(800,100,250,50);
+        panel.add(dueDateInput);
 
         JButton AddEvent = new JButton("Add To Schedule");
-        var AddEventConstraints = new GridBagConstraints(6, 4, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        AddEvent.addActionListener(e ->{
+        AddEvent.setPreferredSize(new Dimension(250,100));
+        Dimension size = AddEvent.getPreferredSize();
+        AddEvent.setBounds(800,0, size.width, size.height);
+        AddEvent.addActionListener(e -> {
             String title = titleInput.getText();
             String due = dueDateInput.getText();
             try {
@@ -107,43 +85,28 @@ public class todoUI extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
         });
-        panel.add(AddEvent, AddEventConstraints);
 
-        JButton Cancel = new JButton("Delete Event");
-        var CancelConstraints = new GridBagConstraints(6, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(Cancel, CancelConstraints);
-        Cancel.addActionListener(e->{
-            String stringId = deleteItemByIdinput.getText();
-            int id = Integer.parseInt(stringId);
-            try {
-                httpUtils.deleteTodoItem(id);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
+        panel.add(AddEvent);
 
-
-
-
-
-        JLabel completeEventLabel = new JLabel("Enter ID of item to set as complete");
-        var completeEventLabelConstraints = new GridBagConstraints(2,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
-        panel.add(completeEventLabel, completeEventLabelConstraints);
+        JLabel completeEventLabel = new JLabel("<HTML>Enter ID of item to set as complete:<HTML>");
+        completeEventLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        completeEventLabel.setBounds(600,100,200,150);
+        //var completeEventLabelConstraints = new GridBagConstraints(2, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(completeEventLabel);
 
         JTextField completeEventById = new JTextField("");
-        var completeEventByIdConstraints = new GridBagConstraints(3,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
-        panel.add(completeEventById, completeEventByIdConstraints);
-
-
-
-
-
+        //var completeEventByIdConstraints = new GridBagConstraints(3, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        completeEventById.setBounds(600,200, 200, 50);
+        panel.add(completeEventById);
 
 
         JButton completeEvent = new JButton("Complete Event");
-        var completeEventConstraints = new GridBagConstraints(6,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
-        panel.add(completeEvent, completeEventConstraints);
-        completeEvent.addActionListener(e ->{
+        //var completeEventConstraints = new GridBagConstraints(6, 1, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        completeEvent.setPreferredSize(new Dimension(250,100));
+        Dimension completeEventSize = completeEvent.getPreferredSize();
+        completeEvent.setBounds(800,150, completeEventSize.width, completeEventSize.height);
+        panel.add(completeEvent);
+        completeEvent.addActionListener(e -> {
             String idToComplete = completeEventById.getText();
             int id = Integer.parseInt(idToComplete);
             try {
@@ -155,7 +118,54 @@ public class todoUI extends JFrame implements ActionListener {
             }
         });
 
-        setPreferredSize(new Dimension(1200,1200));
+
+        JLabel deleteItemLabel = new JLabel("Enter Id of Item to Delete:");
+        deleteItemLabel.setBounds(600,250, 200,50);
+        deleteItemLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        //var deleteItemLabelConstraints = new GridBagConstraints(2, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(deleteItemLabel);
+
+        JTextField deleteItemByIdinput = new JTextField("");
+        deleteItemByIdinput.setBounds(600,300,200,50);
+        //var deleteItemByIdConstraints = new GridBagConstraints(3, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(deleteItemByIdinput);
+
+        JButton Cancel = new JButton("Delete Event");
+        Cancel.setPreferredSize(new Dimension(250,100));
+        Dimension CancelSize = Cancel.getPreferredSize();
+        Cancel.setBounds(800,250, CancelSize.width, CancelSize.height);
+        //var CancelConstraints = new GridBagConstraints(6, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+        panel.add(Cancel);
+        Cancel.addActionListener(e -> {
+            String stringId = deleteItemByIdinput.getText();
+            int id = Integer.parseInt(stringId);
+            try {
+                httpUtils.deleteTodoItem(id);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+        JLabel refreshLabel = new JLabel();
+        refreshLabel.setText("<HTML>Added something? Click here to refresh it!<HTML>");
+        refreshLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        refreshLabel.setBounds(600,350,200,100);
+        panel.add(refreshLabel);
+
+        JButton refresh = new JButton("Refresh");
+        refresh.setPreferredSize(new Dimension(250,100));
+        Dimension refreshSize = refresh.getPreferredSize();
+        refresh.setBounds(800, 350,refreshSize.width, refreshSize.height);
+        panel.add(refresh);
+        refresh.addActionListener(e -> {
+            try {
+                new todoUI();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
