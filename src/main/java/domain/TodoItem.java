@@ -13,12 +13,13 @@ public class TodoItem {
     private String overdue;
     private int id;
 
-    public TodoItem(String title, String owner, String created, String due, String completed, int id) {
+    public TodoItem(String title, String owner, String created, String due, String completed,String overdue, int id) {
         this.title = title;
         this.owner = owner;
         this.created = created;
         this.due = due;
         this.completed = completed;
+        this.overdue = overdue;
         this.id = id;
     }
 

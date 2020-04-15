@@ -46,6 +46,7 @@ public class HTTPUtils {
         data.put("due", dueDate);
         data.put("created", created);
         data.put("completed", false);
+        data.put("overdue", false);
         data.put("owner", "TeamTwo");
 
         HttpContent content = new UrlEncodedContent(data);
@@ -72,7 +73,8 @@ public class HTTPUtils {
         data.put("due", item.getDueDate());
         data.put("created", item.getCreatedDate());
         data.put("completed", true);
-        data.put("owner", "TeamTwo");
+        data.put("overdue", item.getOverdue());
+        data.put("owner", item.getOwner());
         data.put("id", item.getId());
 
         HttpContent content = new UrlEncodedContent(data);

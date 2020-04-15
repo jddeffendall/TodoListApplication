@@ -37,7 +37,7 @@ public class todoUI extends JFrame implements ActionListener {
         TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
 
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
-        String[] columnNames = {"Created", "Description", "Due", "Completed", "ID"};
+        String[] columnNames = {"Created", "Description", "Due", "Completed", "ID", "Overdue"};
 
         JTable items = new JTable(data, columnNames);
         items.setBounds(0, 0, 600, 800);
