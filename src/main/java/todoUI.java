@@ -73,12 +73,12 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(dueDateLabel);
 
         JTextField dueDateInput = new JTextField("");
-        dueDateInput.setBounds(800, 100, 250, 50);
+        dueDateInput.setBounds(600, 150, 200, 50);
         dueDateInput.setBackground(Color.lightGray);
         panel.add(dueDateInput);
 
         JButton AddEvent = new JButton("Add To Schedule");
-        AddEvent.setPreferredSize(new Dimension(250, 100));
+        AddEvent.setPreferredSize(new Dimension(250, 200));
         Dimension size = AddEvent.getPreferredSize();
         AddEvent.setBounds(800, 0, size.width, size.height);
         AddEvent.addActionListener(e -> {
@@ -96,13 +96,13 @@ public class todoUI extends JFrame implements ActionListener {
         JLabel completeEventLabel = new JLabel("<HTML>Enter ID of item to set as complete:<HTML>");
         completeEventLabel.setHorizontalAlignment(SwingConstants.LEFT);
         completeEventLabel.setVerticalAlignment(SwingConstants.CENTER);
-        completeEventLabel.setBounds(600,150,200,50);
+        completeEventLabel.setBounds(600,200,200,50);
 
         completeEventLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         panel.add(completeEventLabel);
 
         JTextField completeEventById = new JTextField("");
-        completeEventById.setBounds(600,200,200,50);
+        completeEventById.setBounds(600,250,200,50);
         completeEventById.setBackground(Color.lightGray);
         panel.add(completeEventById);
 
@@ -110,7 +110,7 @@ public class todoUI extends JFrame implements ActionListener {
         JButton completeEvent = new JButton("Complete Event");
         completeEvent.setPreferredSize(new Dimension(250,100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
-        completeEvent.setBounds(800,150, completeEventSize.width,completeEventSize.height);
+        completeEvent.setBounds(800,200, completeEventSize.width,completeEventSize.height);
         panel.add(completeEvent);
         completeEvent.addActionListener(e ->{
             String idToComplete = completeEventById.getText();
@@ -127,7 +127,7 @@ public class todoUI extends JFrame implements ActionListener {
 
 
         JLabel deleteItemLabel = new JLabel("Enter Id of Item to Delete:");
-        deleteItemLabel.setBounds(600, 250, 200, 50);
+        deleteItemLabel.setBounds(600, 300, 200, 50);
         deleteItemLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         deleteItemLabel.setHorizontalAlignment(SwingConstants.LEFT);
         deleteItemLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -135,7 +135,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(deleteItemLabel);
 
         JTextField deleteItemByIdinput = new JTextField("");
-        deleteItemByIdinput.setBounds(600, 300, 200, 50);
+        deleteItemByIdinput.setBounds(600, 350, 200, 50);
         deleteItemByIdinput.setBackground(Color.lightGray);
         //var deleteItemByIdConstraints = new GridBagConstraints(3, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(deleteItemByIdinput);
@@ -143,7 +143,7 @@ public class todoUI extends JFrame implements ActionListener {
         JButton Cancel = new JButton("Delete Event");
         Cancel.setPreferredSize(new Dimension(250, 100));
         Dimension CancelSize = Cancel.getPreferredSize();
-        Cancel.setBounds(800, 250, CancelSize.width, CancelSize.height);
+        Cancel.setBounds(800, 300, CancelSize.width, CancelSize.height);
         //var CancelConstraints = new GridBagConstraints(6, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
@@ -160,13 +160,13 @@ public class todoUI extends JFrame implements ActionListener {
         refreshLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         refreshLabel.setHorizontalAlignment(SwingConstants.LEFT);
         refreshLabel.setVerticalAlignment(SwingConstants.CENTER);
-        refreshLabel.setBounds(600, 350, 200, 100);
+        refreshLabel.setBounds(600, 400, 200, 100);
         panel.add(refreshLabel);
 
         JButton refresh = new JButton("Refresh");
         refresh.setPreferredSize(new Dimension(250, 100));
         Dimension refreshSize = refresh.getPreferredSize();
-        refresh.setBounds(800, 350, refreshSize.width, refreshSize.height);
+        refresh.setBounds(800, 400, refreshSize.width, refreshSize.height);
         panel.add(refresh);
         refresh.addActionListener(e -> {
             try {
