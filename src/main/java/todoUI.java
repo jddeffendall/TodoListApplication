@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class todoUI extends JFrame implements ActionListener {
@@ -74,6 +76,8 @@ public class todoUI extends JFrame implements ActionListener {
         dueDateLabel.setVerticalAlignment(SwingConstants.CENTER);
         panel.add(dueDateLabel);
 
+        //DateFormat format = new SimpleDateFormat("MM dd yyyy hh:mm a");
+        //JFormattedTextField dueDateInput = new JFormattedTextField(format);
         JTextField dueDateInput = new JTextField("");
         dueDateInput.setBounds(600, 150, 200, 50);
         dueDateInput.setBackground(Color.lightGray);
@@ -172,6 +176,8 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(refresh);
         refresh.addActionListener(e -> {
             try {
+                setVisible(false); //you can't see me!
+                dispose();
                 new todoUI();
             } catch (IOException ex) {
                 ex.printStackTrace();
