@@ -193,6 +193,8 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(refresh);
         refresh.addActionListener(e -> {
             try {
+                setVisible(false); //you can't see me!
+                dispose();
                 new todoUI();
             } catch (IOException ex) {
                 ex.printStackTrace();
