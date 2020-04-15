@@ -54,8 +54,9 @@ public class todoUI extends JFrame implements ActionListener {
 */
 
         JLabel titlee = new JLabel("Enter Title of Item:");
-        titlee.setFont(new Font("Serif", Font.PLAIN, 18));
-        //titlee.setVerticalAlignment(SwingConstants.TOP);
+        titlee.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        titlee.setHorizontalAlignment(SwingConstants.LEFT);
+        titlee.setVerticalAlignment(SwingConstants.CENTER);
         titlee.setBounds(600, 0, 200, 50);
         panel.add(titlee);
 
@@ -66,7 +67,9 @@ public class todoUI extends JFrame implements ActionListener {
 
         JLabel dueDateLabel = new JLabel("Enter Due Date For Item:");
         dueDateLabel.setBounds(600, 100, 200, 50);
-        dueDateLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        dueDateLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        dueDateLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        dueDateLabel.setVerticalAlignment(SwingConstants.CENTER);
         panel.add(dueDateLabel);
 
         JTextField dueDateInput = new JTextField("");
@@ -90,21 +93,21 @@ public class todoUI extends JFrame implements ActionListener {
 
         panel.add(AddEvent);
 
-        JLabel completeEventLabel = new JLabel("<HTML>Enter ID of item to set as complete<HTML>");
-        //var completeEventLabelConstraints = new GridBagConstraints(2,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
+        JLabel completeEventLabel = new JLabel("<HTML>Enter ID of item to set as complete:<HTML>");
+        completeEventLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        completeEventLabel.setVerticalAlignment(SwingConstants.CENTER);
         completeEventLabel.setBounds(600,150,200,50);
-        completeEventLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+
+        completeEventLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         panel.add(completeEventLabel);
 
         JTextField completeEventById = new JTextField("");
-        //var completeEventByIdConstraints = new GridBagConstraints(3,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         completeEventById.setBounds(600,200,200,50);
         completeEventById.setBackground(Color.lightGray);
         panel.add(completeEventById);
 
 
         JButton completeEvent = new JButton("Complete Event");
-        //var completeEventConstraints = new GridBagConstraints(6,1,1,1,1,1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1,1,1,1), 0,0);
         completeEvent.setPreferredSize(new Dimension(250,100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
         completeEvent.setBounds(800,150, completeEventSize.width,completeEventSize.height);
@@ -125,7 +128,9 @@ public class todoUI extends JFrame implements ActionListener {
 
         JLabel deleteItemLabel = new JLabel("Enter Id of Item to Delete:");
         deleteItemLabel.setBounds(600, 250, 200, 50);
-        deleteItemLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        deleteItemLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        deleteItemLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        deleteItemLabel.setVerticalAlignment(SwingConstants.CENTER);
         //var deleteItemLabelConstraints = new GridBagConstraints(2, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(deleteItemLabel);
 
@@ -152,7 +157,9 @@ public class todoUI extends JFrame implements ActionListener {
         });
         JLabel refreshLabel = new JLabel();
         refreshLabel.setText("<HTML>Added something? Click here to refresh it!<HTML>");
-        refreshLabel.setFont(new Font("Serif", Font.PLAIN, 18));
+        refreshLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        refreshLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        refreshLabel.setVerticalAlignment(SwingConstants.CENTER);
         refreshLabel.setBounds(600, 350, 200, 100);
         panel.add(refreshLabel);
 
