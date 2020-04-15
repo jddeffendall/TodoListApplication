@@ -87,4 +87,25 @@ public class HTTPUtils {
         }
         return true;
     }
+
+    public boolean setTodoItemOverdue(TodoItem item) throws IOException {
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("title", item.getTitle());
+        data.put("due", item.getDueDate());
+        data.put("created", item.getCreatedDate());
+        data.put("completed", item.getCompleted());
+        data.put("overdue", true);
+        data.put("owner", item.getOwner());
+        data.put("id", item.getId());
+
+        HttpContent content = new UrlEncodedContent(data);
+        HttpRequest putRequest = requestFactory.buildPutRequest(
+                new GenericUrl(todosURL + item.getId()), content);
+        try {
+            String rawResponse = putRequest.execute().parseAsString();
+        } catch (HttpResponseException e) {
+            return false;
+        }
+        return true;
+    }
 }
