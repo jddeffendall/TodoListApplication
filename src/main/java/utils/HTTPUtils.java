@@ -39,7 +39,7 @@ public class HTTPUtils {
         Map<String, Object> data = new LinkedHashMap<>();
 
         LocalDateTime createdDate = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
         String created = createdDate.format(formatter);
 
         data.put("title", description);

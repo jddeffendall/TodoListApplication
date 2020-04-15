@@ -4,6 +4,7 @@ import domain.TodoItem;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class UIUtils {
@@ -29,7 +30,7 @@ public class UIUtils {
     }
 
     public Map<String, Integer> calculateDataForPieChart(TodoItem[] items) {
-        Map<String, Integer> result = null;
+        Map<String, Integer> result = new HashMap<>();
         int pendingCount = 0;
         int completedCount = 0;
         int overdueCount = 0;
