@@ -186,7 +186,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(sync);
 
         JLabel refreshLabel = new JLabel();
-        refreshLabel.setText("<HTML>Added something? Click here to refresh it!<HTML>");
+        refreshLabel.setText("<HTML>Changed something? Click here to refresh it!<HTML>");
         refreshLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         refreshLabel.setHorizontalAlignment(SwingConstants.LEFT);
         refreshLabel.setVerticalAlignment(SwingConstants.CENTER);
