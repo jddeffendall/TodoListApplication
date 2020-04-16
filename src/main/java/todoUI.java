@@ -156,7 +156,7 @@ public class todoUI extends JFrame implements ActionListener {
         JButton pieChart = new JButton("PieChart");
         pieChart.setPreferredSize(new Dimension(200, 100));
         Dimension pieChartSize = pieChart.getPreferredSize();
-        pieChart.setBounds(600, 400, pieChartSize.width, pieChartSize.height);
+        pieChart.setBounds(600, 500, pieChartSize.width, pieChartSize.height);
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
             new chartUI("Todo List Overview");
@@ -166,12 +166,12 @@ public class todoUI extends JFrame implements ActionListener {
         snoozeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         snoozeLabel.setHorizontalAlignment(SwingConstants.LEFT);
         snoozeLabel.setVerticalAlignment(SwingConstants.CENTER);
-        snoozeLabel.setBounds(600,500,200,50);
+        snoozeLabel.setBounds(600,400,200,50);
         panel.add(snoozeLabel);
 
         JTextField snoozeItemByIdInput = new JTextField();
         snoozeItemByIdInput.setBackground(Color.lightGray);
-        snoozeItemByIdInput.setBounds(600,550,200,50);
+        snoozeItemByIdInput.setBounds(600,450,200,50);
         panel.add(snoozeItemByIdInput);
 
 
@@ -180,7 +180,7 @@ public class todoUI extends JFrame implements ActionListener {
         JButton snooze = new JButton("Snooze");
         snooze.setPreferredSize(new Dimension(250,100));
         Dimension snoozeSize = snooze.getPreferredSize();
-        snooze.setBounds(800, 500, snoozeSize.width, snoozeSize.height);
+        snooze.setBounds(800, 400, snoozeSize.width, snoozeSize.height);
         panel.add(snooze);
         snooze.addActionListener(e -> {
             String idToSnooze = snoozeItemByIdInput.getText();
@@ -214,7 +214,7 @@ public class todoUI extends JFrame implements ActionListener {
         JButton refresh = new JButton("Refresh");
         refresh.setPreferredSize(new Dimension(250, 100));
         Dimension refreshSize = refresh.getPreferredSize();
-        refresh.setBounds(800, 400, refreshSize.width, refreshSize.height);
+        refresh.setBounds(800, 500, refreshSize.width, refreshSize.height);
         panel.add(refresh);
         refresh.addActionListener(e -> {
             try {
