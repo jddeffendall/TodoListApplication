@@ -36,7 +36,7 @@ public class todoUI extends JFrame implements ActionListener {
         TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
 
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
-        String[] columnNames = {"Created", "Description", "Due", "Completed", "ID", "Overdue"};
+        String[] columnNames = {"ID", "Title", "Created", "Due", "Completed", "Overdue"};
 
         JTable items = new JTable(data, columnNames);
 
@@ -115,9 +115,8 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(completeEvent);
         completeEvent.addActionListener(e ->{
             String idToComplete = completeEventById.getText();
-            int id = Integer.parseInt(idToComplete);
             try {
-                String itemJson = httpUtils.getTodoItemJsonString(id);
+                String itemJson = httpUtils.getTodoItemJsonString(idToComplete);
                 TodoItem item = parser.JsonStringToOneObject(itemJson);
                 boolean completionStatus = httpUtils.completeTodoItem(item);
             } catch (IOException ioe) {
@@ -149,9 +148,8 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
             String stringId = deleteItemByIdinput.getText();
-            int id = Integer.parseInt(stringId);
             try {
-                httpUtils.deleteTodoItem(id);
+                httpUtils.deleteTodoItem(stringId);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

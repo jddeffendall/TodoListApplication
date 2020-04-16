@@ -18,11 +18,11 @@ public class UIUtils {
         for (int i = 0; i < data.length; i++) {
             TodoItem tempTodo = data[i];
 
-            formattedData[i][0] = tempTodo.getCreatedDate();
+            formattedData[i][0] = tempTodo.getId();
             formattedData[i][1] = tempTodo.getTitle();
-            formattedData[i][2] = tempTodo.getDueDate();
-            formattedData[i][3] = tempTodo.getCompleted();
-            formattedData[i][4] = Integer.toString(tempTodo.getId());
+            formattedData[i][2] = tempTodo.getCreatedDate();
+            formattedData[i][3] = tempTodo.getDueDate();
+            formattedData[i][4] = tempTodo.getCompleted();
             formattedData[i][5] = tempTodo.getOverdue();
         }
 

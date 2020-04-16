@@ -20,6 +20,6 @@ class JsonToObjectParserTest {
                 "]";
         JsonToObjectParser parser = new JsonToObjectParser();
         TodoItem[] todos = parser.JsonStringToObjectArray(sampleJson);
-        assertEquals(todos[0].getId(), 4);
+        assertEquals(todos[0].getId(), "4");
     }
 }

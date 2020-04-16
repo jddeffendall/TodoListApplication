@@ -21,7 +21,7 @@ public class HTTPUtils {
         requestFactory = new NetHttpTransport().createRequestFactory();
     }
 
-    public String getTodoItemJsonString(int id) throws IOException {
+    public String getTodoItemJsonString(String id) throws IOException {
         HttpRequest getRequest = requestFactory.buildGetRequest(
                 new GenericUrl(todosURL + id));
         String rawResponse = getRequest.execute().parseAsString();
@@ -56,7 +56,7 @@ public class HTTPUtils {
         return rawResponse;
     }
 
-    public boolean deleteTodoItem(int id) throws IOException {
+    public boolean deleteTodoItem(String id) throws IOException {
         try {
             HttpRequest deleteRequest = requestFactory.buildDeleteRequest(
                     new GenericUrl(todosURL + id));

@@ -11,9 +11,9 @@ public class TodoItem {
     private String completed;
     private String owner;
     private String overdue;
-    private int id;
+    private String id;
 
-    public TodoItem(String title, String owner, String created, String due, String completed,String overdue, int id) {
+    public TodoItem(String title, String owner, String created, String due, String completed,String overdue, String id) {
         this.title = title;
         this.owner = owner;
         this.created = created;
@@ -30,7 +30,7 @@ public class TodoItem {
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

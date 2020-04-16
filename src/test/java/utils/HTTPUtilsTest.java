@@ -23,9 +23,9 @@ class HTTPUtilsTest {
 
     @Test
     void getTodoItemJsonString() throws IOException {
-        String result = httpUtils.getTodoItemJsonString(1);
+        String result = httpUtils.getTodoItemJsonString("1");
         TodoItem item = parser.JsonStringToOneObject(result);
-        assertEquals(1, item.getId());
+        assertEquals("1", item.getId());
     }
 
     @Test
@@ -48,7 +48,7 @@ class HTTPUtilsTest {
     @Test
     void deleteTodoItem_InvalidID() throws IOException {
 
-        var deletedResult = httpUtils.deleteTodoItem(100000);
+        var deletedResult = httpUtils.deleteTodoItem("100000");
         assertFalse(deletedResult);
 
     }
