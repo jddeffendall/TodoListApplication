@@ -217,8 +217,7 @@ public class todoUI extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
         });
-
-
+        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);

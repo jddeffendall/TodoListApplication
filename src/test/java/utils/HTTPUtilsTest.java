@@ -55,7 +55,7 @@ class HTTPUtilsTest {
 
     @Test
     void completeTodoItem() throws IOException {
-        var result = httpUtils.addTodoItem("Complete item", "Friday");
+        var result = httpUtils.addTodoItem("Complete item", "04 25 2020 12:00");
         TodoItem item = parser.JsonStringToOneObject(result);
         assertEquals("false", item.getCompleted());
         var updatedResult = httpUtils.completeTodoItem(item);
