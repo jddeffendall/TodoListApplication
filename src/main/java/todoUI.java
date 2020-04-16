@@ -162,7 +162,7 @@ public class todoUI extends JFrame implements ActionListener {
             new chartUI("Todo List Overview");
         });
 
-        JLabel snoozeLabel = new JLabel("<HTML>Oversleep? that's Ok you have an extra 15 minutes :)<HTML>");
+        JLabel snoozeLabel = new JLabel("<HTML>Oversleep? Enter the Id for an extra 15 minutes :)<HTML>");
         snoozeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         snoozeLabel.setHorizontalAlignment(SwingConstants.LEFT);
         snoozeLabel.setVerticalAlignment(SwingConstants.CENTER);
