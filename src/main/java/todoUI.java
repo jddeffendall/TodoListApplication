@@ -249,7 +249,7 @@ public class todoUI extends JFrame implements ActionListener {
                     for (TodoItem e : items) {
                         LocalDateTime dueDate = LocalDateTime.parse(e.getDueDate(), formatter);
 
-                        if (now.isAfter(dueDate)) {
+                        if (now.isAfter(dueDate) && e.getCompleted().equals("false")) {
                             e.setOverdue();
                             httpUtils.setTodoItemOverdue(e);
                             JOptionPane.showMessageDialog(null, "Todo item with ID " + e.getId() + " is overdue");
