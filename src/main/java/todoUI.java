@@ -25,7 +25,7 @@ public class todoUI extends JFrame implements ActionListener {
         //panel.setLayout(gridBagLayout);
         setContentPane(panel);
         panel.setLayout(null);
-        panel.setPreferredSize(new Dimension(1050, 1050));
+        panel.setPreferredSize(new Dimension(1050, 650));
 
 
         HTTPUtils httpUtils = new HTTPUtils();
@@ -46,13 +46,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(jScrollPane);
 
 
-/*
-        JButton sync = new JButton("Sync");
-        var syncConstraints = new GridBagConstraints(1, 2, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        panel.add(sync, syncConstraints);
-        sync.addActionListener(e->{
-        });
-*/
+
 
         JLabel titlee = new JLabel("Enter Title of Item:");
         titlee.setFont(new Font("Times New Roman", Font.PLAIN, 18));
@@ -173,7 +167,23 @@ public class todoUI extends JFrame implements ActionListener {
             new chartUI("Todo List Overview");
         });
 
+        JButton snooze = new JButton("Snooze");
+        snooze.setPreferredSize(new Dimension(200,50));
+        Dimension snoozeSize = snooze.getPreferredSize();
+        snooze.setBounds(600, 600, snoozeSize.width, snoozeSize.height);
+        snooze.addActionListener(e -> {
 
+        });
+        panel.add(snooze);
+
+        JButton sync = new JButton("Sync For Offline");
+        sync.setPreferredSize(new Dimension(250,50));
+        Dimension syncSize = sync.getPreferredSize();
+        sync.setBounds(800, 600, syncSize.width, syncSize.height);
+        sync.addActionListener(e -> {
+
+        });
+        panel.add(sync);
 
         JLabel refreshLabel = new JLabel();
         refreshLabel.setText("<HTML>Added something? Click here to refresh it!<HTML>");
