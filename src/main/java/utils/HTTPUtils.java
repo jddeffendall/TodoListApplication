@@ -108,4 +108,32 @@ public class HTTPUtils {
         }
         return true;
     }
+
+    public boolean snooze(TodoItem item) throws IOException {
+        Map<String, Object> data = new LinkedHashMap<>();
+
+        String oldDueDateString = item.getDueDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
+        LocalDateTime oldDueDate = LocalDateTime.parse(oldDueDateString, formatter);
+        LocalDateTime newDueDate = oldDueDate.plusMinutes(15);
+        String newDateString = newDueDate.format(formatter);
+
+        data.put("title", item.getTitle());
+        data.put("due", newDateString);
+        data.put("created", item.getCreatedDate());
+        data.put("completed",item.getCompleted());
+        data.put("overdue",item.getOverdue());
+        data.put("owner", item.getOwner());
+        data.put("id", item.getId());
+
+        HttpContent content = new UrlEncodedContent(data);
+        HttpRequest putRequest = requestFactory.buildPutRequest(
+                new GenericUrl(todosURL + item.getId()), content);
+        try {
+            String rawResponse = putRequest.execute().parseAsString();
+        } catch (HttpResponseException e) {
+            return false;
+        }
+        return true;
+    }
 }

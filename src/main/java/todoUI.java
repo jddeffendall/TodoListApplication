@@ -16,7 +16,7 @@ public class todoUI extends JFrame implements ActionListener {
     public todoUI() throws IOException {
 
 
-        super("Todo Application");
+        super("Todo List Application");
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
 
@@ -167,14 +167,23 @@ public class todoUI extends JFrame implements ActionListener {
             new chartUI("Todo List Overview");
         });
 
+        JTextField snoozeItemByIdInput = new JTextField();
+
         JButton snooze = new JButton("Snooze");
         snooze.setPreferredSize(new Dimension(200,50));
         Dimension snoozeSize = snooze.getPreferredSize();
         snooze.setBounds(600, 600, snoozeSize.width, snoozeSize.height);
-        snooze.addActionListener(e -> {
-
-        });
         panel.add(snooze);
+        snooze.addActionListener(e -> {
+            String idToSnooze = snoozeItemByIdInput.getText();
+            try {
+                String todoItemToSnoozeJson = httpUtils.getTodoItemJsonString(idToSnooze);
+                TodoItem itemToSnooze = parser.JsonStringToOneObject(todoItemToSnoozeJson);
+                boolean snoozed = httpUtils.snooze(itemToSnooze);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
 
         JButton sync = new JButton("Sync For Offline");
         sync.setPreferredSize(new Dimension(250,50));

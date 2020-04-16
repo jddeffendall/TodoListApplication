@@ -19,4 +19,4 @@
   * Get alerted about upcoming items
   * Offline database
 #### Screenshots
-  
+Coming soon!
