@@ -21,8 +21,6 @@ public class todoUI extends JFrame implements ActionListener {
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
 
         JPanel panel = new JPanel();
-        //GridBagLayout gridBagLayout = new GridBagLayout();
-        //panel.setLayout(gridBagLayout);
         setContentPane(panel);
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 650));
@@ -40,9 +38,8 @@ public class todoUI extends JFrame implements ActionListener {
 
         JTable items = new JTable(data, columnNames);
 
-        JScrollPane jScrollPane = new JScrollPane(items);
+        JScrollPane jScrollPane = new JScrollPane(items, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jScrollPane.setBounds(0, 0, 600, 800);
-        //var itemsConstraints = new GridBagConstraints(0, 0, 4, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(jScrollPane);
 
 
@@ -125,20 +122,18 @@ public class todoUI extends JFrame implements ActionListener {
         deleteItemLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         deleteItemLabel.setHorizontalAlignment(SwingConstants.LEFT);
         deleteItemLabel.setVerticalAlignment(SwingConstants.CENTER);
-        //var deleteItemLabelConstraints = new GridBagConstraints(2, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(deleteItemLabel);
 
         JTextField deleteItemByIdinput = new JTextField("");
         deleteItemByIdinput.setBounds(600, 350, 200, 50);
         deleteItemByIdinput.setBackground(Color.lightGray);
-        //var deleteItemByIdConstraints = new GridBagConstraints(3, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
+
         panel.add(deleteItemByIdinput);
 
         JButton Cancel = new JButton("Delete Event");
         Cancel.setPreferredSize(new Dimension(250, 100));
         Dimension CancelSize = Cancel.getPreferredSize();
         Cancel.setBounds(800, 300, CancelSize.width, CancelSize.height);
-        //var CancelConstraints = new GridBagConstraints(6, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
             String stringId = deleteItemByIdinput.getText();
@@ -150,29 +145,42 @@ public class todoUI extends JFrame implements ActionListener {
         });
 
 
-        JLabel pieChartLabel = new JLabel();
-        pieChartLabel.setText("<HTML>Click here to see the pie chart<HTML>");
+      /*  JLabel pieChartLabel = new JLabel();
+        pieChartLabel.setText("<HTML>Click here to see the pie chart<HTML>"); //HTML tags wrap the text to the next line
         pieChartLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         pieChartLabel.setHorizontalAlignment(SwingConstants.LEFT);
         pieChartLabel.setVerticalAlignment(SwingConstants.CENTER);
         pieChartLabel.setBounds(600, 400, 200,100);
-        panel.add(pieChartLabel);
+        panel.add(pieChartLabel);*/
 
         JButton pieChart = new JButton("PieChart");
-        pieChart.setPreferredSize(new Dimension(250, 100));
+        pieChart.setPreferredSize(new Dimension(200, 100));
         Dimension pieChartSize = pieChart.getPreferredSize();
-        pieChart.setBounds(800, 400, pieChartSize.width, pieChartSize.height);
+        pieChart.setBounds(600, 400, pieChartSize.width, pieChartSize.height);
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
             new chartUI("Todo List Overview");
         });
 
+        JLabel snoozeLabel = new JLabel("<HTML>Oversleep? that's Ok you have an extra 15 minutes :)<HTML>");
+        snoozeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        snoozeLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        snoozeLabel.setVerticalAlignment(SwingConstants.CENTER);
+        snoozeLabel.setBounds(600,500,200,50);
+        panel.add(snoozeLabel);
+
         JTextField snoozeItemByIdInput = new JTextField();
+        snoozeItemByIdInput.setBackground(Color.lightGray);
+        snoozeItemByIdInput.setBounds(600,550,200,50);
+        panel.add(snoozeItemByIdInput);
+
+
+
 
         JButton snooze = new JButton("Snooze");
-        snooze.setPreferredSize(new Dimension(200,50));
+        snooze.setPreferredSize(new Dimension(250,100));
         Dimension snoozeSize = snooze.getPreferredSize();
-        snooze.setBounds(600, 600, snoozeSize.width, snoozeSize.height);
+        snooze.setBounds(800, 500, snoozeSize.width, snoozeSize.height);
         panel.add(snooze);
         snooze.addActionListener(e -> {
             String idToSnooze = snoozeItemByIdInput.getText();
@@ -186,27 +194,27 @@ public class todoUI extends JFrame implements ActionListener {
         });
 
         JButton sync = new JButton("Sync For Offline");
-        sync.setPreferredSize(new Dimension(250,50));
+        sync.setPreferredSize(new Dimension(450,50));
         Dimension syncSize = sync.getPreferredSize();
-        sync.setBounds(800, 600, syncSize.width, syncSize.height);
+        sync.setBounds(600, 600, syncSize.width, syncSize.height);
         sync.addActionListener(e -> {
 
         });
         panel.add(sync);
 
-        JLabel refreshLabel = new JLabel();
+      /*  JLabel refreshLabel = new JLabel();
         refreshLabel.setText("<HTML>Changed something? Click here to refresh it!<HTML>");
         refreshLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         refreshLabel.setHorizontalAlignment(SwingConstants.LEFT);
         refreshLabel.setVerticalAlignment(SwingConstants.CENTER);
         refreshLabel.setBounds(600, 500, 200, 100);
-        panel.add(refreshLabel);
+        panel.add(refreshLabel);*/
 
 
         JButton refresh = new JButton("Refresh");
         refresh.setPreferredSize(new Dimension(250, 100));
         Dimension refreshSize = refresh.getPreferredSize();
-        refresh.setBounds(800, 500, refreshSize.width, refreshSize.height);
+        refresh.setBounds(800, 400, refreshSize.width, refreshSize.height);
         panel.add(refresh);
         refresh.addActionListener(e -> {
             try {
