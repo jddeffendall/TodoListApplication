@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class todoUI extends JFrame implements ActionListener {
 
@@ -224,6 +226,37 @@ public class todoUI extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) throws IOException {
+
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                HTTPUtils httpUtils = new HTTPUtils();
+                JsonToObjectParser parser = new JsonToObjectParser();
+                try {
+                    String todoItemsJson = httpUtils.getAllUserTodosJsonString();
+                    TodoItem[] items = parser.JsonStringToObjectArray(todoItemsJson);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
+                    LocalDateTime now = LocalDateTime.now();
+
+                    for (TodoItem e : items) {
+                        LocalDateTime dueDate = LocalDateTime.parse(e.getDueDate(), formatter);
+
+                        if (now.isAfter(dueDate)) {
+                            e.setOverdue();
+                            httpUtils.setTodoItemOverdue(e);
+                            JOptionPane.showMessageDialog(null, "Todo item with ID " + e.getId() + " is overdue");
+                        }
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread t = new Thread(r);
+        t.start();
+
         new todoUI();
     }
 
