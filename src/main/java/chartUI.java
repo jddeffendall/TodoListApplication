@@ -35,7 +35,6 @@ public class chartUI extends JFrame {
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
         setContentPane(chartPanel);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
 
         setVisible(true);
