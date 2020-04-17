@@ -25,7 +25,7 @@ public class todoUI extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         setContentPane(panel);
         panel.setLayout(null);
-        panel.setPreferredSize(new Dimension(1050, 650));
+        panel.setPreferredSize(new Dimension(1050, 550));
 
 
         HTTPUtils httpUtils = new HTTPUtils();
@@ -87,24 +87,23 @@ public class todoUI extends JFrame implements ActionListener {
 
         panel.add(AddEvent);
 
-        JLabel completeEventLabel = new JLabel("<HTML>Enter ID of item to set as complete:<HTML>");
+        JLabel completeEventLabel = new JLabel("<HTML>Enter ID of item for one of these actions: <HTML>");
         completeEventLabel.setHorizontalAlignment(SwingConstants.LEFT);
         completeEventLabel.setVerticalAlignment(SwingConstants.CENTER);
         completeEventLabel.setBounds(600,200,200,50);
-
         completeEventLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         panel.add(completeEventLabel);
 
         JTextField completeEventById = new JTextField("");
-        completeEventById.setBounds(600,250,200,50);
+        completeEventById.setBounds(800,200,250,50);
         completeEventById.setBackground(Color.lightGray);
         panel.add(completeEventById);
 
 
-        JButton completeEvent = new JButton("Complete Event");
-        completeEvent.setPreferredSize(new Dimension(250,100));
+        JButton completeEvent = new JButton("<HTML><center>Complete</center><HTML>"); //html tags wrap the text and centers it
+        completeEvent.setPreferredSize(new Dimension(150,100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
-        completeEvent.setBounds(800,200, completeEventSize.width,completeEventSize.height);
+        completeEvent.setBounds(600,250, completeEventSize.width,completeEventSize.height);
         panel.add(completeEvent);
         completeEvent.addActionListener(e ->{
             String idToComplete = completeEventById.getText();
@@ -118,7 +117,7 @@ public class todoUI extends JFrame implements ActionListener {
         });
 
 
-
+/*
         JLabel deleteItemLabel = new JLabel("Enter Id of Item to Delete:");
         deleteItemLabel.setBounds(600, 300, 200, 50);
         deleteItemLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
@@ -131,14 +130,14 @@ public class todoUI extends JFrame implements ActionListener {
         deleteItemByIdinput.setBackground(Color.lightGray);
 
         panel.add(deleteItemByIdinput);
-
-        JButton Cancel = new JButton("Delete Event");
-        Cancel.setPreferredSize(new Dimension(250, 100));
+*/
+        JButton Cancel = new JButton("Delete");
+        Cancel.setPreferredSize(new Dimension(150, 100));
         Dimension CancelSize = Cancel.getPreferredSize();
-        Cancel.setBounds(800, 300, CancelSize.width, CancelSize.height);
+        Cancel.setBounds(750, 250, CancelSize.width, CancelSize.height);
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
-            String stringId = deleteItemByIdinput.getText();
+            String stringId = completeEventById.getText();
             try {
                 httpUtils.deleteTodoItem(stringId);
             } catch (IOException ioException) {
@@ -156,14 +155,14 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(pieChartLabel);*/
 
         JButton pieChart = new JButton("PieChart");
-        pieChart.setPreferredSize(new Dimension(200, 100));
+        pieChart.setPreferredSize(new Dimension(225, 100));
         Dimension pieChartSize = pieChart.getPreferredSize();
-        pieChart.setBounds(600, 500, pieChartSize.width, pieChartSize.height);
+        pieChart.setBounds(600, 350, pieChartSize.width, pieChartSize.height);
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
             new chartUI("Todo List Overview");
         });
-
+/*
         JLabel snoozeLabel = new JLabel("<HTML>Oversleep? Enter the Id for an extra 15 minutes :)<HTML>");
         snoozeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         snoozeLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -175,17 +174,15 @@ public class todoUI extends JFrame implements ActionListener {
         snoozeItemByIdInput.setBackground(Color.lightGray);
         snoozeItemByIdInput.setBounds(600,450,200,50);
         panel.add(snoozeItemByIdInput);
-
-
-
+*/
 
         JButton snooze = new JButton("Snooze");
-        snooze.setPreferredSize(new Dimension(250,100));
+        snooze.setPreferredSize(new Dimension(150,100));
         Dimension snoozeSize = snooze.getPreferredSize();
-        snooze.setBounds(800, 400, snoozeSize.width, snoozeSize.height);
+        snooze.setBounds(900, 250, snoozeSize.width, snoozeSize.height);
         panel.add(snooze);
         snooze.addActionListener(e -> {
-            String idToSnooze = snoozeItemByIdInput.getText();
+            String idToSnooze = completeEventById.getText();
             try {
                 String todoItemToSnoozeJson = httpUtils.getTodoItemJsonString(idToSnooze);
                 TodoItem itemToSnooze = parser.JsonStringToOneObject(todoItemToSnoozeJson);
@@ -196,9 +193,9 @@ public class todoUI extends JFrame implements ActionListener {
         });
 
         JButton sync = new JButton("Sync For Offline");
-        sync.setPreferredSize(new Dimension(450,50));
+        sync.setPreferredSize(new Dimension(450,100));
         Dimension syncSize = sync.getPreferredSize();
-        sync.setBounds(600, 600, syncSize.width, syncSize.height);
+        sync.setBounds(600, 450, syncSize.width, syncSize.height);
         sync.addActionListener(e -> {
 
         });
@@ -214,9 +211,9 @@ public class todoUI extends JFrame implements ActionListener {
 
 
         JButton refresh = new JButton("Refresh");
-        refresh.setPreferredSize(new Dimension(250, 100));
+        refresh.setPreferredSize(new Dimension(225, 100));
         Dimension refreshSize = refresh.getPreferredSize();
-        refresh.setBounds(800, 500, refreshSize.width, refreshSize.height);
+        refresh.setBounds(825, 350, refreshSize.width, refreshSize.height);
         panel.add(refresh);
         refresh.addActionListener(e -> {
             try {
