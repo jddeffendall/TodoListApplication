@@ -15,6 +15,7 @@
   * Improve GUI
   * Pie chart
   * Snooze
+  * Overdue alerts
 * Iteration 3
   * Get alerted about upcoming items
   * Offline database
