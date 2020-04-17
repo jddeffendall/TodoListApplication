@@ -19,5 +19,6 @@
 * Iteration 3
   * Get alerted about upcoming items
   * Offline database
+  * Screenshots in README
 #### Screenshots
 Coming soon!
