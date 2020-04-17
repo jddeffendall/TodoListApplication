@@ -30,7 +30,7 @@ class HTTPUtilsTest {
 
     @Test
     void addTodoItem() throws IOException {
-        var result = httpUtils.addTodoItem("Add todo test", "Friday");
+        var result = httpUtils.addTodoItem("Add todo test", "05 25 2020 12:00");
         TodoItem expected = parser.JsonStringToOneObject(result);
         var actual = httpUtils.getTodoItemJsonString(expected.getId());
 
@@ -38,7 +38,7 @@ class HTTPUtilsTest {
 
     @Test
     void deleteTodoItem() throws IOException {
-        var result = httpUtils.addTodoItem("Delete tests", "Friday");
+        var result = httpUtils.addTodoItem("Delete tests", "05 25 2020 12:00");
         TodoItem item = parser.JsonStringToOneObject(result);
         var deletedResult = httpUtils.deleteTodoItem(item.getId());
         assertTrue(deletedResult);
