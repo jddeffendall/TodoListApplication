@@ -21,11 +21,11 @@
   * Offline database
   * Screenshots in README
 #### Screenshots
-How to add item:
+Enter item title and due date in the following boxes, then press "Add To Schedule"
 ![Add item](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/addItem.PNG)
 
-Enter an ID like this to delete/complete/snooze an item:
+Enter an item ID in this box, and click the corresponding button to complete, delete, or snooze an item
 ![Edit item](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/editItem.PNG)
 
-Click on the Pie Chart button to view a pie chart:
+Click on the Pie Chart button to view a pie chart of your items
 ![Pie chart](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/pieChart.PNG)
