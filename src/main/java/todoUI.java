@@ -115,68 +115,7 @@ public class todoUI extends JFrame implements ActionListener {
                 ioe.printStackTrace();
             }
         });
-
-
-/*
-        JLabel deleteItemLabel = new JLabel("Enter Id of Item to Delete:");
-        deleteItemLabel.setBounds(600, 300, 200, 50);
-        deleteItemLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-        deleteItemLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        deleteItemLabel.setVerticalAlignment(SwingConstants.CENTER);
-        panel.add(deleteItemLabel);
-
-        JTextField deleteItemByIdinput = new JTextField("");
-        deleteItemByIdinput.setBounds(600, 350, 200, 50);
-        deleteItemByIdinput.setBackground(Color.lightGray);
-
-        panel.add(deleteItemByIdinput);
-*/
-        JButton Cancel = new JButton("Delete");
-        Cancel.setPreferredSize(new Dimension(150, 100));
-        Dimension CancelSize = Cancel.getPreferredSize();
-        Cancel.setBounds(750, 250, CancelSize.width, CancelSize.height);
-        panel.add(Cancel);
-        Cancel.addActionListener(e -> {
-            String stringId = completeEventById.getText();
-            try {
-                httpUtils.deleteTodoItem(stringId);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
-
-      /*  JLabel pieChartLabel = new JLabel();
-        pieChartLabel.setText("<HTML>Click here to see the pie chart<HTML>"); //HTML tags wrap the text to the next line
-        pieChartLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-        pieChartLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        pieChartLabel.setVerticalAlignment(SwingConstants.CENTER);
-        pieChartLabel.setBounds(600, 400, 200,100);
-        panel.add(pieChartLabel);*/
-
-        JButton pieChart = new JButton("PieChart");
-        pieChart.setPreferredSize(new Dimension(225, 100));
-        Dimension pieChartSize = pieChart.getPreferredSize();
-        pieChart.setBounds(600, 350, pieChartSize.width, pieChartSize.height);
-        panel.add(pieChart);
-        pieChart.addActionListener(e -> {
-            new chartUI("Todo List Overview");
-        });
-/*
-        JLabel snoozeLabel = new JLabel("<HTML>Oversleep? Enter the Id for an extra 15 minutes :)<HTML>");
-        snoozeLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-        snoozeLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        snoozeLabel.setVerticalAlignment(SwingConstants.CENTER);
-        snoozeLabel.setBounds(600,400,200,50);
-        panel.add(snoozeLabel);
-
-        JTextField snoozeItemByIdInput = new JTextField();
-        snoozeItemByIdInput.setBackground(Color.lightGray);
-        snoozeItemByIdInput.setBounds(600,450,200,50);
-        panel.add(snoozeItemByIdInput);
-*/
-
-        JButton snooze = new JButton("Snooze");
+        JButton snooze = new JButton("<HTML><center>Snooze</center><HTML>"); // centers the text HTML tags necessary for center tags to work
         snooze.setPreferredSize(new Dimension(150,100));
         Dimension snoozeSize = snooze.getPreferredSize();
         snooze.setBounds(900, 250, snoozeSize.width, snoozeSize.height);
@@ -192,22 +131,31 @@ public class todoUI extends JFrame implements ActionListener {
             }
         });
 
-        JButton sync = new JButton("Sync For Offline");
-        sync.setPreferredSize(new Dimension(450,100));
-        Dimension syncSize = sync.getPreferredSize();
-        sync.setBounds(600, 450, syncSize.width, syncSize.height);
-        sync.addActionListener(e -> {
-
+        JButton Cancel = new JButton("<HTML><center>Delete</center><HTML>");
+        Cancel.setPreferredSize(new Dimension(150, 100));
+        Dimension CancelSize = Cancel.getPreferredSize();
+        Cancel.setBounds(750, 250, CancelSize.width, CancelSize.height);
+        panel.add(Cancel);
+        Cancel.addActionListener(e -> {
+            String stringId = completeEventById.getText();
+            try {
+                httpUtils.deleteTodoItem(stringId);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
-        panel.add(sync);
 
-      /*  JLabel refreshLabel = new JLabel();
-        refreshLabel.setText("<HTML>Changed something? Click here to refresh it!<HTML>");
-        refreshLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-        refreshLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        refreshLabel.setVerticalAlignment(SwingConstants.CENTER);
-        refreshLabel.setBounds(600, 500, 200, 100);
-        panel.add(refreshLabel);*/
+
+
+        JButton pieChart = new JButton("PieChart");
+        pieChart.setPreferredSize(new Dimension(225, 100));
+        Dimension pieChartSize = pieChart.getPreferredSize();
+        pieChart.setBounds(600, 350, pieChartSize.width, pieChartSize.height);
+        panel.add(pieChart);
+        pieChart.addActionListener(e -> {
+            new chartUI("Todo List Overview");
+        });
+        
 
 
         JButton refresh = new JButton("Refresh");
@@ -224,6 +172,15 @@ public class todoUI extends JFrame implements ActionListener {
                 ex.printStackTrace();
             }
         });
+
+        JButton sync = new JButton("Sync For Offline");
+        sync.setPreferredSize(new Dimension(450,100));
+        Dimension syncSize = sync.getPreferredSize();
+        sync.setBounds(600, 450, syncSize.width, syncSize.height);
+        sync.addActionListener(e -> {
+
+        });
+        panel.add(sync);
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
