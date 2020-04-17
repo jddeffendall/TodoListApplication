@@ -21,5 +21,11 @@
   * Offline database
   * Screenshots in README
 #### Screenshots
-How To Add Item:
+How to add item:
 ![Add item](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/addItem.PNG)
+
+Enter an ID like this to delete/complete/snooze an item:
+![Edit item](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/editItem.PNG)
+
+Click on the Pie Chart button to view a pie chart:
+![Pie chart](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/pieChart.PNG)
