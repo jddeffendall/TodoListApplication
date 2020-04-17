@@ -63,4 +63,8 @@ public class UIUtils {
 
         return result;
     }
+
+    public int countTotalItems(Map<String, Integer> items) {
+        return items.size();
+    }
 }

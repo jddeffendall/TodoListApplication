@@ -153,7 +153,11 @@ public class todoUI extends JFrame implements ActionListener {
         pieChart.setBounds(600, 350, pieChartSize.width, pieChartSize.height);
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
-            new chartUI("Todo List Overview");
+            try {
+                new chartUI("Todo List Overview");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         });
         
 

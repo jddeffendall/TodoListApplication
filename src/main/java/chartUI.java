@@ -17,11 +17,21 @@ import java.util.Map;
 
 public class chartUI extends JFrame {
 
-    public chartUI(String title) {
+    public chartUI(String title) throws IOException {
         super(title);
+
+        PieDataset data = getPieData();
+
+        UIUtils uiUtils = new UIUtils();
+        JsonToObjectParser parser = new JsonToObjectParser();
+        HTTPUtils httpUtils = new HTTPUtils();
+
+        String rawData = httpUtils.getAllUserTodosJsonString();
+        TodoItem[] items = parser.JsonStringToObjectArray(rawData);
+
         JFreeChart chart = ChartFactory.createPieChart3D(
-                title,
-                getPieData(),
+                "Total Items: " + items.length,
+                data,
                 true,
                 true,
                 false
