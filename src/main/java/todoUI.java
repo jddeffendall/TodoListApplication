@@ -80,6 +80,16 @@ public class todoUI extends JFrame implements ActionListener {
             String due = dueDateInput.getText();
             try {
                 String resultJson = httpUtils.addTodoItem(title, due);
+
+                String updatedUserTodos = httpUtils.getAllUserTodosJsonString();
+                TodoItem[] updatedItems = parser.JsonStringToObjectArray(updatedUserTodos);
+                String[][] updatedData = uiUtils.formatDataForTable(updatedItems);
+
+                JTable updatedTable = new JTable(updatedData, columnNames);
+                JScrollPane updatedJScrollPane = new JScrollPane(updatedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                updatedJScrollPane.setBounds(0, 0, 600, 800);
+                panel.add(updatedJScrollPane);
+
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -111,6 +121,16 @@ public class todoUI extends JFrame implements ActionListener {
                 String itemJson = httpUtils.getTodoItemJsonString(idToComplete);
                 TodoItem item = parser.JsonStringToOneObject(itemJson);
                 boolean completionStatus = httpUtils.completeTodoItem(item);
+
+                String completedUserTodos = httpUtils.getAllUserTodosJsonString();
+                TodoItem[] completedItems = parser.JsonStringToObjectArray(completedUserTodos);
+                String[][] completedData = uiUtils.formatDataForTable(completedItems);
+
+                JTable completedTable = new JTable(completedData, columnNames);
+                JScrollPane completedJScrollPane = new JScrollPane(completedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                completedJScrollPane.setBounds(0, 0, 600, 800);
+                panel.add(completedJScrollPane);
+
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
@@ -125,7 +145,17 @@ public class todoUI extends JFrame implements ActionListener {
             try {
                 String todoItemToSnoozeJson = httpUtils.getTodoItemJsonString(idToSnooze);
                 TodoItem itemToSnooze = parser.JsonStringToOneObject(todoItemToSnoozeJson);
-                boolean snoozed = httpUtils.snooze(itemToSnooze);
+                httpUtils.snooze(itemToSnooze);
+
+                String snoozedUserTodos = httpUtils.getAllUserTodosJsonString();
+                TodoItem[] snoozedItems = parser.JsonStringToObjectArray(snoozedUserTodos);
+                String[][] snoozedData = uiUtils.formatDataForTable(snoozedItems);
+
+                JTable snoozedTable = new JTable(snoozedData, columnNames);
+                JScrollPane snoozedJScrollPane = new JScrollPane(snoozedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                snoozedJScrollPane.setBounds(0, 0, 600, 800);
+                panel.add(snoozedJScrollPane);
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -140,6 +170,16 @@ public class todoUI extends JFrame implements ActionListener {
             String stringId = completeEventById.getText();
             try {
                 httpUtils.deleteTodoItem(stringId);
+
+                String deletedUserTodos = httpUtils.getAllUserTodosJsonString();
+                TodoItem[] deletedItems = parser.JsonStringToObjectArray(deletedUserTodos);
+                String[][] deletedData = uiUtils.formatDataForTable(deletedItems);
+
+                JTable deletedTable = new JTable(deletedData, columnNames);
+                JScrollPane deletedJScrollPane = new JScrollPane(deletedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                deletedJScrollPane.setBounds(0, 0, 600, 800);
+                panel.add(deletedJScrollPane);
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
