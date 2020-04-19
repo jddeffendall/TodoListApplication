@@ -78,6 +78,8 @@ public class todoUI extends JFrame implements ActionListener {
         AddEvent.addActionListener(e -> {
             String title = titleInput.getText();
             String due = dueDateInput.getText();
+            titleInput.setText(null);
+            dueDateInput.setText(null);
             try {
                 String resultJson = httpUtils.addTodoItem(title, due);
 
@@ -117,6 +119,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(completeEvent);
         completeEvent.addActionListener(e ->{
             String idToComplete = completeEventById.getText();
+            completeEventById.setText(null);
             try {
                 String itemJson = httpUtils.getTodoItemJsonString(idToComplete);
                 TodoItem item = parser.JsonStringToOneObject(itemJson);
@@ -142,6 +145,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(snooze);
         snooze.addActionListener(e -> {
             String idToSnooze = completeEventById.getText();
+            completeEventById.setText(null);
             try {
                 String todoItemToSnoozeJson = httpUtils.getTodoItemJsonString(idToSnooze);
                 TodoItem itemToSnooze = parser.JsonStringToOneObject(todoItemToSnoozeJson);
@@ -168,6 +172,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
             String stringId = completeEventById.getText();
+            completeEventById.setText(null);
             try {
                 httpUtils.deleteTodoItem(stringId);
 
