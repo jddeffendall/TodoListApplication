@@ -13,9 +13,8 @@ import java.util.Map;
 public class HTTPUtils {
 
     HttpRequestFactory requestFactory;
-    String baseURL = "https://todoserver222.herokuapp.com/";
-    String todosURL = baseURL + "todos/";
-    String teamURL = "https://todoserver222.herokuapp.com/TeamTwo/todos";
+    String todosURL = "https://todoserver-team2.herokuapp.com/";
+    String teamURL = "https://todoserver-team2.herokuapp.com/todos/";
 
     public HTTPUtils() {
         requestFactory = new NetHttpTransport().createRequestFactory();
@@ -23,7 +22,7 @@ public class HTTPUtils {
 
     public String getTodoItemJsonString(String id) throws IOException {
         HttpRequest getRequest = requestFactory.buildGetRequest(
-                new GenericUrl(todosURL + id));
+                new GenericUrl(teamURL + id));
         String rawResponse = getRequest.execute().parseAsString();
         return rawResponse;
     }
@@ -47,11 +46,11 @@ public class HTTPUtils {
         data.put("created", created);
         data.put("completed", false);
         data.put("overdue", false);
-        data.put("owner", "TeamTwo");
+        data.put("owner", "Team2");
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest postRequest = requestFactory.buildPostRequest(
-                new GenericUrl(todosURL),content);
+                new GenericUrl(teamURL),content);
         String rawResponse = postRequest.execute().parseAsString();
         return rawResponse;
     }
@@ -59,7 +58,7 @@ public class HTTPUtils {
     public boolean deleteTodoItem(String id) throws IOException {
         try {
             HttpRequest deleteRequest = requestFactory.buildDeleteRequest(
-                    new GenericUrl(todosURL + id));
+                    new GenericUrl(teamURL + id));
             String rawResponse = deleteRequest.execute().parseAsString();
         } catch (IOException e) {
             return false;
@@ -79,7 +78,7 @@ public class HTTPUtils {
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest putRequest = requestFactory.buildPutRequest(
-                new GenericUrl(todosURL + item.getId()), content);
+                new GenericUrl(teamURL + item.getId()), content);
         try {
             String rawResponse = putRequest.execute().parseAsString();
         } catch (HttpResponseException e) {
@@ -100,7 +99,7 @@ public class HTTPUtils {
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest putRequest = requestFactory.buildPutRequest(
-                new GenericUrl(todosURL + item.getId()), content);
+                new GenericUrl(teamURL + item.getId()), content);
         try {
             String rawResponse = putRequest.execute().parseAsString();
         } catch (HttpResponseException e) {
@@ -128,7 +127,7 @@ public class HTTPUtils {
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest putRequest = requestFactory.buildPutRequest(
-                new GenericUrl(todosURL + item.getId()), content);
+                new GenericUrl(teamURL + item.getId()), content);
         try {
             String rawResponse = putRequest.execute().parseAsString();
         } catch (HttpResponseException e) {

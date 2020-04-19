@@ -32,7 +32,8 @@ class HTTPUtilsTest {
     void addTodoItem() throws IOException {
         var result = httpUtils.addTodoItem("Add todo test", "05 25 2020 12:00");
         TodoItem expected = parser.JsonStringToOneObject(result);
-        var actual = httpUtils.getTodoItemJsonString(expected.getId());
+        assertEquals("Add todo test", expected.getTitle());
+        httpUtils.deleteTodoItem(expected.getId());
 
     }
 
@@ -47,19 +48,17 @@ class HTTPUtilsTest {
 
     @Test
     void deleteTodoItem_InvalidID() throws IOException {
-
         var deletedResult = httpUtils.deleteTodoItem("100000");
         assertFalse(deletedResult);
-
     }
 
     @Test
     void completeTodoItem() throws IOException {
         var result = httpUtils.addTodoItem("Complete item", "04 25 2020 12:00");
         TodoItem item = parser.JsonStringToOneObject(result);
-        assertEquals("false", item.getCompleted());
         var updatedResult = httpUtils.completeTodoItem(item);
         assertTrue(updatedResult);
+        httpUtils.deleteTodoItem(item.getId());
     }
 
     @Test
@@ -70,6 +69,7 @@ class HTTPUtilsTest {
         var updatedJson = httpUtils.getTodoItemJsonString(item.getId());
         TodoItem updatedItem = parser.JsonStringToOneObject(updatedJson);
         assertEquals("true", updatedItem.getOverdue());
+        httpUtils.deleteTodoItem(updatedItem.getId());
     }
 
     @Test
@@ -80,6 +80,7 @@ class HTTPUtilsTest {
         var updatedJson = httpUtils.getTodoItemJsonString(item.getId());
         TodoItem updatedItem = parser.JsonStringToOneObject(updatedJson);
         assertNotEquals(item.getDueDate(), updatedItem.getDueDate());
+        httpUtils.deleteTodoItem(updatedItem.getId());
     }
 
 
