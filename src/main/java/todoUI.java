@@ -96,6 +96,8 @@ public class todoUI extends JFrame implements ActionListener {
                 updatedJScrollPane.setBounds(0, 0, 600, 800);
                 panel.add(updatedJScrollPane);
                 updatedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                updatedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                updatedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
 
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -140,6 +142,8 @@ public class todoUI extends JFrame implements ActionListener {
                 completedJScrollPane.setBounds(0, 0, 600, 800);
                 panel.add(completedJScrollPane);
                 completedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                completedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                completedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
 
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -167,6 +171,8 @@ public class todoUI extends JFrame implements ActionListener {
                 snoozedJScrollPane.setBounds(0, 0, 600, 800);
                 panel.add(snoozedJScrollPane);
                 snoozedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                snoozedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                snoozedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -193,6 +199,8 @@ public class todoUI extends JFrame implements ActionListener {
                 deletedJScrollPane.setBounds(0, 0, 600, 800);
                 panel.add(deletedJScrollPane);
                 deletedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                deletedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                deletedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
