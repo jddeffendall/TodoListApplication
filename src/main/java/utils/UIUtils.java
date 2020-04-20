@@ -13,7 +13,7 @@ public class UIUtils {
     }
 
     public String[][] formatDataForTable(TodoItem[] data) {
-        String[][] formattedData = new String[data.length][6];
+        String[][] formattedData = new String[data.length][7];
 
         for (int i = 0; i < data.length; i++) {
             TodoItem tempTodo = data[i];
@@ -24,6 +24,7 @@ public class UIUtils {
             formattedData[i][3] = tempTodo.getDueDate();
             formattedData[i][4] = tempTodo.getCompleted();
             formattedData[i][5] = tempTodo.getOverdue();
+            formattedData[i][6] = tempTodo.getCompletedDate();
         }
 
         return formattedData;

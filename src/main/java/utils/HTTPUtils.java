@@ -15,6 +15,7 @@ public class HTTPUtils {
     HttpRequestFactory requestFactory;
     String todosURL = "https://todoserver-team2.herokuapp.com/";
     String teamURL = "https://todoserver-team2.herokuapp.com/todos/";
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
 
     public HTTPUtils() {
         requestFactory = new NetHttpTransport().createRequestFactory();
@@ -38,7 +39,6 @@ public class HTTPUtils {
         Map<String, Object> data = new LinkedHashMap<>();
 
         LocalDateTime createdDate = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
         String created = createdDate.format(formatter);
 
         data.put("title", description);
@@ -46,6 +46,7 @@ public class HTTPUtils {
         data.put("created", created);
         data.put("completed", false);
         data.put("overdue", false);
+        data.put("completed date", "Incomplete");
         data.put("owner", "Team2");
 
         HttpContent content = new UrlEncodedContent(data);
@@ -68,11 +69,16 @@ public class HTTPUtils {
 
     public boolean completeTodoItem(TodoItem item) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>();
+
+        LocalDateTime now = LocalDateTime.now();
+        String completedDate = now.format(formatter);
+
         data.put("title", item.getTitle());
         data.put("due", item.getDueDate());
         data.put("created", item.getCreatedDate());
         data.put("completed", true);
         data.put("overdue", item.getOverdue());
+        data.put("completed date", completedDate);
         data.put("owner", item.getOwner());
         data.put("id", item.getId());
 
@@ -94,6 +100,7 @@ public class HTTPUtils {
         data.put("created", item.getCreatedDate());
         data.put("completed", item.getCompleted());
         data.put("overdue", true);
+        data.put("completed date", item.getCompletedDate());
         data.put("owner", item.getOwner());
         data.put("id", item.getId());
 
@@ -112,7 +119,6 @@ public class HTTPUtils {
         Map<String, Object> data = new LinkedHashMap<>();
 
         String oldDueDateString = item.getDueDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
         LocalDateTime oldDueDate = LocalDateTime.parse(oldDueDateString, formatter);
         LocalDateTime newDueDate = oldDueDate.plusMinutes(15);
         String newDateString = newDueDate.format(formatter);
@@ -122,6 +128,7 @@ public class HTTPUtils {
         data.put("created", item.getCreatedDate());
         data.put("completed",item.getCompleted());
         data.put("overdue",item.getOverdue());
+        data.put("completed date", item.getCompletedDate());
         data.put("owner", item.getOwner());
         data.put("id", item.getId());
 

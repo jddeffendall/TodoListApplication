@@ -23,9 +23,10 @@ class HTTPUtilsTest {
 
     @Test
     void getTodoItemJsonString() throws IOException {
-        String result = httpUtils.getTodoItemJsonString("1");
-        TodoItem item = parser.JsonStringToOneObject(result);
-        assertEquals("1", item.getId());
+        String result = httpUtils.addTodoItem("TEST", "05 25 2020 12:00");
+        TodoItem resultItem = parser.JsonStringToOneObject(result);
+        assertEquals("TEST", resultItem.getTitle());
+        httpUtils.deleteTodoItem(resultItem.getId());
     }
 
     @Test
@@ -34,7 +35,6 @@ class HTTPUtilsTest {
         TodoItem expected = parser.JsonStringToOneObject(result);
         assertEquals("Add todo test", expected.getTitle());
         httpUtils.deleteTodoItem(expected.getId());
-
     }
 
     @Test
