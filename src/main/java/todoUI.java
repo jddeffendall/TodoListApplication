@@ -5,6 +5,8 @@ import utils.UIUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,8 +26,11 @@ public class todoUI extends JFrame implements ActionListener {
 
         JPanel panel = new JPanel();
         setContentPane(panel);
+      //  JFrame frame = new JFrame();
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
+      //  frame.add(panel);
+
 
 
         HTTPUtils httpUtils = new HTTPUtils();
@@ -43,10 +48,9 @@ public class todoUI extends JFrame implements ActionListener {
         JScrollPane jScrollPane = new JScrollPane(items, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jScrollPane.setBounds(0, 0, 600, 800);
         panel.add(jScrollPane);
+        items.getColumnModel().getColumn(0).setPreferredWidth(2);
 
-
-
-
+        
         JLabel titlee = new JLabel("Enter Title of Item:");
         titlee.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         titlee.setHorizontalAlignment(SwingConstants.LEFT);
@@ -95,6 +99,7 @@ public class todoUI extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            items.repaint();
         });
 
         panel.add(AddEvent);
@@ -204,7 +209,7 @@ public class todoUI extends JFrame implements ActionListener {
                 ioException.printStackTrace();
             }
         });
-        
+
 
 
         JButton refresh = new JButton("Refresh");
@@ -230,7 +235,6 @@ public class todoUI extends JFrame implements ActionListener {
 
         });
         panel.add(sync);
-        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
