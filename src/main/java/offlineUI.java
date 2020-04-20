@@ -72,26 +72,6 @@ public class offlineUI extends JFrame {
         Dimension size = AddEvent.getPreferredSize();
         AddEvent.setBounds(800, 0, size.width, size.height);
         AddEvent.addActionListener(e -> {
-            String title = titleInput.getText();
-            String due = dueDateInput.getText();
-            titleInput.setText(null);
-            dueDateInput.setText(null);
-            try {
-                String resultJson = httpUtils.addTodoItem(title, due);
-
-                String updatedUserTodos = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] updatedItems = parser.JsonStringToObjectArray(updatedUserTodos);
-                String[][] updatedData = uiUtils.formatDataForTable(updatedItems);
-
-                JTable updatedTable = new JTable(updatedData, columnNames);
-                JScrollPane updatedJScrollPane = new JScrollPane(updatedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                updatedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(updatedJScrollPane);
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            items.repaint();
         });
 
         panel.add(AddEvent);
@@ -115,51 +95,14 @@ public class offlineUI extends JFrame {
         completeEvent.setBounds(600,250, completeEventSize.width,completeEventSize.height);
         panel.add(completeEvent);
         completeEvent.addActionListener(e ->{
-            String idToComplete = completeEventById.getText();
-            completeEventById.setText(null);
-            try {
-                String itemJson = httpUtils.getTodoItemJsonString(idToComplete);
-                TodoItem item = parser.JsonStringToOneObject(itemJson);
-                boolean completionStatus = httpUtils.completeTodoItem(item);
-
-                String completedUserTodos = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] completedItems = parser.JsonStringToObjectArray(completedUserTodos);
-                String[][] completedData = uiUtils.formatDataForTable(completedItems);
-
-                JTable completedTable = new JTable(completedData, columnNames);
-                JScrollPane completedJScrollPane = new JScrollPane(completedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                completedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(completedJScrollPane);
-
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
         });
+
         JButton snooze = new JButton("<HTML><center>Snooze</center><HTML>"); // centers the text HTML tags necessary for center tags to work
         snooze.setPreferredSize(new Dimension(150,100));
         Dimension snoozeSize = snooze.getPreferredSize();
         snooze.setBounds(900, 250, snoozeSize.width, snoozeSize.height);
         panel.add(snooze);
         snooze.addActionListener(e -> {
-            String idToSnooze = completeEventById.getText();
-            completeEventById.setText(null);
-            try {
-                String todoItemToSnoozeJson = httpUtils.getTodoItemJsonString(idToSnooze);
-                TodoItem itemToSnooze = parser.JsonStringToOneObject(todoItemToSnoozeJson);
-                httpUtils.snooze(itemToSnooze);
-
-                String snoozedUserTodos = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] snoozedItems = parser.JsonStringToObjectArray(snoozedUserTodos);
-                String[][] snoozedData = uiUtils.formatDataForTable(snoozedItems);
-
-                JTable snoozedTable = new JTable(snoozedData, columnNames);
-                JScrollPane snoozedJScrollPane = new JScrollPane(snoozedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                snoozedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(snoozedJScrollPane);
-
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
         });
 
         JButton Cancel = new JButton("<HTML><center>Delete</center><HTML>");
@@ -168,23 +111,6 @@ public class offlineUI extends JFrame {
         Cancel.setBounds(750, 250, CancelSize.width, CancelSize.height);
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
-            String stringId = completeEventById.getText();
-            completeEventById.setText(null);
-            try {
-                httpUtils.deleteTodoItem(stringId);
-
-                String deletedUserTodos = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] deletedItems = parser.JsonStringToObjectArray(deletedUserTodos);
-                String[][] deletedData = uiUtils.formatDataForTable(deletedItems);
-
-                JTable deletedTable = new JTable(deletedData, columnNames);
-                JScrollPane deletedJScrollPane = new JScrollPane(deletedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                deletedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(deletedJScrollPane);
-
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
         });
 
 
