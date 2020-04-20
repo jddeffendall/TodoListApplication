@@ -26,10 +26,8 @@ public class todoUI extends JFrame implements ActionListener {
 
         JPanel panel = new JPanel();
         setContentPane(panel);
-      //  JFrame frame = new JFrame();
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
-      //  frame.add(panel);
 
 
 
@@ -49,6 +47,8 @@ public class todoUI extends JFrame implements ActionListener {
         jScrollPane.setBounds(0, 0, 600, 800);
         panel.add(jScrollPane);
         items.getColumnModel().getColumn(0).setPreferredWidth(2);
+        items.getColumnModel().getColumn(4).setPreferredWidth(50);
+        items.getColumnModel().getColumn(5).setPreferredWidth(50);
 
         
         JLabel titlee = new JLabel("Enter Title of Item:");
@@ -242,6 +242,7 @@ public class todoUI extends JFrame implements ActionListener {
                 ioException.printStackTrace();
             }
         });
+
         panel.add(sync);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();

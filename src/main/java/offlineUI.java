@@ -21,7 +21,7 @@ public class offlineUI extends JFrame {
         //  JFrame frame = new JFrame();
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
-        //  frame.add(panel);
+        // frame.add(panel);
 
 
 
