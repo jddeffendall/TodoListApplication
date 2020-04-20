@@ -5,31 +5,23 @@ import utils.UIUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-public class todoUI extends JFrame implements ActionListener {
+public class offlineUI extends JFrame {
 
+    public offlineUI() throws IOException {
+        super("Offline Todo List");
 
-    public todoUI() throws IOException {
-
-
-        super("Todo List Application");
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
 
         JPanel panel = new JPanel();
         setContentPane(panel);
-      //  JFrame frame = new JFrame();
+        //  JFrame frame = new JFrame();
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
-      //  frame.add(panel);
+        //  frame.add(panel);
 
 
 
@@ -50,7 +42,7 @@ public class todoUI extends JFrame implements ActionListener {
         panel.add(jScrollPane);
         items.getColumnModel().getColumn(0).setPreferredWidth(2);
 
-        
+
         JLabel titlee = new JLabel("Enter Title of Item:");
         titlee.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         titlee.setHorizontalAlignment(SwingConstants.LEFT);
@@ -95,7 +87,6 @@ public class todoUI extends JFrame implements ActionListener {
                 JScrollPane updatedJScrollPane = new JScrollPane(updatedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 updatedJScrollPane.setBounds(0, 0, 600, 800);
                 panel.add(updatedJScrollPane);
-                updatedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
 
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -139,7 +130,6 @@ public class todoUI extends JFrame implements ActionListener {
                 JScrollPane completedJScrollPane = new JScrollPane(completedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 completedJScrollPane.setBounds(0, 0, 600, 800);
                 panel.add(completedJScrollPane);
-                completedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
 
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -166,7 +156,6 @@ public class todoUI extends JFrame implements ActionListener {
                 JScrollPane snoozedJScrollPane = new JScrollPane(snoozedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 snoozedJScrollPane.setBounds(0, 0, 600, 800);
                 panel.add(snoozedJScrollPane);
-                snoozedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -192,7 +181,6 @@ public class todoUI extends JFrame implements ActionListener {
                 JScrollPane deletedJScrollPane = new JScrollPane(deletedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 deletedJScrollPane.setBounds(0, 0, 600, 800);
                 panel.add(deletedJScrollPane);
-                deletedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -231,60 +219,9 @@ public class todoUI extends JFrame implements ActionListener {
             }
         });
 
-        JButton sync = new JButton("Sync For Offline");
-        sync.setPreferredSize(new Dimension(450,100));
-        Dimension syncSize = sync.getPreferredSize();
-        sync.setBounds(600, 450, syncSize.width, syncSize.height);
-        sync.addActionListener(e -> {
-            try {
-                new offlineUI();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-        panel.add(sync);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
     }
 
-    public static void main(String[] args) throws IOException {
-
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                HTTPUtils httpUtils = new HTTPUtils();
-                JsonToObjectParser parser = new JsonToObjectParser();
-                try {
-                    String todoItemsJson = httpUtils.getAllUserTodosJsonString();
-                    TodoItem[] items = parser.JsonStringToObjectArray(todoItemsJson);
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
-                    LocalDateTime now = LocalDateTime.now();
-
-                    for (TodoItem e : items) {
-                        LocalDateTime dueDate = LocalDateTime.parse(e.getDueDate(), formatter);
-
-                        if (now.isAfter(dueDate) && e.getCompleted().equals("false")) {
-                            e.setOverdue();
-                            httpUtils.setTodoItemOverdue(e);
-                            JOptionPane.showMessageDialog(null, "Todo item with ID: " + e.getId() + " and \nTitle: " + e.getTitle() + " is overdue");
-                        }
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Thread t = new Thread(r);
-        t.start();
-
-        new todoUI();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
