@@ -250,12 +250,9 @@ public class todoUI extends JFrame implements ActionListener {
 
                 String allItemsString = httpUtils.getAllUserTodosJsonString();
                 TodoItem[] allItems = parser.JsonStringToObjectArray(allItemsString);
-
-                for (TodoItem i : allItems) {
-                    todoManager.addItemToDB(i);
-                }
-
+                todoManager.updateOfflineTable(allItems);
                 new offlineUI();
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

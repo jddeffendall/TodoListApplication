@@ -29,17 +29,17 @@ public class offlineUI extends JFrame {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
         var todoManager = new DatabaseUtils();
-
-
-
-        HTTPUtils httpUtils = new HTTPUtils();
         UIUtils uiUtils = new UIUtils();
         JsonToObjectParser parser = new JsonToObjectParser();
 
-        String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
-        TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
+        List<TodoItem> allUserTodos = todoManager.getAllItems();
+        TodoItem[] allUserTodosArray = new TodoItem[allUserTodos.size()];
 
-        String[][] data = uiUtils.formatDataForTable(allUserTodos);
+        for (int i=0; i<allUserTodos.size(); i++) {
+            allUserTodosArray[i] = allUserTodos.get(i);
+        }
+
+        String[][] data = uiUtils.formatDataForTable(allUserTodosArray);
         String[] columnNames = {"ID", "Title", "Created", "Due", "Completed", "Overdue", "Completed Date"};
 
         JTable items = new JTable(data, columnNames);
@@ -79,9 +79,10 @@ public class offlineUI extends JFrame {
         Dimension size = AddEvent.getPreferredSize();
         AddEvent.setBounds(800, 0, size.width, size.height);
         AddEvent.addActionListener(e -> {
-
             String due = dueDateInput.getText();
             String title = titleInput.getText();
+            dueDateInput.setText(null);
+            titleInput.setText(null);
 
             LocalDateTime now = LocalDateTime.now();
             String nowString = now.format(formatter);
@@ -91,6 +92,21 @@ public class offlineUI extends JFrame {
 
             TodoItem newItem = new TodoItem(title, "Team2", nowString, due, "false", "false", newItemID, "Incomplete");
             todoManager.addItemToDB(newItem);
+
+            List<TodoItem> addedItems = todoManager.getAllItems();
+            TodoItem[] addedTodosArray = new TodoItem[addedItems.size()];
+            for (int i=0; i<addedItems.size(); i++) {
+                addedTodosArray[i] = addedItems.get(i);
+            }
+            String[][] addedData = uiUtils.formatDataForTable(addedTodosArray);
+
+            JTable addedTable = new JTable(addedData, columnNames);
+            JScrollPane addedJScrollPane = new JScrollPane(addedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            addedJScrollPane.setBounds(0, 0, 600, 800);
+            panel.add(addedJScrollPane);
+            addedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+            addedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+            addedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
 
         });
 
@@ -115,6 +131,8 @@ public class offlineUI extends JFrame {
         completeEvent.setBounds(600,250, completeEventSize.width,completeEventSize.height);
         panel.add(completeEvent);
         completeEvent.addActionListener(e ->{
+            String idToComplete = completeEventById.getText();
+            todoManager.completeItem(idToComplete);
         });
 
         JButton snooze = new JButton("<HTML><center>Snooze</center><HTML>"); // centers the text HTML tags necessary for center tags to work
@@ -159,7 +177,7 @@ public class offlineUI extends JFrame {
             try {
                 setVisible(false); //you can't see me!
                 dispose();
-                new todoUI();
+                new offlineUI();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

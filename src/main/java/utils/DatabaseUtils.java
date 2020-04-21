@@ -157,4 +157,16 @@ public class DatabaseUtils {
             throw new TodoException("Couldn't calculate highest ID", e);
         }
     }
+
+    public void updateOfflineTable(TodoItem[] itemsArray) {
+        try {
+            for (TodoItem i : itemsArray) {
+                if (!todoDao.idExists(i.getId())) {
+                    todoDao.create(i);
+                }
+            }
+        } catch (SQLException e) {
+            throw new TodoException("Id already exists", e);
+        }
+    }
 }
