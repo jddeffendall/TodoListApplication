@@ -31,7 +31,7 @@ public class HTTPUtils {
 
     public String getAllUserTodosJsonString() throws IOException {
         HttpRequest getRequest = requestFactory.buildGetRequest(
-                new GenericUrl(todosURL));
+                new GenericUrl(teamURL));
         String rawResponse = getRequest.execute().parseAsString();
         return rawResponse;
     }
