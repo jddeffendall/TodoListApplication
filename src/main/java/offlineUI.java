@@ -238,7 +238,17 @@ public class offlineUI extends JFrame {
         Dimension syncSize = sync.getPreferredSize();
         sync.setBounds(600, 450, syncSize.width, syncSize.height);
         panel.add(sync);
-        
+        sync.addActionListener(e -> {
+            try {
+                setVisible(false);
+                dispose();
+                new todoUI();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        });
+
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
