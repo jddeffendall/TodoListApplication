@@ -156,6 +156,24 @@ public class offlineUI extends JFrame {
         snooze.setBounds(900, 250, snoozeSize.width, snoozeSize.height);
         panel.add(snooze);
         snooze.addActionListener(e -> {
+            String idToSnooze = completeEventById.getText();
+            todoManager.snooze(idToSnooze);
+            completeEventById.setText(null);
+
+            List<TodoItem> snoozedItems = todoManager.getAllItems();
+            TodoItem[] snoozedTodos = new TodoItem[snoozedItems.size()];
+            for (int i=0; i<snoozedItems.size(); i++) {
+                snoozedTodos[i] = snoozedItems.get(i);
+            }
+            String[][] snoozedData = uiUtils.formatDataForTable(snoozedTodos);
+
+            JTable snoozedTable = new JTable(snoozedData, columnNames);
+            JScrollPane snoozedJScrollPane = new JScrollPane(snoozedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            snoozedJScrollPane.setBounds(0, 0, 600, 800);
+            panel.add(snoozedJScrollPane);
+            snoozedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+            snoozedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+            snoozedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
         });
 
         JButton Cancel = new JButton("<HTML><center>Delete</center><HTML>");
