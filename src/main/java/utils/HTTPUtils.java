@@ -13,8 +13,8 @@ import java.util.Map;
 public class HTTPUtils {
 
     HttpRequestFactory requestFactory;
-    String todosURL = "https://todoserver-team2.herokuapp.com/";
-    String teamURL = "https://todoserver-team2.herokuapp.com/todos/";
+    String todosURL = "https://todoserver-team2.herokuapp.com/todos";
+    String teamURL = "https://todoserver-team2.herokuapp.com/Team2/todos/";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
 
     public HTTPUtils() {
@@ -51,7 +51,7 @@ public class HTTPUtils {
 
         HttpContent content = new UrlEncodedContent(data);
         HttpRequest postRequest = requestFactory.buildPostRequest(
-                new GenericUrl(teamURL),content);
+                new GenericUrl(todosURL),content);
         String rawResponse = postRequest.execute().parseAsString();
         return rawResponse;
     }
