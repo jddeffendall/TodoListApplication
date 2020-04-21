@@ -133,6 +133,21 @@ public class offlineUI extends JFrame {
         completeEvent.addActionListener(e ->{
             String idToComplete = completeEventById.getText();
             todoManager.completeItem(idToComplete);
+
+            List<TodoItem> completedItems = todoManager.getAllItems();
+            TodoItem[] completedTodos = new TodoItem[completedItems.size()];
+            for (int i=0; i<completedItems.size(); i++) {
+                completedTodos[i] = completedItems.get(i);
+            }
+            String[][] completedData = uiUtils.formatDataForTable(completedTodos);
+
+            JTable completedTable = new JTable(completedData, columnNames);
+            JScrollPane completedJScrollPane = new JScrollPane(completedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            completedJScrollPane.setBounds(0, 0, 600, 800);
+            panel.add(completedJScrollPane);
+            completedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+            completedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+            completedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
         });
 
         JButton snooze = new JButton("<HTML><center>Snooze</center><HTML>"); // centers the text HTML tags necessary for center tags to work
@@ -149,6 +164,24 @@ public class offlineUI extends JFrame {
         Cancel.setBounds(750, 250, CancelSize.width, CancelSize.height);
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
+            String idToDelete = completeEventById.getText();
+            completeEventById.setText(null);
+            todoManager.deleteItem(idToDelete);
+
+            List<TodoItem> deletedItems = todoManager.getAllItems();
+            TodoItem[] deletedTodos = new TodoItem[deletedItems.size()];
+            for (int i=0; i<deletedItems.size(); i++) {
+                deletedTodos[i] = deletedItems.get(i);
+            }
+            String[][] deletedData = uiUtils.formatDataForTable(deletedTodos);
+
+            JTable deletedTable = new JTable(deletedData, columnNames);
+            JScrollPane deletedJScrollPane = new JScrollPane(deletedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            deletedJScrollPane.setBounds(0, 0, 600, 800);
+            panel.add(deletedJScrollPane);
+            deletedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+            deletedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+            deletedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
         });
 
 
