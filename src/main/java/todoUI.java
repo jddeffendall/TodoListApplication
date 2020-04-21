@@ -1,4 +1,5 @@
 import domain.TodoItem;
+import utils.DatabaseUtils;
 import utils.HTTPUtils;
 import utils.JsonToObjectParser;
 import utils.UIUtils;
@@ -245,6 +246,15 @@ public class todoUI extends JFrame implements ActionListener {
         sync.setBounds(600, 450, syncSize.width, syncSize.height);
         sync.addActionListener(e -> {
             try {
+                var todoManager = new DatabaseUtils();
+
+                String allItemsString = httpUtils.getAllUserTodosJsonString();
+                TodoItem[] allItems = parser.JsonStringToObjectArray(allItemsString);
+
+                for (TodoItem i : allItems) {
+                    todoManager.addItemToDB(i);
+                }
+
                 new offlineUI();
             } catch (IOException ioException) {
                 ioException.printStackTrace();

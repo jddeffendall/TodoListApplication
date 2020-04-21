@@ -1,4 +1,5 @@
 import domain.TodoItem;
+import utils.DatabaseUtils;
 import utils.HTTPUtils;
 import utils.JsonToObjectParser;
 import utils.UIUtils;
@@ -7,6 +8,9 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class offlineUI extends JFrame {
 
@@ -22,6 +26,9 @@ public class offlineUI extends JFrame {
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
         // frame.add(panel);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
+        var todoManager = new DatabaseUtils();
 
 
 
@@ -72,6 +79,19 @@ public class offlineUI extends JFrame {
         Dimension size = AddEvent.getPreferredSize();
         AddEvent.setBounds(800, 0, size.width, size.height);
         AddEvent.addActionListener(e -> {
+
+            String due = dueDateInput.getText();
+            String title = titleInput.getText();
+
+            LocalDateTime now = LocalDateTime.now();
+            String nowString = now.format(formatter);
+
+            int highestID = todoManager.findHighestID();
+            String newItemID = Integer.toString(highestID + 1);
+
+            TodoItem newItem = new TodoItem(title, "Team2", nowString, due, "false", "false", newItemID, "Incomplete");
+            todoManager.addItemToDB(newItem);
+
         });
 
         panel.add(AddEvent);
@@ -148,6 +168,9 @@ public class offlineUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
+
+        todoManager.disposeResources();
+
     }
 
 }
