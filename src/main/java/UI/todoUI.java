@@ -1,3 +1,5 @@
+package UI;
+
 import domain.TodoItem;
 import utils.DatabaseUtils;
 import utils.HTTPUtils;
@@ -6,8 +8,6 @@ import utils.UIUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -285,6 +285,7 @@ public class todoUI extends JFrame implements ActionListener {
                         if (now.isAfter(dueDate) && e.getCompleted().equals("false")) {
                             e.setOverdue();
                             httpUtils.setTodoItemOverdue(e);
+
                             JOptionPane.showMessageDialog(null, "Todo item with ID: " + e.getId() + " and \nTitle: " + e.getTitle() + " is overdue");
                         }
                     }

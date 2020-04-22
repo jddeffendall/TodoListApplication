@@ -1,3 +1,5 @@
+package UI;
+
 import domain.TodoItem;
 import utils.DatabaseUtils;
 import utils.HTTPUtils;
@@ -125,6 +127,8 @@ public class offlineUI extends JFrame {
         panel.add(completeEventById);
 
 
+
+
         JButton completeEvent = new JButton("<HTML><center>Complete</center><HTML>"); //html tags wrap the text and centers it
         completeEvent.setPreferredSize(new Dimension(150,100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
@@ -229,6 +233,8 @@ public class offlineUI extends JFrame {
                 ex.printStackTrace();
             }
         });
+
+
         JButton sync = new JButton("Go back online!");
         sync.setPreferredSize(new Dimension(450,100));
         Dimension syncSize = sync.getPreferredSize();

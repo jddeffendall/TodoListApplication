@@ -1,3 +1,5 @@
+package UI;
+
 import domain.TodoItem;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
