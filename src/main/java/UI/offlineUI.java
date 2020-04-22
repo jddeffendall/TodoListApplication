@@ -24,10 +24,8 @@ public class offlineUI extends JFrame {
 
         JPanel panel = new JPanel();
         setContentPane(panel);
-        //  JFrame frame = new JFrame();
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
-        // frame.add(panel);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
         var todoManager = new DatabaseUtils();
@@ -272,7 +270,5 @@ public class offlineUI extends JFrame {
         setVisible(true);
 
         todoManager.disposeResources();
-
     }
-
 }
