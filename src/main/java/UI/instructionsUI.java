@@ -24,7 +24,7 @@ public class instructionsUI extends JFrame {
         panel.setPreferredSize(new Dimension(600, 400));
         super.setResizable(false);
 
-        descriptionlabel = new JLabel(" ");
+        descriptionlabel = new JLabel("");
         description = new JButton("Description");
 
 
