@@ -252,7 +252,7 @@ public class offlineUI extends JFrame {
                 List<TodoItem> offlineItems = todoManager.getAllItems();
 
                 for (TodoItem i : offlineItems) {
-                    httpUtils.addTodoItem(i.getTitle(), i.getDueDate(), i.getCreatedDate(), i.getCompleted(), i.getOverdue(), i.getCompletedDate(), i.getOwner(), i.getId());
+                    httpUtils.addTodoItem(i.getTitle(), i.getDueDate(), i.getCreatedDate(), i.getCompleted(), i.getOverdue(), i.getCompletedDate(), i.getOwner());
                 }
 
                 setVisible(false);
