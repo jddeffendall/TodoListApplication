@@ -2,6 +2,7 @@ package UI;
 
 
 import domain.TodoItem;
+import utils.DatabaseUtils;
 import utils.HTTPUtils;
 import utils.JsonToObjectParser;
 
@@ -27,7 +28,8 @@ public class MenuUI extends JFrame implements ActionListener {
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
 
-
+        HTTPUtils httpUtils = new HTTPUtils();
+        JsonToObjectParser parser = new JsonToObjectParser();
 
         JButton OnlineUI = new JButton("Online App");
         //var Onlineconstraints = new GridBagConstraints(1, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
@@ -48,8 +50,6 @@ public class MenuUI extends JFrame implements ActionListener {
         panel.add(OnlineUI);
 
 
-
-
         JButton OfflineUI = new JButton("Offline App");
         //var Offlineconstraints = new GridBagConstraints(2, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         OfflineUI.setPreferredSize(new Dimension(200,50));
@@ -58,6 +58,12 @@ public class MenuUI extends JFrame implements ActionListener {
         OfflineUI.setBounds(550, 225, OfflineUISize.width, OfflineUISize.height);
         OfflineUI.addActionListener(e -> {
             try {
+                var todoManager = new DatabaseUtils();
+
+                String allItemsString = httpUtils.getAllUserTodosJsonString();
+                TodoItem[] allItems = parser.JsonStringToObjectArray(allItemsString);
+                todoManager.updateOfflineTable(allItems);
+
                 new offlineUI();
                 setVisible(false);
                 dispose();
