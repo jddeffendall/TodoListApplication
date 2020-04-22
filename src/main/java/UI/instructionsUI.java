@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class instructionsUI extends JFrame implements ActionListener {
+public class instructionsUI extends JFrame {
     static JLabel descriptionlabel;
     static JButton description;
 
@@ -44,7 +44,7 @@ public class instructionsUI extends JFrame implements ActionListener {
         Dimension instructionsSize1 = instructionsButton.getPreferredSize();
         instructionsButton.setBounds(0, 0, instructionsSize1.width, instructionsSize1.height);
         panel.add(instructionsButton);
-        instructionsButton.addActionListener(e ->{
+        instructionsButton.addActionListener(e -> {
             instructionsButton.setVisible(false);
             instructions.setVisible(true);
             descriptionlabel.setVisible(false);
@@ -53,8 +53,7 @@ public class instructionsUI extends JFrame implements ActionListener {
         });
 
 
-
-       // JLabel descriptionLabel = new JLabel();
+        // JLabel descriptionLabel = new JLabel();
         descriptionlabel.setText("<HTML><Left>some more type of text is gonna go here lmao idk what</Left><HTML>");
         descriptionlabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         descriptionlabel.setPreferredSize(new Dimension(500, 50));
@@ -62,7 +61,6 @@ public class instructionsUI extends JFrame implements ActionListener {
         descriptionlabel.setBounds(0, 0, descriptionLabelSize.width, descriptionLabelSize.height + 15);
         descriptionlabel.setVisible(false);
         panel.add(descriptionlabel);
-
 
 
         //JButton description = new JButton("Description");
@@ -73,7 +71,7 @@ public class instructionsUI extends JFrame implements ActionListener {
         Dimension descriptionSize = description.getPreferredSize();
         description.setBounds(100, 0, descriptionSize.width, descriptionSize.height);
         panel.add(description);
-        description.addActionListener(e->{
+        description.addActionListener(e -> {
             descriptionlabel.setVisible(true);
             description.setVisible(false);
             instructions.setVisible(false);
@@ -88,15 +86,12 @@ public class instructionsUI extends JFrame implements ActionListener {
         Dimension backSize = back.getPreferredSize();
         back.setBounds(500, 0, backSize.width, backSize.height);
         panel.add(back);
-        back.addActionListener(e->{
+        back.addActionListener(e -> {
             instructions.setVisible(false);
             instructionsButton.setVisible(true);
             description.setVisible(true);
             descriptionlabel.setVisible(false);
         });
-
-
-
 
 
         JButton backMenu = new JButton("Back to menu");
@@ -123,15 +118,6 @@ public class instructionsUI extends JFrame implements ActionListener {
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-
-    }
-
-    public static void main(String[] args) throws IOException {
-        new instructionsUI();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
     }
 }
