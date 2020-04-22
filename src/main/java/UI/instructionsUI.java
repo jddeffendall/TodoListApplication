@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class instructionsUI extends JFrame implements ActionListener {
+    static JLabel descriptionlabel;
+    static JButton description;
 
 
     public instructionsUI() throws IOException {
@@ -19,24 +21,93 @@ public class instructionsUI extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         setContentPane(panel);
         panel.setLayout(null);
-        panel.setPreferredSize(new Dimension(400, 200));
+        panel.setPreferredSize(new Dimension(600, 400));
+
+        descriptionlabel = new JLabel("some shit is gonna go here ");
+        description = new JButton("Description");
 
 
         JLabel instructions = new JLabel();
         instructions.setText("<HTML><Left>Some type of text is going to go here, testing this to see of the wrapping text and left align works</Left><HTML>");
         instructions.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-        instructions.setBounds(0, 0, 400, 50);
+        instructions.setPreferredSize(new Dimension(500, 50));
+        Dimension instructionsSize = instructions.getPreferredSize();
+        instructions.setBounds(0, 0, instructionsSize.width, instructionsSize.height + 15);
+        instructions.setVisible(false);
         panel.add(instructions);
 
-        JButton back = new JButton("Back to menu");
+        JButton instructionsButton = new JButton("Instructions");
+        instructionsButton.setMargin(new Insets(2, 1, 2, 1));
+        instructionsButton.setPreferredSize(new Dimension(100, 50));
+        instructionsButton.setFocusPainted(false);
+        instructionsButton.setFont(new Font("Serif", Font.PLAIN, 15));
+        Dimension instructionsSize1 = instructionsButton.getPreferredSize();
+        instructionsButton.setBounds(0, 0, instructionsSize1.width, instructionsSize1.height);
+        panel.add(instructionsButton);
+        instructionsButton.addActionListener(e ->{
+            instructionsButton.setVisible(false);
+            instructions.setVisible(true);
+            descriptionlabel.setVisible(false);
+            description.setVisible(false);
+
+        });
+
+
+
+       // JLabel descriptionLabel = new JLabel();
+        descriptionlabel.setText("<HTML><Left>some more type of text is gonna go here lmao idk what</Left><HTML>");
+        descriptionlabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+        descriptionlabel.setPreferredSize(new Dimension(500, 50));
+        Dimension descriptionLabelSize = descriptionlabel.getPreferredSize();
+        descriptionlabel.setBounds(0, 0, descriptionLabelSize.width, descriptionLabelSize.height + 15);
+        descriptionlabel.setVisible(false);
+        panel.add(descriptionlabel);
+
+
+
+        //JButton description = new JButton("Description");
+        description.setMargin(new Insets(2, 1, 2, 1));
+        description.setPreferredSize(new Dimension(100, 50));
+        description.setFocusPainted(false);
+        description.setFont(new Font("Serif", Font.PLAIN, 15));
+        Dimension descriptionSize = description.getPreferredSize();
+        description.setBounds(100, 0, descriptionSize.width, descriptionSize.height);
+        panel.add(description);
+        description.addActionListener(e->{
+            descriptionlabel.setVisible(true);
+            description.setVisible(false);
+            instructions.setVisible(false);
+            instructionsButton.setVisible(false);
+        });
+
+        JButton back = new JButton("Back");
         back.setMargin(new Insets(2, 1, 2, 1));
         back.setPreferredSize(new Dimension(100, 50));
         back.setFocusPainted(false);
         back.setFont(new Font("Serif", Font.PLAIN, 15));
         Dimension backSize = back.getPreferredSize();
-        back.setBounds(300, 150, backSize.width, backSize.height);
+        back.setBounds(500, 0, backSize.width, backSize.height);
         panel.add(back);
-        back.addActionListener(e -> {
+        back.addActionListener(e->{
+            instructions.setVisible(false);
+            instructionsButton.setVisible(true);
+            description.setVisible(true);
+            descriptionlabel.setVisible(false);
+        });
+
+
+
+
+
+        JButton backMenu = new JButton("Back to menu");
+        backMenu.setMargin(new Insets(2, 1, 2, 1));
+        backMenu.setPreferredSize(new Dimension(100, 50));
+        backMenu.setFocusPainted(false);
+        backMenu.setFont(new Font("Serif", Font.PLAIN, 15));
+        Dimension backMenuSize = back.getPreferredSize();
+        backMenu.setBounds(500, 350, backMenuSize.width, backMenuSize.height);
+        panel.add(backMenu);
+        backMenu.addActionListener(e -> {
             try {
                 new todoUI();
                 setVisible(false);
