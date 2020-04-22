@@ -229,6 +229,22 @@ public class offlineUI extends JFrame {
                 ex.printStackTrace();
             }
         });
+        JButton sync = new JButton("Go back online!");
+        sync.setPreferredSize(new Dimension(450,100));
+        Dimension syncSize = sync.getPreferredSize();
+        sync.setBounds(600, 450, syncSize.width, syncSize.height);
+        panel.add(sync);
+        sync.addActionListener(e -> {
+            try {
+                setVisible(false);
+                dispose();
+                new todoUI();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        });
+
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
