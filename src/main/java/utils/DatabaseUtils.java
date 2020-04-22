@@ -160,13 +160,17 @@ public class DatabaseUtils {
 
     public void updateOfflineTable(TodoItem[] itemsArray) {
         try {
-            for (TodoItem i : itemsArray) {
-                if (!todoDao.idExists(i.getId())) {
-                    todoDao.create(i);
-                }
+            List<TodoItem> itemsList = todoDao.queryForAll();
+            for (TodoItem i : itemsList) {
+                todoDao.deleteById(i.getId());
             }
+
+            for (TodoItem e : itemsArray) {
+                todoDao.create(e);
+            }
+
         } catch (SQLException e) {
-            throw new TodoException("Id already exists", e);
+            throw new TodoException("Couldn't update database", e);
         }
     }
 }
