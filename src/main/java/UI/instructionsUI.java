@@ -13,7 +13,7 @@ public class instructionsUI extends JFrame {
 
 
     public instructionsUI() throws IOException {
-        super("Instructions and description");
+        super("Instructions and Description");
 
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
@@ -24,7 +24,7 @@ public class instructionsUI extends JFrame {
         panel.setPreferredSize(new Dimension(600, 400));
         super.setResizable(false);
 
-        descriptionlabel = new JLabel(" ");
+        descriptionlabel = new JLabel("");
         description = new JButton("Description");
 
 

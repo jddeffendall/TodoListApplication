@@ -79,6 +79,7 @@ public class todoUI extends JFrame {
         JButton AddEvent = new JButton("Add To Schedule");
         AddEvent.setPreferredSize(new Dimension(250, 200));
         Dimension size = AddEvent.getPreferredSize();
+        AddEvent.setFocusPainted(false);
         AddEvent.setBounds(800, 0, size.width, size.height);
         AddEvent.addActionListener(e -> {
             String title = titleInput.getText();
@@ -125,6 +126,7 @@ public class todoUI extends JFrame {
         completeEvent.setPreferredSize(new Dimension(150, 100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
         completeEvent.setBounds(600, 250, completeEventSize.width, completeEventSize.height);
+        completeEvent.setFocusPainted(false);
         panel.add(completeEvent);
         completeEvent.addActionListener(e -> {
             String idToComplete = completeEventById.getText();
@@ -154,6 +156,7 @@ public class todoUI extends JFrame {
         snooze.setPreferredSize(new Dimension(150, 100));
         Dimension snoozeSize = snooze.getPreferredSize();
         snooze.setBounds(900, 250, snoozeSize.width, snoozeSize.height);
+        snooze.setFocusPainted(false);
         panel.add(snooze);
         snooze.addActionListener(e -> {
             String idToSnooze = completeEventById.getText();
@@ -184,6 +187,7 @@ public class todoUI extends JFrame {
         Cancel.setPreferredSize(new Dimension(150, 100));
         Dimension CancelSize = Cancel.getPreferredSize();
         Cancel.setBounds(750, 250, CancelSize.width, CancelSize.height);
+        Cancel.setFocusPainted(false);
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
             String stringId = completeEventById.getText();
@@ -213,6 +217,7 @@ public class todoUI extends JFrame {
         pieChart.setPreferredSize(new Dimension(225, 100));
         Dimension pieChartSize = pieChart.getPreferredSize();
         pieChart.setBounds(600, 350, pieChartSize.width, pieChartSize.height);
+        pieChart.setFocusPainted(false);
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
             try {
@@ -227,6 +232,7 @@ public class todoUI extends JFrame {
         backtoMenu.setPreferredSize(new Dimension(450, 100));
         Dimension refreshSize = backtoMenu.getPreferredSize();
         backtoMenu.setBounds(600, 450, refreshSize.width, refreshSize.height);
+        backtoMenu.setFocusPainted(false);
         panel.add(backtoMenu);
         backtoMenu.addActionListener(e -> {
             try {
@@ -241,6 +247,7 @@ public class todoUI extends JFrame {
         JButton sync = new JButton("<HTML><center>Sync For Offline</center><HTML>");
         sync.setPreferredSize(new Dimension(225, 100));
         Dimension syncSize = sync.getPreferredSize();
+        sync.setFocusPainted(false);
         sync.setBounds(825, 350, syncSize.width, syncSize.height);
         sync.addActionListener(e -> {
             try {
