@@ -30,4 +30,5 @@ Enter an item ID in this box, and click the corresponding button to complete, de
 Click on the Pie Chart button to view a pie chart of your items
 ![Pie chart](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/pieChart.PNG)
 
-(Don't forget to click refresh to view any of your changes!)
+Click Sync for Offline to save your Todos to a local database and open an offline version of the app
+![Offline]()
