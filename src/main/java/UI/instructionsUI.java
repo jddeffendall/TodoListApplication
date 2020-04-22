@@ -28,7 +28,12 @@ public class instructionsUI extends JFrame {
 
 
         JLabel instructions = new JLabel();
-        instructions.setText("<HTML><Left>Some type of text is going to go here, testing this to see of the wrapping text and left align works</Left><HTML>");
+        instructions.setText("<HTML><Left>**In order to add an event to your schedule. You must input the name of the event and the due date of the event .</Left><HTML>"  +
+                "<HTML><Left>**When the event is added, an ID will be assigned.</Left><HTML> " +
+                "<HTML><Left>**This ID can be used to delete the event, mark it as complete, or snooze the due date by 15 minutes.</Left><HTML>" +
+                "<HTML><Left>**If you press the pie chart button a chart displaying</Left><HTML> " +
+                "<HTML><Left>**If you press the Sync for offline button it will back up the database and allow to continue your day planning</Left><HTML>" +
+                "<HTML><Left>**If you press the sync for online button it will push your offline events to the cloud and allow you to continue day planning online</Left><HTML> ");
         instructions.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         instructions.setPreferredSize(new Dimension(500, 50));
         Dimension instructionsSize = instructions.getPreferredSize();
