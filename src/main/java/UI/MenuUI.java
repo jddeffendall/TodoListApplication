@@ -74,7 +74,7 @@ public class MenuUI extends JFrame implements ActionListener {
         });
         panel.add(OfflineUI);
 
-        JButton instructions = new JButton("Instructions/Description");
+        JButton instructions = new JButton("Instructions/Credits");
         instructions.setPreferredSize(new Dimension(250,50));
         instructions.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension instructionsSize = instructions.getPreferredSize();

@@ -13,7 +13,7 @@ public class instructionsUI extends JFrame {
 
 
     public instructionsUI() throws IOException {
-        super("Instructions and description");
+        super("Instructions and Credits");
 
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
@@ -25,7 +25,7 @@ public class instructionsUI extends JFrame {
         super.setResizable(false);
 
         descriptionlabel = new JLabel(" ");
-        description = new JButton("Description");
+        description = new JButton("Credits");
 
 
         JLabel instructions = new JLabel();
@@ -55,7 +55,7 @@ public class instructionsUI extends JFrame {
 
 
         // JLabel descriptionLabel = new JLabel();
-        descriptionlabel.setText("<HTML><Left>some more type of text is gonna go here lmao idk what</Left><HTML>");
+        descriptionlabel.setText("<HTML><Left>ToDoList Application Created By: Jacob Deffendal, Payton Lowery, Ross Effinger, Haden Foster.</Left><HTML>");
         descriptionlabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         descriptionlabel.setPreferredSize(new Dimension(500, 50));
         Dimension descriptionLabelSize = descriptionlabel.getPreferredSize();
