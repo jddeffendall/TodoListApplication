@@ -27,6 +27,7 @@ public class MenuUI extends JFrame implements ActionListener {
         setContentPane(panel);
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
+        super.setResizable(false);
 
         HTTPUtils httpUtils = new HTTPUtils();
         JsonToObjectParser parser = new JsonToObjectParser();
