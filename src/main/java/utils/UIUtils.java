@@ -48,6 +48,7 @@ public class UIUtils {
             }
         }
 
+        
         result.put("Completed", completedCount);
         result.put("Pending", pendingCount);
         result.put("Overdue", overdueCount);

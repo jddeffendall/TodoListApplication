@@ -24,10 +24,8 @@ public class offlineUI extends JFrame {
 
         JPanel panel = new JPanel();
         setContentPane(panel);
-        //  JFrame frame = new JFrame();
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
-        // frame.add(panel);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
         var todoManager = new DatabaseUtils();
@@ -125,6 +123,8 @@ public class offlineUI extends JFrame {
         completeEventById.setBounds(800,200,250,50);
         completeEventById.setBackground(Color.lightGray);
         panel.add(completeEventById);
+
+
 
 
         JButton completeEvent = new JButton("<HTML><center>Complete</center><HTML>"); //html tags wrap the text and centers it
@@ -231,6 +231,8 @@ public class offlineUI extends JFrame {
                 ex.printStackTrace();
             }
         });
+
+
         JButton sync = new JButton("Go back online!");
         sync.setPreferredSize(new Dimension(450,100));
         Dimension syncSize = sync.getPreferredSize();
@@ -268,7 +270,5 @@ public class offlineUI extends JFrame {
         setVisible(true);
 
         todoManager.disposeResources();
-
     }
-
 }
