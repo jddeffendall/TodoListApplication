@@ -69,11 +69,12 @@ public class DatabaseUtils {
         }
     }
 
-    public void deleteItem(String id) {
+    public TodoItem deleteItem(String id) {
         try {
             if (todoDao.idExists(id)) {
                 var item = todoDao.queryForId(id);
                 todoDao.deleteById(id);
+                return item;
             } else {
                 throw new IdNotExistsException(id);
             }
