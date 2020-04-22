@@ -23,7 +23,7 @@ public class instructionsUI extends JFrame implements ActionListener {
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(600, 400));
 
-        descriptionlabel = new JLabel("some shit is gonna go here ");
+        descriptionlabel = new JLabel(" ");
         description = new JButton("Description");
 
 
@@ -109,7 +109,7 @@ public class instructionsUI extends JFrame implements ActionListener {
         panel.add(backMenu);
         backMenu.addActionListener(e -> {
             try {
-                new todoUI();
+                new MenuUI();
                 setVisible(false);
                 dispose();
 
