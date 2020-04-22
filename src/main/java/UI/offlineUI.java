@@ -217,26 +217,26 @@ public class offlineUI extends JFrame {
 
 
 
-        JButton refresh = new JButton("Refresh");
-        refresh.setPreferredSize(new Dimension(225, 100));
-        Dimension refreshSize = refresh.getPreferredSize();
-        refresh.setBounds(825, 350, refreshSize.width, refreshSize.height);
-        panel.add(refresh);
-        refresh.addActionListener(e -> {
+        JButton backtoMenu = new JButton("Back to Main Menu");
+        backtoMenu.setPreferredSize(new Dimension(450, 100));
+        Dimension refreshSize = backtoMenu.getPreferredSize();
+        backtoMenu.setBounds(600, 450, refreshSize.width, refreshSize.height);
+        panel.add(backtoMenu);
+        backtoMenu.addActionListener(e -> {
             try {
                 setVisible(false); //you can't see me!
                 dispose();
-                new offlineUI();
+                new MenuUI();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
 
 
-        JButton sync = new JButton("Go back online!");
-        sync.setPreferredSize(new Dimension(450,100));
+        JButton sync = new JButton("<HTML><center>Go back online!</center><HTML>");
+        sync.setPreferredSize(new Dimension(225,100));
         Dimension syncSize = sync.getPreferredSize();
-        sync.setBounds(600, 450, syncSize.width, syncSize.height);
+        sync.setBounds(825, 350, syncSize.width, syncSize.height);
         panel.add(sync);
         sync.addActionListener(e -> {
             try {

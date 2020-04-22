@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class todoUI extends JFrame implements ActionListener {
+public class todoUI extends JFrame {
 
 
     public todoUI() throws IOException {
@@ -29,7 +29,6 @@ public class todoUI extends JFrame implements ActionListener {
         setContentPane(panel);
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
-
 
 
         HTTPUtils httpUtils = new HTTPUtils();
@@ -51,7 +50,7 @@ public class todoUI extends JFrame implements ActionListener {
         items.getColumnModel().getColumn(4).setPreferredWidth(50);
         items.getColumnModel().getColumn(5).setPreferredWidth(50);
 
-        
+
         JLabel titlee = new JLabel("Enter Title of Item:");
         titlee.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         titlee.setHorizontalAlignment(SwingConstants.LEFT);
@@ -111,22 +110,22 @@ public class todoUI extends JFrame implements ActionListener {
         JLabel completeEventLabel = new JLabel("<HTML>Enter ID of item for one of these actions: <HTML>");
         completeEventLabel.setHorizontalAlignment(SwingConstants.LEFT);
         completeEventLabel.setVerticalAlignment(SwingConstants.CENTER);
-        completeEventLabel.setBounds(600,200,200,50);
+        completeEventLabel.setBounds(600, 200, 200, 50);
         completeEventLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         panel.add(completeEventLabel);
 
         JTextField completeEventById = new JTextField("");
-        completeEventById.setBounds(800,200,250,50);
+        completeEventById.setBounds(800, 200, 250, 50);
         completeEventById.setBackground(Color.lightGray);
         panel.add(completeEventById);
 
 
         JButton completeEvent = new JButton("<HTML><center>Complete</center><HTML>"); //html tags wrap the text and centers it
-        completeEvent.setPreferredSize(new Dimension(150,100));
+        completeEvent.setPreferredSize(new Dimension(150, 100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
-        completeEvent.setBounds(600,250, completeEventSize.width,completeEventSize.height);
+        completeEvent.setBounds(600, 250, completeEventSize.width, completeEventSize.height);
         panel.add(completeEvent);
-        completeEvent.addActionListener(e ->{
+        completeEvent.addActionListener(e -> {
             String idToComplete = completeEventById.getText();
             completeEventById.setText(null);
             try {
@@ -151,7 +150,7 @@ public class todoUI extends JFrame implements ActionListener {
             }
         });
         JButton snooze = new JButton("<HTML><center>Snooze</center><HTML>"); // centers the text HTML tags necessary for center tags to work
-        snooze.setPreferredSize(new Dimension(150,100));
+        snooze.setPreferredSize(new Dimension(150, 100));
         Dimension snoozeSize = snooze.getPreferredSize();
         snooze.setBounds(900, 250, snoozeSize.width, snoozeSize.height);
         panel.add(snooze);
@@ -209,7 +208,6 @@ public class todoUI extends JFrame implements ActionListener {
         });
 
 
-
         JButton pieChart = new JButton("PieChart");
         pieChart.setPreferredSize(new Dimension(225, 100));
         Dimension pieChartSize = pieChart.getPreferredSize();
@@ -224,26 +222,25 @@ public class todoUI extends JFrame implements ActionListener {
         });
 
 
-
-        JButton refresh = new JButton("Refresh");
-        refresh.setPreferredSize(new Dimension(225, 100));
-        Dimension refreshSize = refresh.getPreferredSize();
-        refresh.setBounds(825, 350, refreshSize.width, refreshSize.height);
-        panel.add(refresh);
-        refresh.addActionListener(e -> {
+        JButton backtoMenu = new JButton("Back to Main Menu");
+        backtoMenu.setPreferredSize(new Dimension(450, 100));
+        Dimension refreshSize = backtoMenu.getPreferredSize();
+        backtoMenu.setBounds(600, 450, refreshSize.width, refreshSize.height);
+        panel.add(backtoMenu);
+        backtoMenu.addActionListener(e -> {
             try {
                 setVisible(false); //you can't see me!
                 dispose();
-                new todoUI();
+                new MenuUI();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
 
-        JButton sync = new JButton("Sync For Offline");
-        sync.setPreferredSize(new Dimension(450,100));
+        JButton sync = new JButton("<HTML><center>Sync For Offline</center><HTML>");
+        sync.setPreferredSize(new Dimension(225, 100));
         Dimension syncSize = sync.getPreferredSize();
-        sync.setBounds(600, 450, syncSize.width, syncSize.height);
+        sync.setBounds(825, 350, syncSize.width, syncSize.height);
         sync.addActionListener(e -> {
             try {
                 var todoManager = new DatabaseUtils();
@@ -265,46 +262,5 @@ public class todoUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-    }
-
-    public static void main(String[] args) throws IOException {
-
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                HTTPUtils httpUtils = new HTTPUtils();
-                JsonToObjectParser parser = new JsonToObjectParser();
-                try {
-                    String todoItemsJson = httpUtils.getAllUserTodosJsonString();
-                    TodoItem[] items = parser.JsonStringToObjectArray(todoItemsJson);
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
-                    LocalDateTime now = LocalDateTime.now();
-
-                    for (TodoItem e : items) {
-                        LocalDateTime dueDate = LocalDateTime.parse(e.getDueDate(), formatter);
-
-                        if (now.isAfter(dueDate) && e.getCompleted().equals("false")) {
-                            e.setOverdue();
-                            httpUtils.setTodoItemOverdue(e);
-
-                            JOptionPane.showMessageDialog(null, "Todo item with ID: " + e.getId() + " and \nTitle: " + e.getTitle() + " is overdue");
-                        }
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Thread t = new Thread(r);
-        t.start();
-
-        new todoUI();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }
