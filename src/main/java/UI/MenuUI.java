@@ -67,6 +67,12 @@ public class MenuUI extends JFrame implements ActionListener {
             }
         });
         panel.add(Instructions, Instructionconstraints);
+
+
+        
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
     }
 
 
