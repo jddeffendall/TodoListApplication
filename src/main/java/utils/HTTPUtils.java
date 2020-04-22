@@ -57,6 +57,25 @@ public class HTTPUtils {
         return rawResponse;
     }
 
+    public String addTodoItem(String title, String due, String created, String completed, String overdue, String completedDate, String owner, String id) throws IOException {
+        Map<String, Object> data = new LinkedHashMap<>();
+
+        data.put("title", title);
+        data.put("due", due);
+        data.put("created", created);
+        data.put("completed", completed);
+        data.put("overdue", overdue);
+        data.put("completed date", completedDate);
+        data.put("owner", owner);
+        data.put("id", id);
+
+        HttpContent content = new UrlEncodedContent(data);
+        HttpRequest postRequest = requestFactory.buildPostRequest(
+                new GenericUrl(todosURL),content);
+        String rawResponse = postRequest.execute().parseAsString();
+        return rawResponse;
+    }
+
     public boolean deleteTodoItem(String id) throws IOException {
         try {
             HttpRequest deleteRequest = requestFactory.buildDeleteRequest(

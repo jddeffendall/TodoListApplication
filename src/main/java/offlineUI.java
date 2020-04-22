@@ -236,6 +236,21 @@ public class offlineUI extends JFrame {
         panel.add(sync);
         sync.addActionListener(e -> {
             try {
+
+                HTTPUtils httpUtils = new HTTPUtils();
+                String allJson = httpUtils.getAllUserTodosJsonString();
+                TodoItem[] updatedItems = parser.JsonStringToObjectArray(allJson);
+
+                for (TodoItem i : updatedItems) {
+                    httpUtils.deleteTodoItem(i.getId());
+                }
+
+                List<TodoItem> offlineItems = todoManager.getAllItems();
+
+                for (TodoItem i : offlineItems) {
+                    httpUtils.addTodoItem(i.getTitle(), i.getDueDate(), i.getCreatedDate(), i.getCompleted(), i.getOverdue(), i.getCompletedDate(), i.getOwner(), i.getId());
+                }
+
                 setVisible(false);
                 dispose();
                 new todoUI();
