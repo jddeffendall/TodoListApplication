@@ -54,6 +54,10 @@ public class MenuUI extends JFrame implements ActionListener {
         });
         panel.add(OfflineUI, Offlineconstraints);
 
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
+
 
 
 
@@ -74,12 +78,6 @@ public class MenuUI extends JFrame implements ActionListener {
         pack();
         setVisible(true);
     }
-
-
-
-
-
-
 
 
 
