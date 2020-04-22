@@ -210,11 +210,7 @@ public class offlineUI extends JFrame {
         pieChart.setBounds(600, 350, pieChartSize.width, pieChartSize.height);
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
-            try {
-                new chartUI("Todo List Overview");
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
+            new offlineChartUI("Offline Todo List Overview");
         });
 
 
