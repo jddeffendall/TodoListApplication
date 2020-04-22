@@ -78,6 +78,7 @@ public class offlineUI extends JFrame {
         JButton AddEvent = new JButton("Add To Schedule");
         AddEvent.setPreferredSize(new Dimension(250, 200));
         Dimension size = AddEvent.getPreferredSize();
+        AddEvent.setFocusPainted(false);
         AddEvent.setBounds(800, 0, size.width, size.height);
         AddEvent.addActionListener(e -> {
             String due = dueDateInput.getText();
@@ -131,6 +132,7 @@ public class offlineUI extends JFrame {
         JButton completeEvent = new JButton("<HTML><center>Complete</center><HTML>"); //html tags wrap the text and centers it
         completeEvent.setPreferredSize(new Dimension(150,100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
+        completeEvent.setFocusPainted(false);
         completeEvent.setBounds(600,250, completeEventSize.width,completeEventSize.height);
         panel.add(completeEvent);
         completeEvent.addActionListener(e ->{
@@ -156,6 +158,7 @@ public class offlineUI extends JFrame {
         JButton snooze = new JButton("<HTML><center>Snooze</center><HTML>"); // centers the text HTML tags necessary for center tags to work
         snooze.setPreferredSize(new Dimension(150,100));
         Dimension snoozeSize = snooze.getPreferredSize();
+        snooze.setFocusPainted(false);
         snooze.setBounds(900, 250, snoozeSize.width, snoozeSize.height);
         panel.add(snooze);
         snooze.addActionListener(e -> {
@@ -182,6 +185,7 @@ public class offlineUI extends JFrame {
         JButton Cancel = new JButton("<HTML><center>Delete</center><HTML>");
         Cancel.setPreferredSize(new Dimension(150, 100));
         Dimension CancelSize = Cancel.getPreferredSize();
+        Cancel.setFocusPainted(false);
         Cancel.setBounds(750, 250, CancelSize.width, CancelSize.height);
         panel.add(Cancel);
         Cancel.addActionListener(e -> {
@@ -210,6 +214,7 @@ public class offlineUI extends JFrame {
         JButton pieChart = new JButton("PieChart");
         pieChart.setPreferredSize(new Dimension(225, 100));
         Dimension pieChartSize = pieChart.getPreferredSize();
+        pieChart.setFocusPainted(false);
         pieChart.setBounds(600, 350, pieChartSize.width, pieChartSize.height);
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
@@ -221,6 +226,7 @@ public class offlineUI extends JFrame {
         JButton backtoMenu = new JButton("Back to Main Menu");
         backtoMenu.setPreferredSize(new Dimension(450, 100));
         Dimension refreshSize = backtoMenu.getPreferredSize();
+        backtoMenu.setFocusPainted(false);
         backtoMenu.setBounds(600, 450, refreshSize.width, refreshSize.height);
         panel.add(backtoMenu);
         backtoMenu.addActionListener(e -> {
@@ -238,6 +244,7 @@ public class offlineUI extends JFrame {
         sync.setPreferredSize(new Dimension(225,100));
         Dimension syncSize = sync.getPreferredSize();
         sync.setBounds(825, 350, syncSize.width, syncSize.height);
+        sync.setFocusPainted(false);
         panel.add(sync);
         sync.addActionListener(e -> {
             try {

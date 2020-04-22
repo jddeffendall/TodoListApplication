@@ -13,7 +13,7 @@ public class instructionsUI extends JFrame {
 
 
     public instructionsUI() throws IOException {
-        super("Instructions and Credits");
+        super("Instructions and Description");
 
         UIManager.put("Label.font", new FontUIResource(new Font("Dialog", Font.PLAIN, 20)));
         UIManager.put("Button.font", new FontUIResource(new Font("Dialog", Font.BOLD, 25)));
@@ -24,12 +24,12 @@ public class instructionsUI extends JFrame {
         panel.setPreferredSize(new Dimension(600, 400));
         super.setResizable(false);
 
-        descriptionlabel = new JLabel(" ");
-        description = new JButton("Credits");
+        descriptionlabel = new JLabel("");
+        description = new JButton("Description");
 
 
         JLabel instructions = new JLabel();
-        instructions.setText("<HTML><Left><ul><li>In order to add an event to your schedule. You must input the name of the event and the due date of the event.</li><li>When the event is added, an ID will be assigned.</li><li>This ID can be used to delete the event, mark it as complete, or snooze the due date by 15 minutes.</li><li>If you press the pie chart button a chart displaying.</li><li>If you press the Sync for offline button it will back up the database and allow to continue your day planning.</li><li>If you press the sync for online button it will push your offline events to the cloud and allow you to continue day planning online.</li></ul></Left><HTML>");
+        instructions.setText("<HTML><Left><ul><li>In order to add an event to your schedule, you must input the name of the event and the due date of the event.</li><li>When the event is added, an ID will be automatically assigned.</li><li>This ID can be used to delete the event, mark it as complete, or snooze the due date by 15 minutes.</li><li>If you press the pie chart button, a chart displays.</li><li>If you press the Sync for offline button, it will back up the database and allow you to continue your day planning.</li><li>If you press the sync for online button it will push your offline events to the cloud and allow you to continue your day planning online.</li></ul></Left><HTML>");
         instructions.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         instructions.setPreferredSize(new Dimension(500, 350));
         Dimension instructionsSize = instructions.getPreferredSize();
@@ -55,7 +55,7 @@ public class instructionsUI extends JFrame {
 
 
         // JLabel descriptionLabel = new JLabel();
-        descriptionlabel.setText("<HTML><Left>ToDoList Application Created By: Jacob Deffendal, Payton Lowery, Ross Effinger, Haden Foster.</Left><HTML>");
+        descriptionlabel.setText("<HTML><Left>some more type of text is gonna go here lmao idk what</Left><HTML>");
         descriptionlabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         descriptionlabel.setPreferredSize(new Dimension(500, 50));
         Dimension descriptionLabelSize = descriptionlabel.getPreferredSize();

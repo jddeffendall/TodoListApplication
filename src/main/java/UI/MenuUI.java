@@ -2,7 +2,6 @@ package UI;
 
 
 import domain.TodoItem;
-import utils.DatabaseUtils;
 import utils.HTTPUtils;
 import utils.JsonToObjectParser;
 
@@ -29,8 +28,7 @@ public class MenuUI extends JFrame implements ActionListener {
         panel.setPreferredSize(new Dimension(1050, 550));
         super.setResizable(false);
 
-        HTTPUtils httpUtils = new HTTPUtils();
-        JsonToObjectParser parser = new JsonToObjectParser();
+
 
         JButton OnlineUI = new JButton("Online App");
         //var Onlineconstraints = new GridBagConstraints(1, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
@@ -51,20 +49,17 @@ public class MenuUI extends JFrame implements ActionListener {
         panel.add(OnlineUI);
 
 
+
+
         JButton OfflineUI = new JButton("Offline App");
         //var Offlineconstraints = new GridBagConstraints(2, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         OfflineUI.setPreferredSize(new Dimension(200,50));
         OfflineUI.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension OfflineUISize = OfflineUI.getPreferredSize();
+        OfflineUI.setFocusPainted(false);
         OfflineUI.setBounds(550, 225, OfflineUISize.width, OfflineUISize.height);
         OfflineUI.addActionListener(e -> {
             try {
-                var todoManager = new DatabaseUtils();
-
-                String allItemsString = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] allItems = parser.JsonStringToObjectArray(allItemsString);
-                todoManager.updateOfflineTable(allItems);
-
                 new offlineUI();
                 setVisible(false);
                 dispose();
@@ -79,6 +74,7 @@ public class MenuUI extends JFrame implements ActionListener {
         instructions.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension instructionsSize = instructions.getPreferredSize();
         instructions.setBounds(425, 275, instructionsSize.width, instructionsSize.height);
+        instructions.setFocusPainted(false);
         panel.add(instructions);
         instructions.addActionListener(e -> {
             try {
@@ -109,12 +105,6 @@ public class MenuUI extends JFrame implements ActionListener {
             }
         });
         panel.add(Instructions, Instructionconstraints);
-
-
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        pack();
-        setVisible(true);
     }
 
 
