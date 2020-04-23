@@ -85,9 +85,16 @@ public class MenuUI extends JFrame implements ActionListener {
         });
 
 
+        ImageIcon logo = new ImageIcon("rsz_todo_logo.png");
+        JLabel sickAssLogo = new JLabel("logo",logo,SwingConstants.CENTER);
+        sickAssLogo.setHorizontalTextPosition(SwingConstants.CENTER);
+        sickAssLogo.setVerticalTextPosition(SwingConstants.CENTER);
+        panel.add(sickAssLogo);
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
+
         
     }
 
