@@ -31,7 +31,6 @@ public class MenuUI extends JFrame implements ActionListener {
 
 
         JButton OnlineUI = new JButton("Online App");
-        //var Onlineconstraints = new GridBagConstraints(1, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         OnlineUI.setPreferredSize(new Dimension(200,50));
         OnlineUI.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension OnlineUISize = OnlineUI.getPreferredSize();
@@ -52,7 +51,6 @@ public class MenuUI extends JFrame implements ActionListener {
 
 
         JButton OfflineUI = new JButton("Offline App");
-        //var Offlineconstraints = new GridBagConstraints(2, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
         OfflineUI.setPreferredSize(new Dimension(200,50));
         OfflineUI.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension OfflineUISize = OfflineUI.getPreferredSize();
@@ -90,20 +88,7 @@ public class MenuUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-
-
-
-
-        JButton Instructions = new JButton("Instructions");
-        var Instructionconstraints = new GridBagConstraints(3, 3, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(1, 1, 1, 1), 0, 0);
-        Instructions.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-
-            }
-        });
-        panel.add(Instructions, Instructionconstraints);
+        
     }
 
 
