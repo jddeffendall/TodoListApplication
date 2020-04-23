@@ -81,9 +81,8 @@ public class MenuUI extends JFrame implements ActionListener {
                 new instructionsUI();
                 setVisible(false);
                 dispose();
-
             } catch (IOException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't go to instructions!");
             }
         });
 
