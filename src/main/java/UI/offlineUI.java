@@ -235,7 +235,7 @@ public class offlineUI extends JFrame {
                 dispose();
                 new MenuUI();
             } catch (IOException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't go back to menu!");
             }
         });
 

@@ -264,7 +264,7 @@ public class todoUI extends JFrame {
                 new offlineUI();
 
             } catch (IOException ioException) {
-                ioException.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't sync data");
             }
         });
 

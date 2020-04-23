@@ -110,7 +110,7 @@ public class instructionsUI extends JFrame {
                 dispose();
 
             } catch (IOException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't go back to menu!");
             }
         });
 
