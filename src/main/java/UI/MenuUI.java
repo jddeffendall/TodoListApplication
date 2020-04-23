@@ -67,7 +67,7 @@ public class MenuUI extends JFrame implements ActionListener {
         });
         panel.add(OfflineUI);
 
-        JButton instructions = new JButton("Instructions/Description");
+        JButton instructions = new JButton("Instructions/Credits");
         instructions.setPreferredSize(new Dimension(250,50));
         instructions.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension instructionsSize = instructions.getPreferredSize();
@@ -79,9 +79,8 @@ public class MenuUI extends JFrame implements ActionListener {
                 new instructionsUI();
                 setVisible(false);
                 dispose();
-
             } catch (IOException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't go to instructions!");
             }
         });
 

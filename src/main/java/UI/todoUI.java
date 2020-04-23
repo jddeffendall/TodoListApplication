@@ -36,14 +36,13 @@ public class todoUI extends JFrame {
         UIUtils uiUtils = new UIUtils();
         JsonToObjectParser parser = new JsonToObjectParser();
 
+        // Get current cloud data and display it in table
         String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
         TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
-
         String[][] data = uiUtils.formatDataForTable(allUserTodos);
         String[] columnNames = {"ID", "Title", "Created", "Due", "Completed", "Overdue", "Completed Date"};
 
         JTable items = new JTable(data, columnNames);
-
         JScrollPane jScrollPane = new JScrollPane(items, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         jScrollPane.setBounds(0, 0, 600, 800);
         panel.add(jScrollPane);
@@ -52,12 +51,12 @@ public class todoUI extends JFrame {
         items.getColumnModel().getColumn(5).setPreferredWidth(50);
 
 
-        JLabel titlee = new JLabel("Enter Title of Item:");
-        titlee.setFont(new Font("Times New Roman", Font.PLAIN, 18));
-        titlee.setHorizontalAlignment(SwingConstants.LEFT);
-        titlee.setVerticalAlignment(SwingConstants.CENTER);
-        titlee.setBounds(600, 0, 200, 50);
-        panel.add(titlee);
+        JLabel titleLabel = new JLabel("Enter Title of Item:");
+        titleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        titleLabel.setVerticalAlignment(SwingConstants.CENTER);
+        titleLabel.setBounds(600, 0, 200, 50);
+        panel.add(titleLabel);
 
         JTextField titleInput = new JTextField("");
         titleInput.setBounds(600, 50, 200, 50);
@@ -75,6 +74,8 @@ public class todoUI extends JFrame {
         dueDateInput.setBounds(600, 150, 200, 50);
         dueDateInput.setBackground(Color.lightGray);
         panel.add(dueDateInput);
+
+
 
         JButton AddEvent = new JButton("Add To Schedule");
         AddEvent.setPreferredSize(new Dimension(250, 200));
@@ -134,7 +135,7 @@ public class todoUI extends JFrame {
             try {
                 String itemJson = httpUtils.getTodoItemJsonString(idToComplete);
                 TodoItem item = parser.JsonStringToOneObject(itemJson);
-                boolean completionStatus = httpUtils.completeTodoItem(item);
+                httpUtils.completeTodoItem(item);
 
                 String completedUserTodos = httpUtils.getAllUserTodosJsonString();
                 TodoItem[] completedItems = parser.JsonStringToObjectArray(completedUserTodos);
@@ -149,9 +150,10 @@ public class todoUI extends JFrame {
                 completedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
 
             } catch (IOException ioe) {
-                ioe.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't complete item!");
             }
         });
+
         JButton snooze = new JButton("<HTML><center>Snooze</center><HTML>"); // centers the text HTML tags necessary for center tags to work
         snooze.setPreferredSize(new Dimension(150, 100));
         Dimension snoozeSize = snooze.getPreferredSize();
@@ -179,7 +181,7 @@ public class todoUI extends JFrame {
                 snoozedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
 
             } catch (IOException ioException) {
-                ioException.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't snooze item!");
             }
         });
 
@@ -208,7 +210,7 @@ public class todoUI extends JFrame {
                 deletedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
 
             } catch (IOException ioException) {
-                ioException.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't cancel item!");
             }
         });
 
@@ -223,7 +225,7 @@ public class todoUI extends JFrame {
             try {
                 new chartUI("Todo List Overview");
             } catch (IOException ioException) {
-                ioException.printStackTrace();
+                JOptionPane.showMessageDialog(this, "ERROR: Couldn't display pie chart!");
             }
         });
 
@@ -240,7 +242,7 @@ public class todoUI extends JFrame {
                 dispose();
                 new MenuUI();
             } catch (IOException ex) {
-                ex.printStackTrace();
+
             }
         });
 
