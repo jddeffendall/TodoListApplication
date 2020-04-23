@@ -102,5 +102,4 @@ public class TodoItem {
         String newDue = snoozedTime.format(DateTimeFormatter.ofPattern("MM dd yyyy HH:mm"));
         due = newDue;
     }
-
 }

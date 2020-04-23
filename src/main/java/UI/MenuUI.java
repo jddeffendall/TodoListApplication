@@ -114,7 +114,8 @@ public class MenuUI extends JFrame implements ActionListener {
                         for (TodoItem i : items) {
                             LocalDateTime due = LocalDateTime.parse(i.getDueDate(), formatter);
                             LocalDateTime now = LocalDateTime.now();
-                            if (now.isAfter(due) && i.getOverdue().equals("false")) {
+
+                            if (now.isAfter(due) && i.getOverdue().equals("false") && i.getCompleted().equals("false")) {
                                 httpUtils.setTodoItemOverdue(i);
                                 i.setOverdue();
                                 JOptionPane.showMessageDialog(null, "Item with ID " + i.getId() + " and Title " + i.getTitle() + " is overdue");
