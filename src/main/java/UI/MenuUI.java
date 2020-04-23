@@ -85,9 +85,12 @@ public class MenuUI extends JFrame implements ActionListener {
         });
 
 
+        ImageIcon logo = new ImageIcon("TODO LOGO.PNG");
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
         setVisible(true);
+
         
     }
 
