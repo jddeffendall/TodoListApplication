@@ -341,8 +341,8 @@ public class todoUI extends JFrame {
 
         JButton backtoMenu = new JButton("Back to Menu");
         backtoMenu.setPreferredSize(new Dimension(225, 100));
-        Dimension refreshSize = backtoMenu.getPreferredSize();
-        backtoMenu.setBounds(600, 450, refreshSize.width, refreshSize.height);
+        Dimension backtoMenuSize = backtoMenu.getPreferredSize();
+        backtoMenu.setBounds(600, 450, backtoMenuSize.width, backtoMenuSize.height);
         backtoMenu.setFocusPainted(false);
         panel.add(backtoMenu);
         backtoMenu.addActionListener(e -> {
@@ -355,7 +355,7 @@ public class todoUI extends JFrame {
             }
         });
         JButton updateCloud = new JButton("Update Cloud");
-        backtoMenu.setPreferredSize(new Dimension(225, 100));
+        updateCloud.setPreferredSize(new Dimension(225, 100));
         Dimension updateCloudSize = updateCloud.getPreferredSize();
         updateCloud.setBounds(825, 450, updateCloudSize.width, updateCloudSize.height);
         backtoMenu.setFocusPainted(false);
