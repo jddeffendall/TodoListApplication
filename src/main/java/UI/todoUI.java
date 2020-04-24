@@ -358,10 +358,26 @@ public class todoUI extends JFrame {
         updateCloud.setPreferredSize(new Dimension(225, 100));
         Dimension updateCloudSize = updateCloud.getPreferredSize();
         updateCloud.setBounds(825, 450, updateCloudSize.width, updateCloudSize.height);
-        backtoMenu.setFocusPainted(false);
+        updateCloud.setFocusPainted(false);
         panel.add(updateCloud);
-        backtoMenu.addActionListener(e -> {
-
+        updateCloud.addActionListener(e -> {
+            try {
+                if (httpUtils.checkConnection()) {
+                    String allJson = httpUtils.getAllUserTodosJsonString();
+                    TodoItem[] updatedItems = parser.JsonStringToObjectArray(allJson);
+                    for (TodoItem i : updatedItems) {
+                        httpUtils.deleteTodoItem(i.getId());
+                    }
+                    List<TodoItem> offlineItems = todoManager.getAllItems();
+                    for (TodoItem i : offlineItems) {
+                        httpUtils.addTodoItem(i.getTitle(), i.getDueDate(), i.getCreatedDate(), i.getCompleted(), i.getOverdue(), i.getCompletedDate(), i.getOwner());
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "You need Internet connection to update cloud!");
+                }
+            } catch (IOException ioe) {
+                JOptionPane.showMessageDialog(null, "ERROR: Couldn't update cloud!");
+            }
         });
 
         JButton sync = new JButton("<HTML><center>Sync For Offline</center><HTML>");

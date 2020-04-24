@@ -2,6 +2,7 @@ package UI;
 
 
 import domain.TodoItem;
+import utils.DatabaseUtils;
 import utils.HTTPUtils;
 import utils.JsonToObjectParser;
 
@@ -11,6 +12,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class MenuUI extends JFrame {
 
@@ -105,6 +107,8 @@ public class MenuUI extends JFrame {
             public void run() {
                 HTTPUtils httpUtils = new HTTPUtils();
                 JsonToObjectParser parser = new JsonToObjectParser();
+                var todoManager = new DatabaseUtils();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
 
                 LocalDateTime later = LocalDateTime.now().plusDays(1);
                 if (httpUtils.checkConnection()) {
@@ -112,7 +116,6 @@ public class MenuUI extends JFrame {
                         try {
                             String todoItemsJson = httpUtils.getAllUserTodosJsonString();
                             TodoItem[] items = parser.JsonStringToObjectArray(todoItemsJson);
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
 
                             for (TodoItem i : items) {
                                 LocalDateTime due = LocalDateTime.parse(i.getDueDate(), formatter);
@@ -129,7 +132,21 @@ public class MenuUI extends JFrame {
                             e.printStackTrace();
                         }
                     }
-                }
+                } else {
+                    while (LocalDateTime.now().isBefore(later)) {
+                            List<TodoItem> allDatabaseItems = todoManager.getAllItems();
+                            for (TodoItem i : allDatabaseItems) {
+                                LocalDateTime now = LocalDateTime.now();
+                                LocalDateTime due = LocalDateTime.parse(i.getDueDate(), formatter);
+
+                                if (now.isAfter(due) && i.getOverdue().equals("false") && i.getCompleted().equals("false")) {
+                                    todoManager.setOverdue(i.getId());
+                                    i.setOverdue();
+                                    JOptionPane.showMessageDialog(null, "Item with ID " + i.getId() + " and Title " + i.getTitle() + " is overdue");
+                                }
+                            }
+                        }
+                    }
             }
         };
 
