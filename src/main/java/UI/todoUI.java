@@ -171,7 +171,7 @@ public class todoUI extends JFrame {
         completeEventById.setBackground(Color.lightGray);
         panel.add(completeEventById);
 
-
+        
         JButton completeEvent = new JButton("<HTML><center>Complete</center><HTML>"); //html tags wrap the text and centers it
         completeEvent.setPreferredSize(new Dimension(150, 100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
@@ -195,6 +195,7 @@ public class todoUI extends JFrame {
                     JScrollPane completedJScrollPane = new JScrollPane(completedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                     completedJScrollPane.setBounds(0, 0, 600, 800);
                     panel.add(completedJScrollPane);
+
                     completedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
                     completedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
                     completedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
@@ -338,8 +339,8 @@ public class todoUI extends JFrame {
         });
 
 
-        JButton backtoMenu = new JButton("Back to Main Menu");
-        backtoMenu.setPreferredSize(new Dimension(450, 100));
+        JButton backtoMenu = new JButton("Back to Menu");
+        backtoMenu.setPreferredSize(new Dimension(225, 100));
         Dimension refreshSize = backtoMenu.getPreferredSize();
         backtoMenu.setBounds(600, 450, refreshSize.width, refreshSize.height);
         backtoMenu.setFocusPainted(false);
@@ -352,6 +353,15 @@ public class todoUI extends JFrame {
             } catch (IOException ex) {
 
             }
+        });
+        JButton updateCloud = new JButton("Update Cloud");
+        backtoMenu.setPreferredSize(new Dimension(225, 100));
+        Dimension updateCloudSize = updateCloud.getPreferredSize();
+        updateCloud.setBounds(825, 450, updateCloudSize.width, updateCloudSize.height);
+        backtoMenu.setFocusPainted(false);
+        panel.add(updateCloud);
+        backtoMenu.addActionListener(e -> {
+
         });
 
         JButton sync = new JButton("<HTML><center>Sync For Offline</center><HTML>");

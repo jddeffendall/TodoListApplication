@@ -48,7 +48,7 @@ public class MenuUI extends JFrame {
 
 
 
-        JButton OfflineUI = new JButton("Offline App");
+       /* JButton OfflineUI = new JButton("Offline App");
         OfflineUI.setPreferredSize(new Dimension(200,50));
         OfflineUI.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension OfflineUISize = OfflineUI.getPreferredSize();
@@ -63,13 +63,13 @@ public class MenuUI extends JFrame {
                 ex.printStackTrace();
             }
         });
-        panel.add(OfflineUI);
+        panel.add(OfflineUI);*/
 
         JButton instructions = new JButton("Instructions/Credits");
-        instructions.setPreferredSize(new Dimension(250,50));
+        instructions.setPreferredSize(new Dimension(200,50));
         instructions.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension instructionsSize = instructions.getPreferredSize();
-        instructions.setBounds(425, 325, instructionsSize.width, instructionsSize.height);
+        instructions.setBounds(550, 275, instructionsSize.width, instructionsSize.height);
         instructions.setFocusPainted(false);
         panel.add(instructions);
         instructions.addActionListener(e -> {
