@@ -66,7 +66,7 @@ public class MenuUI extends JFrame {
         });
 
 
-        ImageIcon image = new ImageIcon("src/rsz_todo_logo.png");
+        ImageIcon image = new ImageIcon("src/images/rsz_todo_logo.png");
         JLabel sickAssLogo = new JLabel(image);
 
         sickAssLogo.setBounds(319,0, 456,284);
