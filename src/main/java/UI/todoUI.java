@@ -8,6 +8,7 @@ import utils.UIUtils;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -267,6 +268,7 @@ public class todoUI extends JFrame {
                 JOptionPane.showMessageDialog(this, "ERROR: Couldn't sync data");
             }
         });
+        
 
         panel.add(sync);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

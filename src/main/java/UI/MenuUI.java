@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class MenuUI extends JFrame implements ActionListener {
+public class MenuUI extends JFrame implements ActionListener{
 
     public MenuUI() throws IOException {
 
@@ -83,11 +83,17 @@ public class MenuUI extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "ERROR: Couldn't go to instructions!");
             }
         });
-
-
-        ImageIcon logo = new ImageIcon("rsz_todo_logo.png");
-        JLabel sickAssLogo = new JLabel(logo);
+        //this line below me was giving me errors then after i commented it out and set the visible to true it worked
+        //setIconImage(Toolkit.getDefaultToolkit().getImage(MenuUI.class.getResource("rsz_todo_logo.png")));
+        ImageIcon image = new ImageIcon("src/rsz_todo_logo.png");
+        JLabel sickAssLogo = new JLabel(image);
         panel.add(sickAssLogo);
+        //sickAssLogo.setIcon(new ImageIcon(MenuUI.class.getResource("rsz_todo_logo.png")));
+        sickAssLogo.setBounds(0,0, 500,500);
+        sickAssLogo.setVisible(true);
+
+
+
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
@@ -138,5 +144,4 @@ public class MenuUI extends JFrame implements ActionListener {
         t.start();
         new MenuUI();
     }
-
 }
