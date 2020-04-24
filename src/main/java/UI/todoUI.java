@@ -87,7 +87,7 @@ public class todoUI extends JFrame {
         titleInput.setBackground(Color.lightGray);
         panel.add(titleInput);
 
-        JLabel dueDateLabel = new JLabel("<HTML>Enter Due Date For Item (mm dd yyyy hh:mm):<HTML>");
+        JLabel dueDateLabel = new JLabel("<HTML>Enter Due Date For Item (mm dd yyyy hh:mm):<HTML>"); //html tags wrap the text and centers it
         dueDateLabel.setBounds(600, 100, 200, 50);
         dueDateLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
         dueDateLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -104,7 +104,7 @@ public class todoUI extends JFrame {
         JButton AddEvent = new JButton("Add To Schedule");
         AddEvent.setPreferredSize(new Dimension(250, 200));
         Dimension size = AddEvent.getPreferredSize();
-        AddEvent.setFocusPainted(false);
+        AddEvent.setFocusPainted(false); // this gets rid of the little border around the text of a button.
         AddEvent.setBounds(800, 0, size.width, size.height);
 
         AddEvent.addActionListener(e -> {
@@ -172,7 +172,7 @@ public class todoUI extends JFrame {
         panel.add(completeEventById);
 
         
-        JButton completeEvent = new JButton("<HTML><center>Complete</center><HTML>"); //html tags wrap the text and centers it
+        JButton completeEvent = new JButton("<HTML><center>Complete</center><HTML>");
         completeEvent.setPreferredSize(new Dimension(150, 100));
         Dimension completeEventSize = completeEvent.getPreferredSize();
         completeEvent.setBounds(600, 250, completeEventSize.width, completeEventSize.height);
