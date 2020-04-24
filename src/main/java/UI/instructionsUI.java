@@ -55,7 +55,7 @@ public class instructionsUI extends JFrame {
 
 
         // JLabel descriptionLabel = new JLabel();
-        descriptionlabel.setText("<HTML><Left>TODO List Application Created By: Jacob Deffendall, Payton Lowry, Ross Effinger, Haden Foster</Left><HTML>");
+        descriptionlabel.setText("<HTML><Left>Created By: Jacob Deffendall, Payton Lowry, Ross Effinger, and Haden Foster</Left><HTML>");
         descriptionlabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         descriptionlabel.setPreferredSize(new Dimension(500, 50));
         Dimension descriptionLabelSize = descriptionlabel.getPreferredSize();
@@ -95,7 +95,7 @@ public class instructionsUI extends JFrame {
         });
 
 
-        JButton backMenu = new JButton("Back to menu");
+        JButton backMenu = new JButton("Back to Menu");
         backMenu.setMargin(new Insets(2, 1, 2, 1));
         backMenu.setPreferredSize(new Dimension(100, 50));
         backMenu.setFocusPainted(false);

@@ -89,7 +89,7 @@ public class todoUI extends JFrame {
             titleInput.setText(null);
             dueDateInput.setText(null);
             try {
-                String resultJson = httpUtils.addTodoItem(title, due);
+                httpUtils.addTodoItem(title, due);
 
                 String updatedUserTodos = httpUtils.getAllUserTodosJsonString();
                 TodoItem[] updatedItems = parser.JsonStringToObjectArray(updatedUserTodos);
