@@ -21,5 +21,8 @@
   * Offline database
   * Screenshots in README
 #### Screenshots
-
+When you open the app, you will see a main menu, so you can start the app or view instructions/credits
+![Menu](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/mainMenu.PNG)
+When clicking on Instructions/Credits, you will see this page, where you can see the instruction manual or the project credits
+![Credits](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/instructionsCredits.PNG)
 
