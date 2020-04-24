@@ -60,7 +60,6 @@ public class instructionsUI extends JFrame {
 
         });
 
-
         descriptionlabel.setText("<HTML><Left>Created By: Jacob Deffendall, Payton Lowry, Ross Effinger, and Haden Foster</Left><HTML>");
         descriptionlabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         descriptionlabel.setPreferredSize(new Dimension(500, 50));
