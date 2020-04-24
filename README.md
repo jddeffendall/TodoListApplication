@@ -24,10 +24,10 @@
 The first page is the Menu, where you can choose the online or offline version, or view instructions and credits
 ![Menu](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/menu.PNG)
 
-Enter item title and due date in the following boxes, then press "Add To Schedule"
+To create an item, enter item title and due date in the following boxes, then press "Add To Schedule"
 ![Add item](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/addItem.PNG)
 
-Enter an item ID in this box, and click the corresponding button to complete, delete, or snooze an item
+To complete, delete, or snooze an item, enter its ID in this box, and click the corresponding button
 ![Edit item](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/editItem.PNG)
 
 Click on the Pie Chart button to view a pie chart of your items in the online or offline version
@@ -36,4 +36,7 @@ Click on the Pie Chart button to view a pie chart of your items in the online or
 Click Sync for Offline to save your Todos to a local database and open an offline version of the app, or hit
 go back online to reopen the online version
 ![Offline](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/offline.PNG)
+
+When an item becomes overdue, you will receive an alert
+![Overdue](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/overdue.PNG)
 
