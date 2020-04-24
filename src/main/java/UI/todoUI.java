@@ -12,6 +12,9 @@ import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 public class todoUI extends JFrame {
@@ -35,22 +38,42 @@ public class todoUI extends JFrame {
         HTTPUtils httpUtils = new HTTPUtils();
         UIUtils uiUtils = new UIUtils();
         JsonToObjectParser parser = new JsonToObjectParser();
+        var todoManager = new DatabaseUtils();
 
-        // Get current cloud data and display it in table
-        String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
-        TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
-        String[][] data = uiUtils.formatDataForTable(allUserTodos);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
         String[] columnNames = {"ID", "Title", "Created", "Due", "Completed", "Overdue", "Completed Date"};
 
-        JTable items = new JTable(data, columnNames);
-        JScrollPane jScrollPane = new JScrollPane(items, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        jScrollPane.setBounds(0, 0, 600, 800);
-        panel.add(jScrollPane);
-        items.getColumnModel().getColumn(0).setPreferredWidth(2);
-        items.getColumnModel().getColumn(4).setPreferredWidth(50);
-        items.getColumnModel().getColumn(5).setPreferredWidth(50);
-        items.setBackground(Color.white);
-        jScrollPane.setBackground(Color.white);
+        if (httpUtils.checkConnection()) {
+            // Get current cloud data and display it in table
+            String allUserTodosJson = httpUtils.getAllUserTodosJsonString();
+            TodoItem[] allUserTodos = parser.JsonStringToObjectArray(allUserTodosJson);
+            String[][] data = uiUtils.formatDataForTable(allUserTodos);
+
+            JTable items = new JTable(data, columnNames);
+            JScrollPane jScrollPane = new JScrollPane(items, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            jScrollPane.setBounds(0, 0, 600, 800);
+            panel.add(jScrollPane);
+            items.getColumnModel().getColumn(0).setPreferredWidth(2);
+            items.getColumnModel().getColumn(4).setPreferredWidth(50);
+            items.getColumnModel().getColumn(5).setPreferredWidth(50);
+            items.setBackground(Color.white);
+            jScrollPane.setBackground(Color.white);
+        } else {
+            // If no Internet, display local database items
+            List<TodoItem> allUserTodos = todoManager.getAllItems();
+            TodoItem[] allUserTodosArray = new TodoItem[allUserTodos.size()];
+            for (int i=0; i<allUserTodos.size(); i++) {
+                allUserTodosArray[i] = allUserTodos.get(i);
+            }
+
+            String[][] data = uiUtils.formatDataForTable(allUserTodosArray);
+
+            JTable items = new JTable(data, columnNames);
+            JScrollPane jScrollPane = new JScrollPane(items, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            jScrollPane.setBounds(0, 0, 600, 800);
+            panel.add(jScrollPane);
+            items.getColumnModel().getColumn(0).setPreferredWidth(2);
+        }
 
 
         JLabel titleLabel = new JLabel("Enter Title of Item:");
@@ -84,30 +107,56 @@ public class todoUI extends JFrame {
         Dimension size = AddEvent.getPreferredSize();
         AddEvent.setFocusPainted(false);
         AddEvent.setBounds(800, 0, size.width, size.height);
+
         AddEvent.addActionListener(e -> {
             String title = titleInput.getText();
             String due = dueDateInput.getText();
             titleInput.setText(null);
             dueDateInput.setText(null);
             try {
-                httpUtils.addTodoItem(title, due);
+                LocalDateTime now = LocalDateTime.now();
+                String nowString = now.format(formatter);
 
-                String updatedUserTodos = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] updatedItems = parser.JsonStringToObjectArray(updatedUserTodos);
-                String[][] updatedData = uiUtils.formatDataForTable(updatedItems);
+                int highestID = todoManager.findHighestID();
+                String newItemID = Integer.toString(highestID + 1);
 
-                JTable updatedTable = new JTable(updatedData, columnNames);
-                JScrollPane updatedJScrollPane = new JScrollPane(updatedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                updatedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(updatedJScrollPane);
-                updatedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
-                updatedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-                updatedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                TodoItem newItem = new TodoItem(title, "Team2", nowString, due, "false", "false", newItemID, "Incomplete");
+                todoManager.addItemToDB(newItem);
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            items.repaint();
+                List<TodoItem> addedItems = todoManager.getAllItems();
+                TodoItem[] addedTodosArray = new TodoItem[addedItems.size()];
+                for (int i=0; i<addedItems.size(); i++) {
+                    addedTodosArray[i] = addedItems.get(i);
+                }
+                String[][] addedData = uiUtils.formatDataForTable(addedTodosArray);
+
+                JTable addedTable = new JTable(addedData, columnNames);
+                JScrollPane addedJScrollPane = new JScrollPane(addedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                addedJScrollPane.setBounds(0, 0, 600, 800);
+                panel.add(addedJScrollPane);
+                addedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                addedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                addedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+
+                if (httpUtils.checkConnection()) {
+                    httpUtils.addTodoItem(title, due);
+                    /*
+                    String updatedUserTodos = httpUtils.getAllUserTodosJsonString();
+                    TodoItem[] updatedItems = parser.JsonStringToObjectArray(updatedUserTodos);
+                    String[][] updatedData = uiUtils.formatDataForTable(updatedItems);
+
+                    JTable updatedTable = new JTable(updatedData, columnNames);
+                    JScrollPane updatedJScrollPane = new JScrollPane(updatedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    updatedJScrollPane.setBounds(0, 0, 600, 800);
+                    panel.add(updatedJScrollPane);
+                    updatedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                    updatedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                    updatedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                    */
+                }
+                } catch(IOException ex){
+                    ex.printStackTrace();
+                }
         });
 
         panel.add(AddEvent);
@@ -225,7 +274,11 @@ public class todoUI extends JFrame {
         panel.add(pieChart);
         pieChart.addActionListener(e -> {
             try {
-                new chartUI("Todo List Overview");
+                if (httpUtils.checkConnection()) {
+                    new chartUI("Todo List Overview");
+                } else {
+                    new offlineChartUI("Offline Todo List Overview");
+                }
             } catch (IOException ioException) {
                 JOptionPane.showMessageDialog(this, "ERROR: Couldn't display pie chart!");
             }
@@ -255,8 +308,6 @@ public class todoUI extends JFrame {
         sync.setBounds(825, 350, syncSize.width, syncSize.height);
         sync.addActionListener(e -> {
             try {
-                var todoManager = new DatabaseUtils();
-
                 String allItemsString = httpUtils.getAllUserTodosJsonString();
                 TodoItem[] allItems = parser.JsonStringToObjectArray(allItemsString);
                 todoManager.updateOfflineTable(allItems);

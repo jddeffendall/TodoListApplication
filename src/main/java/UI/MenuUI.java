@@ -107,25 +107,27 @@ public class MenuUI extends JFrame {
                 JsonToObjectParser parser = new JsonToObjectParser();
 
                 LocalDateTime later = LocalDateTime.now().plusDays(1);
-                while (LocalDateTime.now().isBefore(later)) {
-                    try {
-                        String todoItemsJson = httpUtils.getAllUserTodosJsonString();
-                        TodoItem[] items = parser.JsonStringToObjectArray(todoItemsJson);
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
+                if (httpUtils.checkConnection()) {
+                    while (LocalDateTime.now().isBefore(later)) {
+                        try {
+                            String todoItemsJson = httpUtils.getAllUserTodosJsonString();
+                            TodoItem[] items = parser.JsonStringToObjectArray(todoItemsJson);
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd yyyy HH:mm");
 
-                        for (TodoItem i : items) {
-                            LocalDateTime due = LocalDateTime.parse(i.getDueDate(), formatter);
-                            LocalDateTime now = LocalDateTime.now();
+                            for (TodoItem i : items) {
+                                LocalDateTime due = LocalDateTime.parse(i.getDueDate(), formatter);
+                                LocalDateTime now = LocalDateTime.now();
 
-                            if (now.isAfter(due) && i.getOverdue().equals("false") && i.getCompleted().equals("false")) {
-                                httpUtils.setTodoItemOverdue(i);
-                                i.setOverdue();
-                                JOptionPane.showMessageDialog(null, "Item with ID " + i.getId() + " and Title " + i.getTitle() + " is overdue");
+                                if (now.isAfter(due) && i.getOverdue().equals("false") && i.getCompleted().equals("false")) {
+                                    httpUtils.setTodoItemOverdue(i);
+                                    i.setOverdue();
+                                    JOptionPane.showMessageDialog(null, "Item with ID " + i.getId() + " and Title " + i.getTitle() + " is overdue");
+                                }
                             }
-                        }
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
