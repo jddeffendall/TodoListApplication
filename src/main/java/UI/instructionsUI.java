@@ -29,7 +29,14 @@ public class instructionsUI extends JFrame {
 
 
         JLabel instructions = new JLabel();
-        instructions.setText("<HTML><Left><ul><li>In order to add an event to your schedule, you must input the name of the event and the due date of the event.</li><li>When the event is added, an ID will be automatically assigned.</li><li>This ID can be used to delete the event, mark it as complete, or snooze the due date by 15 minutes.</li><li>If you press the pie chart button, a chart displays.</li><li>If you press the Sync for offline button, it will back up the database and allow you to continue your day planning.</li><li>If you press the sync for online button it will push your offline events to the cloud and allow you to continue your day planning online.</li></ul></Left><HTML>");
+        instructions.setText("<HTML><Left><ul><li>In order to add an event to your schedule," +
+                " you must input the name of the event and the due date of the event.</li><li>" +
+                "When the event is added, an ID will be automatically assigned.</li><li>" +
+                "This ID can be used to delete the event, mark it as complete, or snooze the due date by 15 minutes.</li><li>" +
+                "If you press the pie chart button, a chart displays.</li><li>" +
+                "If you press the Sync for Offline button it updates your local database so you can continue your day as normal offline.</li><li>" +
+                "If you press the update cloud button it will sync whatever you have offline to the cloud, and allow you to continue your day online." +
+                " .</li></ul></Left><HTML>");
         instructions.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         instructions.setPreferredSize(new Dimension(500, 350));
         Dimension instructionsSize = instructions.getPreferredSize();
