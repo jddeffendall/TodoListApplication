@@ -25,4 +25,5 @@ When you open the app, you will see a main menu, so you can start the app or vie
 ![Menu](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/mainMenu.PNG)
 When clicking on Instructions/Credits, you will see this page, where you can see the instruction manual or the project credits
 ![Credits](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/instructionsCredits.PNG)
+In the app, you can add an item by typing in the title and due date in these text fields
 
