@@ -89,7 +89,7 @@ public class MenuUI extends JFrame implements ActionListener{
         JLabel sickAssLogo = new JLabel(image);
         panel.add(sickAssLogo);
         //sickAssLogo.setIcon(new ImageIcon(MenuUI.class.getResource("rsz_todo_logo.png")));
-        sickAssLogo.setBounds(0,0, 456,284);
+        sickAssLogo.setBounds(0,0, 500,500);
         sickAssLogo.setVisible(true);
 
 
