@@ -61,7 +61,6 @@ public class instructionsUI extends JFrame {
         });
 
 
-        // JLabel descriptionLabel = new JLabel();
         descriptionlabel.setText("<HTML><Left>Created By: Jacob Deffendall, Payton Lowry, Ross Effinger, and Haden Foster</Left><HTML>");
         descriptionlabel.setFont(new Font("Times New Roman", Font.PLAIN, 15));
         descriptionlabel.setPreferredSize(new Dimension(500, 50));
@@ -71,7 +70,6 @@ public class instructionsUI extends JFrame {
         panel.add(descriptionlabel);
 
 
-        //JButton description = new JButton("Description");
         description.setMargin(new Insets(2, 1, 2, 1));
         description.setPreferredSize(new Dimension(100, 50));
         description.setFocusPainted(false);

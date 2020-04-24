@@ -93,6 +93,7 @@ public class MenuUI extends JFrame {
 
                 LocalDateTime later = LocalDateTime.now().plusDays(1);
                 if (httpUtils.checkConnection()) {
+                    // If online, constantly check cloud to see if any item has become overdue, and sends alert
                     while (LocalDateTime.now().isBefore(later)) {
                         try {
                             String todoItemsJson = httpUtils.getAllUserTodosJsonString();
@@ -114,6 +115,7 @@ public class MenuUI extends JFrame {
                         }
                     }
                 } else {
+                    // If offline, check local database for any overdue items, then sends alert
                     while (LocalDateTime.now().isBefore(later)) {
                             List<TodoItem> allDatabaseItems = todoManager.getAllItems();
                             for (TodoItem i : allDatabaseItems) {
