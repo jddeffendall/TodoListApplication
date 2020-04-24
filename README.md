@@ -24,6 +24,9 @@
 The first page is the menu, where you can choose the online or offline version, or view instructions and credits
 ![Menu](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/menu.PNG)
 
+If you select Instructions/Credits, you will see this page, where you can click on the instructions or project credits
+![Instructions](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/instructions.PNG)
+
 To create an item, enter item title and due date in the following boxes, then press "Add To Schedule"
 ![Add item](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/addItem.PNG)
 
