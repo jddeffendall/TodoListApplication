@@ -5,6 +5,9 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import domain.TodoItem;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
@@ -160,5 +163,19 @@ public class HTTPUtils {
             return false;
         }
         return true;
+    }
+
+    public boolean checkConnection() {
+        try {
+            URL url = new URL("https://todoserver-team2.herokuapp.com/");
+            URLConnection conn = url.openConnection();
+            conn.connect();
+            conn.getInputStream().close();
+            return true;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            return false;
+        }
     }
 }
