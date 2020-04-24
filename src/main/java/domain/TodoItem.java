@@ -46,7 +46,6 @@ public class TodoItem {
 
     public TodoItem(String description, String due) {
         this.title = description;
-        this.created = created;
         this.due = due;
     }
 
