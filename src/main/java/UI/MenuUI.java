@@ -25,14 +25,14 @@ public class MenuUI extends JFrame {
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
         super.setResizable(false);
-
+        panel.setBackground(Color.white);
 
 
         JButton OnlineUI = new JButton("Online App");
         OnlineUI.setPreferredSize(new Dimension(200,50));
         OnlineUI.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension OnlineUISize = OnlineUI.getPreferredSize();
-        OnlineUI.setBounds(350, 225, OnlineUISize.width, OnlineUISize.height);
+        OnlineUI.setBounds(350, 275, OnlineUISize.width, OnlineUISize.height);
         OnlineUI.setFocusPainted(false);
         OnlineUI.addActionListener(e -> {
             try {
@@ -53,7 +53,7 @@ public class MenuUI extends JFrame {
         OfflineUI.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension OfflineUISize = OfflineUI.getPreferredSize();
         OfflineUI.setFocusPainted(false);
-        OfflineUI.setBounds(550, 225, OfflineUISize.width, OfflineUISize.height);
+        OfflineUI.setBounds(550, 275, OfflineUISize.width, OfflineUISize.height);
         OfflineUI.addActionListener(e -> {
             try {
                 new offlineUI();
@@ -69,7 +69,7 @@ public class MenuUI extends JFrame {
         instructions.setPreferredSize(new Dimension(250,50));
         instructions.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension instructionsSize = instructions.getPreferredSize();
-        instructions.setBounds(425, 275, instructionsSize.width, instructionsSize.height);
+        instructions.setBounds(425, 325, instructionsSize.width, instructionsSize.height);
         instructions.setFocusPainted(false);
         panel.add(instructions);
         instructions.addActionListener(e -> {
@@ -81,16 +81,15 @@ public class MenuUI extends JFrame {
                 JOptionPane.showMessageDialog(this, "ERROR: Couldn't go to instructions!");
             }
         });
-        //this line below me was giving me errors then after i commented it out and set the visible to true it worked
-        //setIconImage(Toolkit.getDefaultToolkit().getImage(MenuUI.class.getResource("rsz_todo_logo.png")));
+
+
         ImageIcon image = new ImageIcon("src/rsz_todo_logo.png");
         JLabel sickAssLogo = new JLabel(image);
-        panel.add(sickAssLogo);
-        //sickAssLogo.setIcon(new ImageIcon(MenuUI.class.getResource("rsz_todo_logo.png")));
-        sickAssLogo.setBounds(0,0, 500,500);
+
+        sickAssLogo.setBounds(324,0, 456,284);
         sickAssLogo.setVisible(true);
 
-
+        panel.add(sickAssLogo);
 
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
