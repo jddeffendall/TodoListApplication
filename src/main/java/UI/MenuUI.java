@@ -8,13 +8,11 @@ import utils.JsonToObjectParser;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class MenuUI extends JFrame implements ActionListener{
+public class MenuUI extends JFrame {
 
     public MenuUI() throws IOException {
 
@@ -100,12 +98,6 @@ public class MenuUI extends JFrame implements ActionListener{
         setVisible(true);
 
         
-    }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 
     public static void main(String[] args) throws IOException {

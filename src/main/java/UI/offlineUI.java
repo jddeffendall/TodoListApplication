@@ -33,6 +33,8 @@ public class offlineUI extends JFrame {
         UIUtils uiUtils = new UIUtils();
         JsonToObjectParser parser = new JsonToObjectParser();
 
+
+        //Get all current todos from database and display it
         List<TodoItem> allUserTodos = todoManager.getAllItems();
         TodoItem[] allUserTodosArray = new TodoItem[allUserTodos.size()];
 
@@ -267,7 +269,7 @@ public class offlineUI extends JFrame {
                 dispose();
                 new todoUI();
             } catch (IOException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "ERROR: Couldn't go back online");
             }
 
         });

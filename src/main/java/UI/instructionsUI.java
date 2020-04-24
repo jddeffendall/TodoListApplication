@@ -95,7 +95,7 @@ public class instructionsUI extends JFrame {
         });
 
 
-        JButton backMenu = new JButton("Back to menu");
+        JButton backMenu = new JButton("Back to Menu");
         backMenu.setMargin(new Insets(2, 1, 2, 1));
         backMenu.setPreferredSize(new Dimension(100, 50));
         backMenu.setFocusPainted(false);
