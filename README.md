@@ -21,7 +21,7 @@
   * Offline database
   * Screenshots in README
 #### Screenshots
-The first page is the Menu, where you can choose the online or offline version, or view instructions and credits
+The first page is the menu, where you can choose the online or offline version, or view instructions and credits
 ![Menu](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/menu.PNG)
 
 To create an item, enter item title and due date in the following boxes, then press "Add To Schedule"
