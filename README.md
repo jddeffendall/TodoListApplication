@@ -22,7 +22,7 @@
   * Screenshots in README
 #### Screenshots
 The first page is the menu, where you can choose the online or offline version, or view instructions and credits
-![Menu](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/menu.PNG)
+![Menu](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/newMenu.PNG)
 
 If you select Instructions/Credits, you will see this page, where you can click on the instructions or project credits
 ![Instructions](https://github.com/jddeffendall/TodoListApplication/blob/master/src/images/instructions.PNG)

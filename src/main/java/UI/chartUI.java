@@ -8,15 +8,14 @@ import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.util.Rotation;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
-import utils.DatabaseUtils;
+
 import utils.HTTPUtils;
 import utils.JsonToObjectParser;
 import utils.UIUtils;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 public class chartUI extends JFrame {
