@@ -67,7 +67,6 @@ public class todoUI extends JFrame {
             }
 
             String[][] data = uiUtils.formatDataForTable(allUserTodosArray);
-
             JTable items = new JTable(data, columnNames);
             JScrollPane jScrollPane = new JScrollPane(items, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             jScrollPane.setBounds(0, 0, 600, 800);
@@ -113,34 +112,11 @@ public class todoUI extends JFrame {
             String due = dueDateInput.getText();
             titleInput.setText(null);
             dueDateInput.setText(null);
+
             try {
-                LocalDateTime now = LocalDateTime.now();
-                String nowString = now.format(formatter);
-
-                int highestID = todoManager.findHighestID();
-                String newItemID = Integer.toString(highestID + 1);
-
-                TodoItem newItem = new TodoItem(title, "Team2", nowString, due, "false", "false", newItemID, "Incomplete");
-                todoManager.addItemToDB(newItem);
-
-                List<TodoItem> addedItems = todoManager.getAllItems();
-                TodoItem[] addedTodosArray = new TodoItem[addedItems.size()];
-                for (int i=0; i<addedItems.size(); i++) {
-                    addedTodosArray[i] = addedItems.get(i);
-                }
-                String[][] addedData = uiUtils.formatDataForTable(addedTodosArray);
-
-                JTable addedTable = new JTable(addedData, columnNames);
-                JScrollPane addedJScrollPane = new JScrollPane(addedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                addedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(addedJScrollPane);
-                addedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
-                addedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-                addedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
-
                 if (httpUtils.checkConnection()) {
                     httpUtils.addTodoItem(title, due);
-                    /*
+
                     String updatedUserTodos = httpUtils.getAllUserTodosJsonString();
                     TodoItem[] updatedItems = parser.JsonStringToObjectArray(updatedUserTodos);
                     String[][] updatedData = uiUtils.formatDataForTable(updatedItems);
@@ -152,7 +128,29 @@ public class todoUI extends JFrame {
                     updatedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
                     updatedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
                     updatedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
-                    */
+                } else {
+                    LocalDateTime now = LocalDateTime.now();
+                    String nowString = now.format(formatter);
+                    int highestID = todoManager.findHighestID();
+                    String newItemID = Integer.toString(highestID + 1);
+
+                    TodoItem newItem = new TodoItem(title, "Team2", nowString, due, "false", "false", newItemID, "Incomplete");
+                    todoManager.addItemToDB(newItem);
+
+                    List<TodoItem> addedItems = todoManager.getAllItems();
+                    TodoItem[] addedTodosArray = new TodoItem[addedItems.size()];
+                    for (int i=0; i<addedItems.size(); i++) {
+                        addedTodosArray[i] = addedItems.get(i);
+                    }
+                    String[][] addedData = uiUtils.formatDataForTable(addedTodosArray);
+
+                    JTable addedTable = new JTable(addedData, columnNames);
+                    JScrollPane addedJScrollPane = new JScrollPane(addedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    addedJScrollPane.setBounds(0, 0, 600, 800);
+                    panel.add(addedJScrollPane);
+                    addedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                    addedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                    addedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
                 }
                 } catch(IOException ex){
                     ex.printStackTrace();
@@ -184,22 +182,40 @@ public class todoUI extends JFrame {
             String idToComplete = completeEventById.getText();
             completeEventById.setText(null);
             try {
-                String itemJson = httpUtils.getTodoItemJsonString(idToComplete);
-                TodoItem item = parser.JsonStringToOneObject(itemJson);
-                httpUtils.completeTodoItem(item);
+                if (httpUtils.checkConnection()) {
+                    String itemJson = httpUtils.getTodoItemJsonString(idToComplete);
+                    TodoItem item = parser.JsonStringToOneObject(itemJson);
+                    httpUtils.completeTodoItem(item);
 
-                String completedUserTodos = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] completedItems = parser.JsonStringToObjectArray(completedUserTodos);
-                String[][] completedData = uiUtils.formatDataForTable(completedItems);
+                    String completedUserTodos = httpUtils.getAllUserTodosJsonString();
+                    TodoItem[] completedItems = parser.JsonStringToObjectArray(completedUserTodos);
+                    String[][] completedData = uiUtils.formatDataForTable(completedItems);
 
-                JTable completedTable = new JTable(completedData, columnNames);
-                JScrollPane completedJScrollPane = new JScrollPane(completedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                completedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(completedJScrollPane);
-                completedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
-                completedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-                completedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                    JTable completedTable = new JTable(completedData, columnNames);
+                    JScrollPane completedJScrollPane = new JScrollPane(completedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    completedJScrollPane.setBounds(0, 0, 600, 800);
+                    panel.add(completedJScrollPane);
+                    completedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                    completedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                    completedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                } else {
+                    todoManager.completeItem(idToComplete);
 
+                    List<TodoItem> completedItems = todoManager.getAllItems();
+                    TodoItem[] completedTodos = new TodoItem[completedItems.size()];
+                    for (int i=0; i<completedItems.size(); i++) {
+                        completedTodos[i] = completedItems.get(i);
+                    }
+                    String[][] completedData = uiUtils.formatDataForTable(completedTodos);
+
+                    JTable completedTable = new JTable(completedData, columnNames);
+                    JScrollPane completedJScrollPane = new JScrollPane(completedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    completedJScrollPane.setBounds(0, 0, 600, 800);
+                    panel.add(completedJScrollPane);
+                    completedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                    completedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                    completedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                }
             } catch (IOException ioe) {
                 JOptionPane.showMessageDialog(this, "ERROR: Couldn't complete item!");
             }
@@ -215,21 +231,40 @@ public class todoUI extends JFrame {
             String idToSnooze = completeEventById.getText();
             completeEventById.setText(null);
             try {
-                String todoItemToSnoozeJson = httpUtils.getTodoItemJsonString(idToSnooze);
-                TodoItem itemToSnooze = parser.JsonStringToOneObject(todoItemToSnoozeJson);
-                httpUtils.snooze(itemToSnooze);
+                if (httpUtils.checkConnection()) {
+                    String todoItemToSnoozeJson = httpUtils.getTodoItemJsonString(idToSnooze);
+                    TodoItem itemToSnooze = parser.JsonStringToOneObject(todoItemToSnoozeJson);
+                    httpUtils.snooze(itemToSnooze);
 
-                String snoozedUserTodos = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] snoozedItems = parser.JsonStringToObjectArray(snoozedUserTodos);
-                String[][] snoozedData = uiUtils.formatDataForTable(snoozedItems);
+                    String snoozedUserTodos = httpUtils.getAllUserTodosJsonString();
+                    TodoItem[] snoozedItems = parser.JsonStringToObjectArray(snoozedUserTodos);
+                    String[][] snoozedData = uiUtils.formatDataForTable(snoozedItems);
 
-                JTable snoozedTable = new JTable(snoozedData, columnNames);
-                JScrollPane snoozedJScrollPane = new JScrollPane(snoozedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                snoozedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(snoozedJScrollPane);
-                snoozedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
-                snoozedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-                snoozedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                    JTable snoozedTable = new JTable(snoozedData, columnNames);
+                    JScrollPane snoozedJScrollPane = new JScrollPane(snoozedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    snoozedJScrollPane.setBounds(0, 0, 600, 800);
+                    panel.add(snoozedJScrollPane);
+                    snoozedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                    snoozedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                    snoozedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                } else {
+                    todoManager.snooze(idToSnooze);
+
+                    List<TodoItem> snoozedItems = todoManager.getAllItems();
+                    TodoItem[] snoozedTodos = new TodoItem[snoozedItems.size()];
+                    for (int i=0; i<snoozedItems.size(); i++) {
+                        snoozedTodos[i] = snoozedItems.get(i);
+                    }
+                    String[][] snoozedData = uiUtils.formatDataForTable(snoozedTodos);
+
+                    JTable snoozedTable = new JTable(snoozedData, columnNames);
+                    JScrollPane snoozedJScrollPane = new JScrollPane(snoozedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    snoozedJScrollPane.setBounds(0, 0, 600, 800);
+                    panel.add(snoozedJScrollPane);
+                    snoozedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                    snoozedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                    snoozedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                }
 
             } catch (IOException ioException) {
                 JOptionPane.showMessageDialog(this, "ERROR: Couldn't snooze item!");
@@ -246,20 +281,38 @@ public class todoUI extends JFrame {
             String stringId = completeEventById.getText();
             completeEventById.setText(null);
             try {
-                httpUtils.deleteTodoItem(stringId);
+                if (httpUtils.checkConnection()) {
+                    httpUtils.deleteTodoItem(stringId);
 
-                String deletedUserTodos = httpUtils.getAllUserTodosJsonString();
-                TodoItem[] deletedItems = parser.JsonStringToObjectArray(deletedUserTodos);
-                String[][] deletedData = uiUtils.formatDataForTable(deletedItems);
+                    String deletedUserTodos = httpUtils.getAllUserTodosJsonString();
+                    TodoItem[] deletedItems = parser.JsonStringToObjectArray(deletedUserTodos);
+                    String[][] deletedData = uiUtils.formatDataForTable(deletedItems);
 
-                JTable deletedTable = new JTable(deletedData, columnNames);
-                JScrollPane deletedJScrollPane = new JScrollPane(deletedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                deletedJScrollPane.setBounds(0, 0, 600, 800);
-                panel.add(deletedJScrollPane);
-                deletedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
-                deletedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
-                deletedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                    JTable deletedTable = new JTable(deletedData, columnNames);
+                    JScrollPane deletedJScrollPane = new JScrollPane(deletedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    deletedJScrollPane.setBounds(0, 0, 600, 800);
+                    panel.add(deletedJScrollPane);
+                    deletedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                    deletedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                    deletedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                } else {
+                    todoManager.deleteItem(stringId);
 
+                    List<TodoItem> deletedItems = todoManager.getAllItems();
+                    TodoItem[] deletedTodos = new TodoItem[deletedItems.size()];
+                    for (int i=0; i<deletedItems.size(); i++) {
+                        deletedTodos[i] = deletedItems.get(i);
+                    }
+                    String[][] deletedData = uiUtils.formatDataForTable(deletedTodos);
+
+                    JTable deletedTable = new JTable(deletedData, columnNames);
+                    JScrollPane deletedJScrollPane = new JScrollPane(deletedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    deletedJScrollPane.setBounds(0, 0, 600, 800);
+                    panel.add(deletedJScrollPane);
+                    deletedTable.getColumnModel().getColumn(0).setPreferredWidth(2);
+                    deletedTable.getColumnModel().getColumn(4).setPreferredWidth(50);
+                    deletedTable.getColumnModel().getColumn(5).setPreferredWidth(50);
+                }
             } catch (IOException ioException) {
                 JOptionPane.showMessageDialog(this, "ERROR: Couldn't cancel item!");
             }
@@ -311,11 +364,6 @@ public class todoUI extends JFrame {
                 String allItemsString = httpUtils.getAllUserTodosJsonString();
                 TodoItem[] allItems = parser.JsonStringToObjectArray(allItemsString);
                 todoManager.updateOfflineTable(allItems);
-
-                setVisible(false);
-                dispose();
-                new offlineUI();
-
             } catch (IOException ioException) {
                 JOptionPane.showMessageDialog(this, "ERROR: Couldn't sync data");
             }
