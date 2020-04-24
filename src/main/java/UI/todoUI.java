@@ -31,6 +31,7 @@ public class todoUI extends JFrame {
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(1050, 550));
         super.setResizable(false);
+        panel.setBackground(Color.white);
 
 
         HTTPUtils httpUtils = new HTTPUtils();
@@ -50,6 +51,8 @@ public class todoUI extends JFrame {
         items.getColumnModel().getColumn(0).setPreferredWidth(2);
         items.getColumnModel().getColumn(4).setPreferredWidth(50);
         items.getColumnModel().getColumn(5).setPreferredWidth(50);
+        items.setBackground(Color.white);
+        jScrollPane.setBackground(Color.white);
 
 
         JLabel titleLabel = new JLabel("Enter Title of Item:");

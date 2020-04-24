@@ -86,7 +86,7 @@ public class MenuUI extends JFrame {
         ImageIcon image = new ImageIcon("src/rsz_todo_logo.png");
         JLabel sickAssLogo = new JLabel(image);
 
-        sickAssLogo.setBounds(324,0, 456,284);
+        sickAssLogo.setBounds(319,0, 456,284);
         sickAssLogo.setVisible(true);
 
         panel.add(sickAssLogo);
